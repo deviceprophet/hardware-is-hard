@@ -1,0 +1,1891 @@
+[
+    {
+        "id": "event_local_ai_theft",
+        "title": "Local AI Model Stolen",
+        "description": "Your proprietary Edge AI model was extracted from the device firmware via a glitching attack. It's now trending on the Public Model Hub.",
+        "category": "ipr",
+        "triggerCondition": "'ai_gap_transparency_missing' in activeTags && month > 12",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_move_cloud",
+                "text": "Move critical logic to Cloud (Protect IPR)",
+                "cost": 50000,
+                "doomImpact": -5,
+                "addTags": ["cloud_dependency"],
+                "removeTags": ["ai_gap_transparency_missing"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_obfuscate",
+                "text": "Better obfuscation (Delay tactics)",
+                "cost": 10000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "compute"
+    },
+    {
+        "id": "event_crowdfunding_hype",
+        "title": "Pre-Order Hype Check",
+        "description": "The marketing team wants to launch a Crowdfunding Campaign. 'Just promise them the moon, we'll figure out the physics later.'",
+        "category": "operational",
+        "triggerCondition": "month <= 6",
+        "baseProb": 1.0,
+        "choices": [
+            {
+                "id": "choice_hype_ai",
+                "text": "Promise 'General Artificial Intelligence' ($$$)",
+                "cost": -50000,
+                "doomImpact": 5,
+                "addTags": [
+                    "tech_debt",
+                    "fake_ai",
+                    "budget_surplus",
+                    "ai_gap_transparency_missing"
+                ],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_hype_lifetime",
+                "text": "Promise 'Lifetime Free Cloud Storage'",
+                "cost": -30000,
+                "doomImpact": 10,
+                "addTags": ["cloud_dependency", "regulatory_debt", "lifetime_support"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_stay_humble",
+                "text": "Promise what we can actually build",
+                "cost": 0,
+                "doomImpact": -5,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cloud"
+    },
+    {
+        "id": "event_mcu_shortage",
+        "title": "Global Silicon Famine",
+        "description": "Your MCU distributor just ghosted you. The lead time is now 96 weeks. A broker overseas says they have 'compatible' stock.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 3",
+        "baseProb": 0.45,
+        "choices": [
+            {
+                "id": "choice_buy_clones",
+                "text": "Buy the 'compatible' chips (No questions asked)",
+                "cost": 15000,
+                "doomImpact": 15,
+                "addTags": ["cloned", "security_risk"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_redesign_mcu",
+                "text": "Emergency Redesign for available part",
+                "cost": 65000,
+                "doomImpact": 5,
+                "addTags": ["tech_debt"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_stop_ship",
+                "text": "Halt production until stock returns",
+                "cost": 40000,
+                "doomImpact": 10,
+                "addTags": ["revenue_loss"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_flash_shortage",
+        "title": "Flash Memory Shortage",
+        "description": "Supply chain crisis! The automotive-grade flash chips are backordered for 52 weeks.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 2",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_cheap_flash",
+                "text": "Use Generic Consumer Flash from Overseas Vendors",
+                "cost": 5000,
+                "doomImpact": 8,
+                "addTags": ["bad_flash", "supply_risk"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_redesign",
+                "text": "Redesign PCB for new footprint",
+                "cost": 25000,
+                "doomImpact": 0,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "storage"
+    },
+    {
+        "id": "event_data_corruption",
+        "title": "Bit Rot Detected",
+        "description": "Users are reporting their devices are forgetting their WiFi passwords. Your flash vendor says it's a 'known characteristic'.",
+        "category": "operational",
+        "triggerCondition": "month > 10",
+        "requiredTags": ["bad_flash"],
+        "baseProb": 0.7,
+        "choices": [
+            {
+                "id": "choice_ignore_it",
+                "text": "It's a feature, not a bug",
+                "cost": 0,
+                "doomImpact": 25,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_recall_units",
+                "text": "Recall affected units",
+                "cost": 45000,
+                "doomImpact": 5,
+                "removeTags": ["bad_flash"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "storage"
+    },
+    {
+        "id": "event_gdpr_audit",
+        "title": "Surprise GDPR Audit",
+        "description": "The EU Commission wants to know where you store the user's voice logs. They mention SOMETHING about 'Article 25 - Data Protection by Design'.",
+        "category": "regulatory",
+        "triggerCondition": "month > 5",
+        "blockedByTags": ["encrypted_storage", "eu_compliant", "privacy_by_design"],
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_bribe",
+                "text": "Hire 'Consultants' to delay",
+                "cost": 15000,
+                "doomImpact": 12,
+                "addTags": ["regulatory_debt"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_clean_up",
+                "text": "Panic delete everything",
+                "cost": 5000,
+                "doomImpact": 18,
+                "addTags": ["data_loss", "legal_battle"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_proper_fix",
+                "text": "Implement proper data handling",
+                "cost": 35000,
+                "doomImpact": 0,
+                "addTags": ["privacy_by_design"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_botnet",
+        "title": "ZombieNet 2.0 Infection",
+        "description": "Your devices are being used to DDoS a cat food website in Estonia. The botnet operators send a thank you note.",
+        "category": "cyberattack",
+        "requiredTags": ["default_password"],
+        "triggerCondition": "month > 6",
+        "baseProb": 0.6,
+        "choices": [
+            {
+                "id": "choice_ota_patch",
+                "text": "Emergency OTA Patch",
+                "cost": 30000,
+                "doomImpact": 10,
+                "addTags": ["patched_firmware"],
+                "removeTags": ["default_password"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_deny",
+                "text": "Deny involvement via PR",
+                "cost": 5000,
+                "doomImpact": 35,
+                "addTags": ["pr_disaster", "regulatory_attention"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_marketing_pivot",
+        "title": "AI Pivot",
+        "description": "The CEO saw a GenAI demo. Implement 'Chat with your Juicer' feature by next week.",
+        "category": "operational",
+        "triggerCondition": "month > 10",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_fake_ai",
+                "text": "Write a regex script and call it AI",
+                "cost": 5000,
+                "doomImpact": 15,
+                "addTags": ["fake_ai", "tech_debt", "viral_potential"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_real_ai",
+                "text": "Integrate actual LLM (Budget blown)",
+                "cost": 60000,
+                "doomImpact": 5,
+                "addTags": ["ai_enabled", "cloud_dependency", "viral_potential"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_fake_ai_exposed",
+        "title": "Fake AI Exposed",
+        "description": "A researcher decompiled your app and found your 'AI' is just 500 if-statements. The internet is laughing at you.",
+        "category": "reputational",
+        "triggerCondition": "month > 12",
+        "requiredTags": ["fake_ai"],
+        "baseProb": 0.5,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_fake_ai_admit",
+                "text": "Admit it ('It's Symbolic AI!')",
+                "cost": 0,
+                "doomImpact": 30,
+                "addTags": ["pr_disaster", "hated_by_internet"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_fake_ai_refund",
+                "text": "Offer partial refunds",
+                "cost": 25000,
+                "doomImpact": 10,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_cra_warning",
+        "title": "CRA Compliance Letter",
+        "description": "The EU has sent your company a 'friendly reminder' about the upcoming Cyber Resilience Act deadline. Your SBOM is... non-existent.",
+        "category": "regulatory",
+        "triggerCondition": "month > 18",
+        "blockedByTags": ["cra_compliant", "sbom_ready"],
+        "baseProb": 0.45,
+        "choices": [
+            {
+                "id": "choice_ignore_cra",
+                "text": "Brexit means Brexit, right? Oh wait...",
+                "cost": 0,
+                "doomImpact": 20,
+                "addTags": ["cra_noncompliant"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_scramble_sbom",
+                "text": "Hire contractor to generate SBOM",
+                "cost": 25000,
+                "doomImpact": 8,
+                "addTags": ["sbom_partial"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_proper_sbom",
+                "text": "Implement CI/CD SBOM generation",
+                "cost": 50000,
+                "doomImpact": 0,
+                "addTags": ["sbom_ready", "cra_compliant"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_cra_enforcement",
+        "title": "CRA Enforcement Action",
+        "description": "December 2027. The CRA is now fully enforced. EU customs has seized your latest shipment. Your CE mark is 'under review'.",
+        "category": "regulatory",
+        "triggerCondition": "month > 30",
+        "requiredTags": ["cra_noncompliant"],
+        "baseProb": 0.8,
+        "choices": [
+            {
+                "id": "choice_exit_eu",
+                "text": "Exit EU market entirely",
+                "cost": 10000,
+                "doomImpact": 40,
+                "addTags": ["market_restricted"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_emergency_compliance",
+                "text": "Emergency compliance program ($$$)",
+                "cost": 80000,
+                "doomImpact": 15,
+                "removeTags": ["cra_noncompliant"],
+                "addTags": ["cra_compliant"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_psti_enforcement",
+        "title": "UK PSTI Violation",
+        "description": "UK Trading Standards contacts you. Apparently 'admin/admin' is not an acceptable default password. Who knew?",
+        "category": "regulatory",
+        "triggerCondition": "month > 3",
+        "requiredTags": ["default_password"],
+        "blockedByTags": ["uk_compliant"],
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_exit_uk",
+                "text": "Exit UK market",
+                "cost": 5000,
+                "doomImpact": 15,
+                "addTags": ["market_restricted"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_fix_passwords",
+                "text": "Implement unique passwords per device",
+                "cost": 35000,
+                "doomImpact": 5,
+                "removeTags": ["default_password"],
+                "addTags": ["uk_compliant"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_ransomware",
+        "title": "Ransomware Attack",
+        "description": "Your cloud backend has been encrypted. The hackers want 50 Crypto. Your backup strategy was 'we'll figure it out later'.",
+        "category": "cyberattack",
+        "requiredTags": ["cloud_dependency"],
+        "blockedByTags": ["proper_backups"],
+        "triggerCondition": "month > 12",
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_pay_ransom",
+                "text": "Pay the ransom (this is illegal in some jurisdictions)",
+                "cost": 50000,
+                "doomImpact": 20,
+                "addTags": ["ransomware_victim"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_rebuild",
+                "text": "Rebuild from scratch",
+                "cost": 60000,
+                "doomImpact": 35,
+                "addTags": ["service_outage", "data_loss"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_call_experts",
+                "text": "Engage incident response team",
+                "cost": 80000,
+                "doomImpact": 15,
+                "addTags": ["proper_backups"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_debug_port_exploit",
+        "title": "Debug Port Exposed",
+        "description": "Security researchers found your JTAG port is active in production. Your firmware is now on GitHub.",
+        "category": "cyberattack",
+        "blockedByTags": ["jtag_disabled", "secure_boot"],
+        "triggerCondition": "month > 8",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_dmca",
+                "text": "Send DMCA takedown (Streisand effect incoming)",
+                "cost": 5000,
+                "doomImpact": 25,
+                "addTags": ["pr_disaster", "cloned"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_fuse_blow",
+                "text": "Rush new production with fuses blown",
+                "cost": 40000,
+                "doomImpact": 10,
+                "addTags": ["jtag_disabled"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_secure_boot",
+                "text": "Implement full secure boot chain",
+                "cost": 75000,
+                "doomImpact": 0,
+                "addTags": ["secure_boot", "jtag_disabled"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_silicon_eol",
+        "title": "Main Chip End-of-Life",
+        "description": "Your SoC vendor announces they're discontinuing your chip. You have 18 months to find an alternative.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 24",
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_stockpile",
+                "text": "Lifetime buy stockpile",
+                "cost": 80000,
+                "doomImpact": 10,
+                "addTags": ["stockpiled"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_quick_port",
+                "text": "Quick port to similar chip",
+                "cost": 45000,
+                "doomImpact": 20,
+                "addTags": ["tech_debt", "untested_hardware"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_proper_migration",
+                "text": "Proper hardware migration project",
+                "cost": 120000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_ota_brick",
+        "title": "OTA Update Disaster",
+        "description": "Your latest firmware update has bricked 15% of deployed devices. Social media is not happy.",
+        "category": "operational",
+        "blockedByTags": ["ab_partitions"],
+        "triggerCondition": "month > 15",
+        "baseProb": 0.25,
+        "choices": [
+            {
+                "id": "choice_silent_replacement",
+                "text": "Silent replacement program",
+                "cost": 50000,
+                "doomImpact": 15,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_public_recall",
+                "text": "Public recall announcement",
+                "cost": 35000,
+                "doomImpact": 25,
+                "addTags": ["recalled"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_implement_rollback",
+                "text": "Implement A/B partitions for future",
+                "cost": 60000,
+                "doomImpact": 20,
+                "addTags": ["ab_partitions"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_cloud_price_hike",
+        "title": "Cloud Vendor Lock-in",
+        "description": "The Cloud Provider announces 300% price increase for IoT Service. Your entire fleet uses their proprietary protocol.",
+        "category": "operational",
+        "requiredTags": ["cloud_dependency"],
+        "blockedByTags": ["multi_cloud"],
+        "triggerCondition": "month > 20",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_pay_up",
+                "text": "Accept the new pricing",
+                "cost": 100000,
+                "doomImpact": 5,
+                "addTags": ["budget_crisis"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_migration",
+                "text": "Migrate to standard protocols",
+                "cost": 70000,
+                "doomImpact": 15,
+                "addTags": ["multi_cloud"],
+                "removeTags": ["cloud_dependency"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_insurance_denial",
+        "title": "Cyber Insurance Denied",
+        "description": "Your cyber insurance claim is denied. 'Insufficient security controls' they say. Something about SBOM and penetration testing.",
+        "category": "operational",
+        "requiredTags": ["ransomware_victim"],
+        "blockedByTags": ["sbom_ready"],
+        "triggerCondition": "month > 15",
+        "baseProb": 0.7,
+        "choices": [
+            {
+                "id": "choice_sue_insurer",
+                "text": "Sue the insurance company",
+                "cost": 30000,
+                "doomImpact": 10,
+                "addTags": ["legal_battle"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_accept_loss",
+                "text": "Accept the loss and move on",
+                "cost": 0,
+                "doomImpact": 25,
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_hamster_hack",
+        "title": "Smart Cage Hack",
+        "description": "Hackers accessed the unencrypted MQTT relay. The hamster is now participating in a DDoS attack (and is very warm).",
+        "category": "reputational",
+        "triggerCondition": "month > 8",
+        "requiredTags": ["heater_relay", "no_encryption"],
+        "baseProb": 0.4,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_hamster_patch",
+                "text": "Emergency Firmware Patch",
+                "cost": 15000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_hamster_deny",
+                "text": "Blame the owner's WiFi",
+                "cost": 0,
+                "doomImpact": 20,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "control"
+    },
+    {
+        "id": "event_drm_outage",
+        "title": "DRM Server Outage",
+        "description": "Your authentication server is down. 50,000 customers cannot use the product they 'bought'.",
+        "category": "operational",
+        "triggerCondition": "month > 4",
+        "requiredTags": ["drm_locked"],
+        "baseProb": 0.35,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_drm_disable",
+                "text": "Push update to disable DRM checks (Free fix!)",
+                "cost": 0,
+                "doomImpact": 20,
+                "removeTags": ["drm_locked"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_drm_provision",
+                "text": "Provision emergency capacity & fix auth service",
+                "cost": 20000,
+                "doomImpact": 0,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cloud"
+    },
+    {
+        "id": "event_battery_compliance",
+        "title": "EU Battery Regulation",
+        "description": "New EU Battery Regulation requires a 'Digital Battery Passport'. Your battery management system logs... nothing.",
+        "category": "regulatory",
+        "triggerCondition": "month > 30",
+        "requiredTags": ["battery_powered"],
+        "blockedByTags": ["battery_passport"],
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_fake_data",
+                "text": "Generate plausible-looking data",
+                "cost": 10000,
+                "doomImpact": 30,
+                "addTags": ["fraud"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_implement_bms",
+                "text": "Implement proper BMS logging",
+                "cost": 55000,
+                "doomImpact": 5,
+                "addTags": ["battery_passport"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "storage"
+    },
+    {
+        "id": "event_ai_act",
+        "title": "EU AI Act Audit",
+        "description": "Your 'AI-powered' feature triggers EU AI Act scrutiny. They want to see your risk management system and model cards.",
+        "category": "regulatory",
+        "requiredTags": ["ai_enabled"],
+        "blockedByTags": ["ai_compliant"],
+        "triggerCondition": "month > 24",
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_fake_ai_remove",
+                "text": "Quietly remove AI feature",
+                "cost": 15000,
+                "doomImpact": 10,
+                "removeTags": ["ai_enabled"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_ai_compliance",
+                "text": "Implement AI risk management",
+                "cost": 65000,
+                "doomImpact": 0,
+                "addTags": ["ai_compliant"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_competitor_clone",
+        "title": "Gray Market Clone",
+        "description": "A perfect clone of your product appears on a major marketplace at 1/3 the price. It even has your firmware, bugs included.",
+        "category": "ipr",
+        "requiredTags": ["cloned"],
+        "triggerCondition": "month > 12",
+        "baseProb": 0.6,
+        "choices": [
+            {
+                "id": "choice_legal_action",
+                "text": "Launch international legal action",
+                "cost": 80000,
+                "doomImpact": 5,
+                "addTags": ["legal_battle"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_race_bottom",
+                "text": "Compete on price",
+                "cost": 20000,
+                "doomImpact": 20,
+                "addTags": ["margin_compressed"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_apt_detected",
+        "title": "Nation-State Interest",
+        "description": "Threat intelligence suggests a nation-state APT is targeting your device category. Your security posture is... optimistic.",
+        "category": "cyberattack",
+        "blockedByTags": ["secure_boot", "zero_trust"],
+        "triggerCondition": "month > 18",
+        "baseProb": 0.2,
+        "choices": [
+            {
+                "id": "choice_ignore_apt",
+                "text": "We're not that important, surely",
+                "cost": 0,
+                "doomImpact": 30,
+                "addTags": ["apt_target"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_security_audit",
+                "text": "Commission third-party security audit",
+                "cost": 50000,
+                "doomImpact": 5,
+                "addTags": ["audited"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_zero_trust",
+                "text": "Implement zero-trust architecture",
+                "cost": 90000,
+                "doomImpact": 0,
+                "addTags": ["zero_trust"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_ewaste_violation",
+        "title": "E-Waste Disposal Crisis",
+        "description": "Old devices are appearing in landfills with PII still accessible. The EU ESPR wants to 'discuss secure disposal procedures'.",
+        "category": "regulatory",
+        "triggerCondition": "month > 36",
+        "blockedByTags": ["secure_eol"],
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_ignore_ewaste",
+                "text": "Not our problem anymore",
+                "cost": 0,
+                "doomImpact": 25,
+                "addTags": ["ewaste_violation"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_retrofit_eol",
+                "text": "Retrofit secure wipe capability",
+                "cost": 45000,
+                "doomImpact": 8,
+                "addTags": ["secure_eol"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "storage"
+    },
+    {
+        "id": "event_zombie_lawsuit",
+        "title": "Zombie Device Class Action",
+        "description": "A class action lawsuit alleges your unpatchable devices from 2019 are being used to attack hospitals.",
+        "category": "reputational",
+        "triggerCondition": "month > 40",
+        "blockedByTags": ["secure_eol", "lifetime_support"],
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_settle",
+                "text": "Settle out of court",
+                "cost": 150000,
+                "doomImpact": 15,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_fight_lawsuit",
+                "text": "Fight in court",
+                "cost": 80000,
+                "doomImpact": 30,
+                "addTags": ["legal_battle", "pr_disaster"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_fda_raid",
+        "title": "Surprise FDA Inspection",
+        "description": "Inspectors have arrived. They want to see the Clinical Evaluation Report (CER) for your latest firmware patch.",
+        "category": "regulatory",
+        "triggerCondition": "month > 12",
+        "requiredTags": ["health_data"],
+        "blockedByTags": ["fda_compliant", "clinical_trials"],
+        "baseProb": 0.4,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_stall_fda",
+                "text": "Stall them with 'Proprietary Data' claims",
+                "cost": 5000,
+                "doomImpact": 25,
+                "addTags": ["regulatory_probation"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_audit_prep",
+                "text": "Launch Emergency Audit Prep",
+                "cost": 65000,
+                "doomImpact": 10,
+                "addTags": ["fda_compliant"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "sensor"
+    },
+    {
+        "id": "event_influencer_takedown",
+        "title": "Mega-Influencer Takedown",
+        "description": "TechRoast (15M subs) just dropped a video: 'The Snuggle-Bot is SPYING on you'. It has 2M views in an hour.",
+        "category": "reputational",
+        "triggerCondition": "month > 6",
+        "requiredTags": ["viral_potential"],
+        "baseProb": 0.5,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_dmca_video",
+                "text": "DMCA the video (Streisand Effect)",
+                "cost": 2000,
+                "doomImpact": 40,
+                "addTags": ["pr_disaster", "hated_by_internet"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_sponsor_apology",
+                "text": "Sponsor an apology video",
+                "cost": 40000,
+                "doomImpact": 10,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_quantum_harvest",
+        "title": "Harvest Now, Decrypt Later",
+        "description": "Intelligence agencies are recording your encrypted traffic. Your ECC-256 keys will be crackable by quantum computers in ~8 years. Your device lasts 10.",
+        "category": "cyberattack",
+        "triggerCondition": "month > 36",
+        "requiredTags": ["safety_critical", "no_encryption"],
+        "blockedByTags": ["post_quantum_crypto"],
+        "baseProb": 0.3,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_ignore_quantum",
+                "text": "That's a 'Future Us' problem",
+                "cost": 0,
+                "doomImpact": 15,
+                "addTags": ["time_bomb"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_implement_pqc",
+                "text": "Implement PQC (Crystal Kyber/Dilithium)",
+                "cost": 90000,
+                "doomImpact": 0,
+                "addTags": ["post_quantum_crypto"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "encryption"
+    },
+    {
+        "id": "event_ble_exploit",
+        "title": "Cheap Bluetooth Replay",
+        "description": "A Tech Vlogger opened your lock with a $5 Microcontroller. It's a simple replay attack. 'Bank Grade Security' is now a meme.",
+        "category": "cyberattack",
+        "triggerCondition": "month > 4",
+        "requiredTags": ["ble_connected"],
+        "baseProb": 0.6,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_app_fix",
+                "text": "Software fix: Rolling codes via App",
+                "cost": 25000,
+                "doomImpact": 10,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_hardware_recall",
+                "text": "Full Hardware Recall (Crypto Coprocessor)",
+                "cost": 90000,
+                "doomImpact": 0,
+                "addTags": ["secure_element"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_stuxnet_usb",
+        "title": "The Parking Lot USB",
+        "description": "An operator plugged a USB drive labeled 'Salary Bonuses 2026' into the airgapped control console.",
+        "category": "operational",
+        "triggerCondition": "month > 20",
+        "requiredTags": ["industrial_protocol"],
+        "baseProb": 0.4,
+        "visualEffect": "pulse-red",
+        "choices": [
+            {
+                "id": "choice_epoxy_ports",
+                "text": "Epoxy glue all USB ports",
+                "cost": 1000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_incident_response",
+                "text": "Scrub the SCADA network",
+                "cost": 60000,
+                "doomImpact": 20,
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "control"
+    },
+    {
+        "id": "event_ai_prohibited",
+        "title": "Prohibited AI Practice",
+        "description": "Marketing pushed an OTA update enabling 'Emotion Recognition' to optimize ads. Legal warns this violates EU AI Act Article 5 (Prohibited Practices).",
+        "category": "regulatory",
+        "triggerCondition": "month > 6",
+        "requiredTags": ["ai_enabled"],
+        "choices": [
+            {
+                "id": "choice_ai_rollback",
+                "text": "Emergency Rollback (Kill the feature)",
+                "cost": 8000,
+                "doomImpact": 0,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_ai_fight",
+                "text": "Claim it's for 'User Safety' (Fight the regulators)",
+                "cost": 0,
+                "doomImpact": 25,
+                "addTags": ["regulatory_debt", "pr_disaster"],
+                "riskLevel": "high"
+            }
+        ],
+        "visualEffect": "glitch",
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_ai_transparency",
+        "title": "GPAI Transparency Audit",
+        "description": "Regulators demand 'Article 53' transparency docs for your GenAI chatbot. Since you wrappered a black-box API, you have zero documentation.",
+        "category": "regulatory",
+        "triggerCondition": "month > 18",
+        "requiredTags": ["ai_enabled"],
+        "choices": [
+            {
+                "id": "choice_ai_lawyers",
+                "text": "Hire top-tier law firm to delay",
+                "cost": 12000,
+                "doomImpact": 5,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_ai_open",
+                "text": "Panic-switch to Open Source Model",
+                "cost": 5000,
+                "doomImpact": 15,
+                "addTags": ["tech_debt"],
+                "riskLevel": "medium"
+            }
+        ],
+        "visualEffect": "none",
+        "targetModule": "control"
+    },
+    {
+        "id": "event_ai_bias",
+        "title": "Algorithmic Bias Scandal",
+        "description": "Users discovered your smart camera auto-tags minorities as 'Suspicious'. Social Media is melting down. Data governance was nonexistent.",
+        "category": "reputational",
+        "triggerCondition": "month > 10",
+        "requiredTags": ["ai_enabled"],
+        "choices": [
+            {
+                "id": "choice_bias_deny",
+                "text": "Deny it ('It's a feature!')",
+                "cost": 0,
+                "doomImpact": 35,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_bias_fix",
+                "text": "Apologize and Global Retrain",
+                "cost": 15000,
+                "doomImpact": -5,
+                "riskLevel": "low"
+            }
+        ],
+        "visualEffect": "shake",
+        "targetModule": "sensor"
+    },
+    {
+        "id": "event_cra_vuln_report",
+        "title": "CRA: Zero-Day Discovery",
+        "description": "A researcher found a root shell. Under the EU Cyber Resilience Act, you MUST provide an early warning to ENISA within 24 hours and a full notification within 72 hours.",
+        "category": "regulatory",
+        "triggerCondition": "month > 14",
+        "choices": [
+            {
+                "id": "choice_cra_report",
+                "text": "Report to ENISA (Risk Leak)",
+                "cost": 2000,
+                "doomImpact": 5,
+                "addTags": ["regulatory_debt"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_cra_coverup",
+                "text": "Quietly Patch & Don't Tell (Illegal)",
+                "cost": 0,
+                "doomImpact": 40,
+                "addTags": ["legal_battle"],
+                "riskLevel": "high"
+            }
+        ],
+        "visualEffect": "pulse-red",
+        "targetModule": "security"
+    },
+    {
+        "id": "event_gpsr_choking",
+        "title": "GPSR: Choking Hazard",
+        "description": "A toddler swallowed the volume knob. The General Product Safety Regulation demands an immediate recall unless you can prove it's an isolated incident.",
+        "category": "regulatory",
+        "triggerCondition": "month > 4",
+        "requiredTags": ["children_safety"],
+        "choices": [
+            {
+                "id": "choice_gpsr_recall",
+                "text": "Voluntary Recall ( expensive)",
+                "cost": 30000,
+                "doomImpact": -10,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_gpsr_deny",
+                "text": "Send 'Super Glue' kits to users",
+                "cost": 2000,
+                "doomImpact": 20,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "high"
+            }
+        ],
+        "visualEffect": "shake",
+        "targetModule": "sensor"
+    },
+    {
+        "id": "event_coppa_violation",
+        "title": "Privacy: The 'Listening' Bear",
+        "description": "Your AI bear was recording children's secrets and training the model. Huge GDPR-K and COPPA violations.",
+        "category": "privacy",
+        "triggerCondition": "month > 8",
+        "requiredTags": ["children_safety", "ai_enabled"],
+        "choices": [
+            {
+                "id": "choice_coppa_settle",
+                "text": "Settle with FTC (£$$$)",
+                "cost": 25000,
+                "doomImpact": 5,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_coppa_ignore",
+                "text": "Claim 'Legitimate Interest'",
+                "cost": 5000,
+                "doomImpact": 50,
+                "riskLevel": "high"
+            }
+        ],
+        "visualEffect": "glitch",
+        "targetModule": "cloud"
+    },
+    {
+        "id": "event_cert_expiry",
+        "title": "Root Certificate Expired",
+        "description": "It's the Y2K of IoT! Your root CA certificate just expired. 10,000 devices are now bricks because they can't handshake with your server.",
+        "category": "security",
+        "triggerCondition": "month > 24",
+        "baseProb": 0.6,
+        "choices": [
+            {
+                "id": "choice_usb_update",
+                "text": "Manual USB Update Campaign (Costly)",
+                "cost": 30000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_disable_ssl",
+                "text": "Push OTA via HTTP (Disable SSL)",
+                "cost": 2000,
+                "doomImpact": 25,
+                "addTags": ["no_encryption", "critical_vuln"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_ignore_bricks",
+                "text": "Ignore old devices (EOL them)",
+                "cost": 0,
+                "doomImpact": 40,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "security",
+        "visualEffect": "shake"
+    },
+    {
+        "id": "event_bill_shock",
+        "title": "Cloud Bill Shock",
+        "description": "An intern left debug logging enabled on the entire fleet. Your cloud storage bill is $100,000 this month.",
+        "category": "operational",
+        "triggerCondition": "month > 6",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_pay_bill",
+                "text": "Pay it and fix the config",
+                "cost": 50000,
+                "doomImpact": 0,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_dispute_bill",
+                "text": "Dispute with Cloud Support",
+                "cost": 5000,
+                "doomImpact": 10,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_turn_off_logs",
+                "text": "Turn off all logging & pray",
+                "cost": 0,
+                "doomImpact": 15,
+                "addTags": ["blind_ops"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cloud"
+    },
+    {
+        "id": "event_sbom_vuln",
+        "title": "SBOM Vulnerability Found",
+        "description": "Security researchers found a critical RCE in 'left-pad-iot', a library you use everywhere. It allows unauthenticated root access.",
+        "category": "security",
+        "triggerCondition": "month > 12",
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_patch_sbom",
+                "text": "Develop & Deploy Hotfix",
+                "cost": 15000,
+                "doomImpact": 0,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_waf_rules",
+                "text": "Block attack at Cloud WAF",
+                "cost": 5000,
+                "doomImpact": 10,
+                "addTags": ["tech_debt"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_deny_vuln",
+                "text": "Deny involvement ('We don't use that version')",
+                "cost": 0,
+                "doomImpact": 30,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "security",
+        "visualEffect": "glitch"
+    },
+    {
+        "id": "event_ccpa_flood",
+        "title": "CCPA Data Request Flood",
+        "description": "California users have discovered the 'Delete My Data' button. Your inbox has 2,000 requests and a 45-day compliance deadline.",
+        "category": "regulatory",
+        "triggerCondition": "month > 8",
+        "requiredTags": ["pii_collection"],
+        "blockedByTags": ["privacy_by_design"],
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_ccpa_automate",
+                "text": "Build automated deletion pipeline",
+                "cost": 40000,
+                "doomImpact": 0,
+                "addTags": ["privacy_by_design"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_ccpa_manual",
+                "text": "Handle manually (intern overtime)",
+                "cost": 8000,
+                "doomImpact": 15,
+                "addTags": ["regulatory_debt"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_ccpa_ignore",
+                "text": "Ignore requests (they won't sue, right?)",
+                "cost": 0,
+                "doomImpact": 30,
+                "addTags": ["legal_battle"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_cisa_kev",
+        "title": "CISA Known Exploited Vulnerability",
+        "description": "CISA just added your firmware vulnerability to the KEV catalog. Federal customers are contractually required to drop you in 14 days.",
+        "category": "security",
+        "triggerCondition": "month > 12",
+        "requiredTags": ["legacy_code"],
+        "blockedByTags": ["patched_firmware", "secure_boot"],
+        "baseProb": 0.3,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_kev_patch",
+                "text": "Emergency firmware patch (all hands)",
+                "cost": 35000,
+                "doomImpact": 5,
+                "addTags": ["patched_firmware"],
+                "removeTags": ["legacy_code"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_kev_exit_fed",
+                "text": "Exit federal market quietly",
+                "cost": 5000,
+                "doomImpact": 20,
+                "addTags": ["market_restricted"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_data_broker",
+        "title": "Data Broker Leak",
+        "description": "Your 'anonymized' telemetry data was re-identified by researchers. Turns out device UUID + ZIP code = person. Class action lawyers are circling.",
+        "category": "privacy",
+        "triggerCondition": "month > 15",
+        "requiredTags": ["pii_collection"],
+        "baseProb": 0.25,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_broker_settle",
+                "text": "Settle class action quietly",
+                "cost": 65000,
+                "doomImpact": 10,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_broker_fight",
+                "text": "Fight in court ('It was anonymized!')",
+                "cost": 25000,
+                "doomImpact": 25,
+                "addTags": ["legal_battle", "pr_disaster"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_broker_fix",
+                "text": "Implement differential privacy + settle",
+                "cost": 80000,
+                "doomImpact": 5,
+                "addTags": ["privacy_by_design"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_right_to_repair",
+        "title": "EU Right to Repair Directive",
+        "description": "The EU Right to Repair directive now applies to your category. You must publish schematics and provide spare parts for 7 years.",
+        "category": "regulatory",
+        "triggerCondition": "month > 20",
+        "requiredTags": ["drm_locked"],
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_repair_comply",
+                "text": "Release documentation and parts catalog",
+                "cost": 20000,
+                "doomImpact": 0,
+                "removeTags": ["drm_locked"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_repair_lobby",
+                "text": "Lobby for exemption",
+                "cost": 15000,
+                "doomImpact": 12,
+                "addTags": ["regulatory_debt"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_repair_exit",
+                "text": "Exit EU market",
+                "cost": 5000,
+                "doomImpact": 25,
+                "addTags": ["market_restricted"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_tariff_shock",
+        "title": "Trade Tariff Shock",
+        "description": "New 25% tariffs on electronics from your primary manufacturing hub. Your BOM cost just spiked. Shareholders want answers.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 10",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_tariff_absorb",
+                "text": "Absorb costs (margin compression)",
+                "cost": 30000,
+                "doomImpact": 5,
+                "addTags": ["margin_compressed"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_tariff_pass",
+                "text": "Pass to customers (+15% price)",
+                "cost": 0,
+                "doomImpact": 15,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_tariff_relocate",
+                "text": "Relocate manufacturing (long-term fix)",
+                "cost": 55000,
+                "doomImpact": 8,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_rare_earth",
+        "title": "Rare Earth Minerals Shortage",
+        "description": "Geopolitical tensions have restricted rare earth exports. Your motor supplier just paused production indefinitely.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 24",
+        "baseProb": 0.25,
+        "choices": [
+            {
+                "id": "choice_rare_stockpile",
+                "text": "Emergency stockpile (if you can find any)",
+                "cost": 40000,
+                "doomImpact": 10,
+                "addTags": ["stockpiled"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_rare_redesign",
+                "text": "Redesign with alternative materials",
+                "cost": 60000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_rare_pause",
+                "text": "Pause production (wait it out)",
+                "cost": 0,
+                "doomImpact": 20,
+                "addTags": ["service_outage"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_security_kudos",
+        "title": "Security Researcher Kudos",
+        "description": "A famous security researcher tweets: 'I just audited [YOUR DEVICE] and... it's actually secure? What timeline is this?' You're going viral for good reasons.",
+        "category": "operational",
+        "triggerCondition": "month > 18",
+        "requiredTags": ["audited"],
+        "blockedByTags": ["pr_disaster", "critical_vuln"],
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_kudos_humble",
+                "text": "Stay humble, thank the community",
+                "cost": 0,
+                "doomImpact": -10,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_kudos_marketing",
+                "text": "Launch 'Security First' marketing campaign",
+                "cost": 15000,
+                "doomImpact": -15,
+                "addTags": ["viral_potential"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_revenue_collapse",
+        "title": "Revenue Collapse",
+        "description": "Being banned from key markets has finally hit the bottom line. Quarterly revenue is down 40% and cash flow is critical.",
+        "category": "operational",
+        "triggerCondition": "month > 12",
+        "requiredTags": ["market_restricted"],
+        "baseProb": 0.8,
+        "choices": [
+            {
+                "id": "choice_revenue_layoffs",
+                "text": "Emergency layoffs (cut QA team)",
+                "cost": 0,
+                "doomImpact": 20,
+                "addTags": ["blind_ops", "tech_debt"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_revenue_rebrand",
+                "text": "Desperate rebrand ('New & Safe!')",
+                "cost": 25000,
+                "doomImpact": 10,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu",
+        "visualEffect": "shake"
+    },
+    {
+        "id": "event_shareholder_revolt",
+        "title": "Shareholder Revolt",
+        "description": "Investors are furious about the margin compression. They demand immediate cost-cutting or a leadership change.",
+        "category": "operational",
+        "triggerCondition": "month > 18",
+        "requiredTags": ["margin_compressed"],
+        "baseProb": 0.7,
+        "choices": [
+            {
+                "id": "choice_cut_quality",
+                "text": "Switch to cheaper components",
+                "cost": 5000,
+                "doomImpact": 15,
+                "addTags": ["hardware_failure_risk"],
+                "removeTags": ["margin_compressed"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_ignore_investors",
+                "text": "Hold the line (Quality First)",
+                "cost": 15000,
+                "doomImpact": 5,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_supply_resilience",
+        "title": "Supply Chain Resilience",
+        "description": "A competitor just went bankrupt due to the shortage, but your stockpile kept you shipping. The market rewards your foresight.",
+        "category": "operational",
+        "triggerCondition": "month > 20",
+        "requiredTags": ["stockpiled"],
+        "baseProb": 0.6,
+        "choices": [
+            {
+                "id": "choice_resilience_bonus",
+                "text": "Expand market share",
+                "cost": -20000,
+                "doomImpact": -15,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "storage",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_legal_settlement",
+        "title": "Class Action Settlement",
+        "description": "The lawsuits have piled up. Your legal team advises settling before discovery reveals the embarrassing Team Chat messages.",
+        "category": "operational",
+        "triggerCondition": "month > 20",
+        "requiredTags": ["legal_battle"],
+        "baseProb": 0.6,
+        "choices": [
+            {
+                "id": "choice_settle_all",
+                "text": "Settle all claims",
+                "cost": 75000,
+                "doomImpact": 0,
+                "removeTags": ["legal_battle"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_fight_forever",
+                "text": "Fight forever (Drain the treasury)",
+                "cost": 10000,
+                "doomImpact": 20,
+                "addTags": ["regulatory_probation"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_regulatory_fine",
+        "title": "Regulatory Fine",
+        "description": "Regulators have lost patience with your minimal compliance efforts. A significant fine has been levied.",
+        "category": "regulatory",
+        "triggerCondition": "month > 24",
+        "requiredTags": ["regulatory_debt"],
+        "baseProb": 0.7,
+        "choices": [
+            {
+                "id": "choice_pay_fine",
+                "text": "Pay fine and commit to compliance",
+                "cost": 50000,
+                "doomImpact": 5,
+                "removeTags": ["regulatory_debt"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_appeal_fine",
+                "text": "Appeal the fine",
+                "cost": 15000,
+                "doomImpact": 15,
+                "addTags": ["market_restricted"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_legacy_crash",
+        "title": "Legacy Code Crash",
+        "description": "That 'temp fix' from last year just caused a cascading failure in the core loop. Devices are rebooting every 5 minutes.",
+        "category": "operational",
+        "triggerCondition": "month > 18",
+        "requiredTags": ["tech_debt"],
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_rewrite_core",
+                "text": "Emergency Core Rewrite",
+                "cost": 30000,
+                "doomImpact": 10,
+                "removeTags": ["tech_debt"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_patch_patch",
+                "text": "Patch the patch (Technical interest)",
+                "cost": 5000,
+                "doomImpact": 15,
+                "addTags": ["blind_ops"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "storage",
+        "visualEffect": "glitch"
+    },
+    {
+        "id": "event_eu_green_grant",
+        "title": "EU Green Deal Grant",
+        "description": "Your commitment to sustainability qualifies you for an EU innovation grant.",
+        "category": "financial",
+        "triggerCondition": "month > 12",
+        "requiredTags": ["energy_efficient"],
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_accept_grant",
+                "text": "Accept the grant",
+                "cost": -25000,
+                "doomImpact": -5,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "bms",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_fintech_deal",
+        "title": "FinTech Partnership",
+        "description": "Bank partners trust your hardware security module for their new app.",
+        "category": "business",
+        "triggerCondition": "month > 18",
+        "requiredTags": ["secure_element"],
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_sign_deal",
+                "text": "Sign the partnership",
+                "cost": -40000,
+                "doomImpact": -5,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "secure-enclave",
+        "visualEffect": "none"
+    },
+    {
+        "id": "event_clinical_study",
+        "title": "Clinical Validation Opportunity",
+        "description": "A university hospital offers to run a clinical study on your device's data accuracy. It's expensive but validates your tech.",
+        "category": "operational",
+        "triggerCondition": "'health_data' in activeTags && month > 6",
+        "blockedByTags": ["clinical_trials", "fda_compliant"],
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_run_study",
+                "text": "Fund the study",
+                "cost": 40000,
+                "doomImpact": -5,
+                "addTags": ["clinical_trials"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_skip_study",
+                "text": "We don't need 'science', we have marketing",
+                "cost": 0,
+                "doomImpact": 5,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "sensor"
+    },
+    {
+        "id": "event_certification_drive",
+        "title": "EU Compliance Certification",
+        "description": "The legal team suggests proactive certification for the EU market before the regulators come knocking.",
+        "category": "regulatory",
+        "triggerCondition": "month > 10",
+        "blockedByTags": ["eu_compliant", "market_restricted"],
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_full_cert",
+                "text": "Full GDPA & CRA Certification",
+                "cost": 35000,
+                "doomImpact": -2,
+                "addTags": ["eu_compliant", "encrypted_storage"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_self_declare",
+                "text": "Self-Declaration of Conformity (Risky)",
+                "cost": 5000,
+                "doomImpact": 10,
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_fraud_leak",
+        "title": "Whistleblower Leak",
+        "description": "A former engineer has leaked your falsified battery compliance data to The Tech Crunch. The report is damning.",
+        "category": "reputational",
+        "triggerCondition": "'fraud' in activeTags",
+        "baseProb": 0.6,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_fraud_deny",
+                "text": "Deny everything (Streisand Effect)",
+                "cost": 10000,
+                "doomImpact": 30,
+                "addTags": ["pr_disaster", "legal_battle"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_settle_fraud",
+                "text": "Admit 'calibration errors' and settle",
+                "cost": 60000,
+                "doomImpact": 15,
+                "removeTags": ["fraud"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "storage"
+    },
+    {
+        "id": "event_apt_strike",
+        "title": "Logic Bomb Detonation",
+        "description": "The nation-state actors that infiltrated your network months ago have triggered a kill-switch. Your fleet is turning into bricks.",
+        "category": "cyberattack",
+        "triggerCondition": "'apt_target' in activeTags && month > 20",
+        "baseProb": 0.5,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_burn_infra",
+                "text": "Purge all affected systems (Total reset)",
+                "cost": 90000,
+                "doomImpact": 10,
+                "removeTags": ["apt_target"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_negotiate_terror",
+                "text": "This is beyond us... call the NSA",
+                "cost": 0,
+                "doomImpact": 40,
+                "addTags": ["audited"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_greenpeace_report",
+        "title": "Landfill Investigation",
+        "description": "Investigative journalists found your devices in a Ghanaian landfill. They were supposed to be recycled, but they are just leaking lithium.",
+        "category": "reputational",
+        "triggerCondition": "'ewaste_violation' in activeTags",
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_greenwashing",
+                "text": "Launch 'Green Future' ad campaign",
+                "cost": 25000,
+                "doomImpact": 15,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_cleanup",
+                "text": "Fund cleanup program",
+                "cost": 50000,
+                "doomImpact": 5,
+                "removeTags": ["ewaste_violation"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "storage"
+    },
+    {
+        "id": "event_silent_outage",
+        "title": "Silent Fleet Failure",
+        "description": "Customers are screaming on Social Media, but your dashboards show all green. You flew blind and hit a mountain.",
+        "category": "operational",
+        "triggerCondition": "'blind_ops' in activeTags",
+        "baseProb": 0.5,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_fire_fight",
+                "text": "All-hands manual debugging",
+                "cost": 30000,
+                "doomImpact": 15,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_install_observability",
+                "text": "Emergency Datadog contract",
+                "cost": 45000,
+                "doomImpact": 5,
+                "removeTags": ["blind_ops"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_quantum_apocalypse",
+        "title": "Harvest Now, Decrypt Later",
+        "description": "It's 2030. Quantum computers just broke RSA-2048. All that data you collected 5 years ago is now public.",
+        "category": "cyberattack",
+        "triggerCondition": "'time_bomb' in activeTags && month > 48",
+        "baseProb": 1.0,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_quantum_panic",
+                "text": "Panic (There is no fix)",
+                "cost": 0,
+                "doomImpact": 50,
+                "removeTags": ["time_bomb"],
+                "addTags": ["class_action_lawsuit"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_massive_recall",
+        "title": "Catastrophic Component Failure",
+        "description": "The cheap capacitors you used to save $0.02 are popping after 18 months. It's not a bug, it's chemistry.",
+        "category": "operational",
+        "triggerCondition": "'hardware_failure_risk' in activeTags && month > 18",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_recall_everything",
+                "text": "Total Product Recall",
+                "cost": 150000,
+                "doomImpact": 10,
+                "removeTags": ["hardware_failure_risk"],
+                "addTags": ["recalled", "bankruptcy_risk"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_ignore_failures",
+                "text": "Claim it's 'User Error'",
+                "cost": 10000,
+                "doomImpact": 25,
+                "addTags": ["pr_disaster"],
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "power"
+    },
+    {
+        "id": "event_banhammer",
+        "title": "Regulator Shut Down",
+        "description": "You've been on probation for a year. You missed the deadline. The FDA/FCC/CE has revoked your license to sell.",
+        "category": "regulatory",
+        "triggerCondition": "'regulatory_probation' in activeTags && month > lastEventMonth + 12",
+        "baseProb": 0.8,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_market_exit",
+                "text": "Withdraw from market",
+                "cost": 50000,
+                "doomImpact": 30,
+                "removeTags": ["regulatory_probation"],
+                "addTags": ["market_restricted"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_shadow_ops",
+                "text": "Sell through shell companies (Illegal)",
+                "cost": 20000,
+                "doomImpact": 40,
+                "addTags": ["criminal_investigation"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    }
+]

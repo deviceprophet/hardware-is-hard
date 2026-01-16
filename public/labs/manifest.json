@@ -1,0 +1,22 @@
+{
+    "name": "The Recall Run: IoT Doom Simulator",
+    "short_name": "The Recall Run",
+    "description": "Can you survive 5 years of hacks, EU regulations, and budget cuts? A survival horror game for embedded engineers.",
+    "start_url": "/labs/",
+    "scope": "/labs/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#22c55e",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/labs/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["games", "education"],
+    "lang": "en",
+    "dir": "ltr"
+}

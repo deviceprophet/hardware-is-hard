@@ -1,0 +1,14 @@
+#:schema node_modules/wrangler/config-schema.json
+
+# Hardware is Hard - Cloudflare Workers Configuration
+# Serves static assets only (no SSR)
+# https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "hardware-is-hard"
+compatibility_date = "2026-01-20"
+compatibility_flags = [
+]
+
+# Static assets - Workers will serve these directly
+[assets]
+directory = "./dist"

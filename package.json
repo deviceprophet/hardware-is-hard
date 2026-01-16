@@ -1,0 +1,124 @@
+{
+    "name": "hardware-is-hard",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "The Device Prophet Labs IoT Doom Simulator - Can you survive 5 years of hacks, EU, US, and UK regulations, and budget cuts?",
+    "author": "Device Prophet",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/deviceprophet/hardware-is-hard"
+    },
+    "keywords": [
+        "game",
+        "iot",
+        "simulation",
+        "cli",
+        "terminal",
+        "embedded",
+        "hardware",
+        "satire"
+    ],
+    "bin": {
+        "hardware-is-hard": "./dist/cli.mjs"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/engine/index.mjs",
+            "types": "./dist/engine/index.d.ts"
+        },
+        "./engine": {
+            "import": "./dist/engine/index.mjs",
+            "types": "./dist/engine/index.d.ts"
+        }
+    },
+    "files": [
+        "dist/cli.mjs",
+        "dist/engine",
+        "dist/adapters",
+        "dist/components/game/data"
+    ],
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "build:cli": "tsup src/cli.ts --format esm --out-dir dist --dts",
+        "build:engine": "tsup src/engine/index.ts --format esm --out-dir dist/engine --dts",
+        "build:all": "pnpm build && pnpm build:cli",
+        "preview": "astro preview",
+        "astro": "astro",
+        "dev:cli": "tsx src/cli.ts",
+        "play": "tsx src/cli.ts",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "test:simulation": "vitest run simulation.test.ts --reporter=verbose",
+        "lint": "eslint .",
+        "typecheck": "tsc --noEmit",
+        "format": "prettier --write .",
+        "deploy": "pnpm build && pnpm wrangler deploy",
+        "deploy:preview": "pnpm build && pnpm wrangler deploy --env preview",
+        "prepublishOnly": "pnpm build:cli && pnpm build:engine"
+    },
+    "dependencies": {
+        "@astrojs/cloudflare": "^12.6.12",
+        "@astrojs/react": "^4.4.2",
+        "@axe-core/playwright": "^4.11.0",
+        "@tailwindcss/vite": "^4.1.18",
+        "@types/react": "^19.2.8",
+        "@types/react-dom": "^19.2.3",
+        "astro": "^5.16.11",
+        "canvas-confetti": "^1.9.4",
+        "clsx": "^2.1.1",
+        "framer-motion": "^12.27.1",
+        "howler": "^2.2.4",
+        "i18next": "^25.7.4",
+        "i18next-browser-languagedetector": "^8.2.0",
+        "jexl": "^2.3.0",
+        "lucide-react": "^0.562.0",
+        "lz-string": "^1.5.0",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "react-i18next": "^16.5.3",
+        "reactflow": "^11.11.4",
+        "tailwind-merge": "^3.4.0",
+        "tailwindcss": "^4.1.18",
+        "zod": "^4.3.5",
+        "zustand": "^5.0.10"
+    },
+    "devDependencies": {
+        "@cloudflare/kv-asset-handler": "^0.4.2",
+        "@cloudflare/workers-types": "^4.20260118.0",
+        "@playwright/test": "^1.57.0",
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.2",
+        "@types/canvas-confetti": "^1.9.0",
+        "@types/howler": "^2.2.12",
+        "@types/jexl": "^2.3.4",
+        "@types/node": "^25.0.9",
+        "@typescript-eslint/eslint-plugin": "^8.53.0",
+        "@typescript-eslint/parser": "^8.53.0",
+        "@vitest/coverage-v8": "^4.0.17",
+        "astro-compress": "^2.3.9",
+        "astro-eslint-parser": "^1.2.2",
+        "eslint": "^9.39.2",
+        "eslint-plugin-astro": "^1.5.0",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-react": "^7.37.5",
+        "fast-check": "^4.5.3",
+        "jsdom": "^27.4.0",
+        "prettier": "^3.8.0",
+        "tsup": "^8.5.1",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.53.0",
+        "vitest": "^4.0.17",
+        "wrangler": "^4.59.2"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "esbuild",
+            "sharp",
+            "workerd"
+        ]
+    }
+}

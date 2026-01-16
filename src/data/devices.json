@@ -1,0 +1,150 @@
+[
+    {
+        "id": "omni-juice",
+        "name": "Omni-Juice 4000",
+        "description": "A $700 Wi-Fi connected juice press that requires a subscription to squeeze. The firmware was last updated in 2019.",
+        "archetype": "corporate",
+        "difficulty": "medium",
+        "initialTags": ["cloud_dependency", "drm_locked", "legacy_code", "default_password"],
+        "initialBudget": 80000,
+        "monthlyMaintenanceCost": 3500,
+        "eolMonth": 54
+    },
+    {
+        "id": "industrial-sentinel",
+        "name": "Sentinel X100",
+        "description": "A vibration sensor for nuclear centrifuges. Runs on a coin cell for 10 years. The update port is epoxy-sealed.",
+        "archetype": "industrial",
+        "difficulty": "hard",
+        "initialTags": [
+            "legacy_code",
+            "safety_critical",
+            "no_encryption",
+            "industrial_protocol",
+            "battery_powered"
+        ],
+        "initialBudget": 50000,
+        "monthlyMaintenanceCost": 500,
+        "eolMonth": 120
+    },
+    {
+        "id": "smart-lock",
+        "name": "Safe-T Lock 5000",
+        "description": "Bluetooth-enabled smart lock for short-term rental hosts. 'Bank-grade encryption' (AES-128 with a fixed IV).",
+        "archetype": "consumer",
+        "difficulty": "medium",
+        "initialTags": [
+            "ble_connected",
+            "battery_powered",
+            "mobile_app_dependent",
+            "physical_access",
+            "drm_locked"
+        ],
+        "initialBudget": 60000,
+        "monthlyMaintenanceCost": 3500,
+        "eolMonth": 48
+    },
+    {
+        "id": "snuggle-bot",
+        "name": "The Snuggle-Bot",
+        "description": "An AI companion for loneliness equipped with 4K cameras, always-on microphones, and 'cloud-based personality storage'.",
+        "archetype": "consumer",
+        "difficulty": "hard",
+        "initialTags": [
+            "open_mic",
+            "unencrypted_storage",
+            "viral_potential",
+            "cloud_dependency",
+            "default_password",
+            "cheap_wifi",
+            "children_safety",
+            "fake_ai"
+        ],
+        "initialBudget": 80000,
+        "monthlyMaintenanceCost": 3000,
+        "eolMonth": 36
+    },
+    {
+        "id": "zen-cage",
+        "name": "The Zen-Cage",
+        "description": "Automated Hamster Habitat with granular temperature control. The heater relay is controlled via unencrypted MQTT.",
+        "archetype": "medical",
+        "difficulty": "hard",
+        "initialTags": ["heater_relay", "animal_welfare", "safety_critical", "no_encryption"],
+        "initialBudget": 130000,
+        "monthlyMaintenanceCost": 3500,
+        "eolMonth": 54
+    },
+    {
+        "id": "smart-fridge",
+        "name": "FridgeOS X1",
+        "description": "Enterprise-grade smart refrigerator with 'blockchain-verified freshness'. Ships with SSH enabled and password 'admin'.",
+        "archetype": "appliance",
+        "difficulty": "medium",
+        "initialTags": [
+            "cloud_dependency",
+            "default_password",
+            "excessive_features",
+            "large_fleet"
+        ],
+        "initialBudget": 100000,
+        "monthlyMaintenanceCost": 2000,
+        "eolMonth": 48
+    },
+    {
+        "id": "health-tracker",
+        "name": "VitalBand Pro",
+        "description": "Wearable health tracker that syncs heart rate, sleep, and location data. GDPR compliance is 'on the roadmap'.",
+        "archetype": "medical",
+        "difficulty": "extreme",
+        "initialTags": [
+            "pii_collection",
+            "health_data",
+            "cloud_dependency",
+            "no_encryption",
+            "cheap_wifi"
+        ],
+        "initialBudget": 60000,
+        "monthlyMaintenanceCost": 4000,
+        "eolMonth": 48
+    },
+    {
+        "id": "cuddlebot-ai",
+        "name": "CuddleBot AI",
+        "description": "An LLM-powered teddy bear that 'learns' from children. GPSR and COPPA nightmare.",
+        "archetype": "consumer",
+        "difficulty": "hard",
+        "initialTags": [
+            "ai_enabled",
+            "cloud_dependency",
+            "children_safety",
+            "privacy_risk",
+            "battery_risk"
+        ],
+        "initialBudget": 60000,
+        "monthlyMaintenanceCost": 3500,
+        "eolMonth": 36
+    },
+    {
+        "id": "eco-thermo",
+        "name": "GreenTemp Pro",
+        "description": "Energy-efficient smart thermostat with Matter support. Simple, well-documented, minimal attack surface. Perfect for your first product launch.",
+        "archetype": "appliance",
+        "difficulty": "easy",
+        "initialTags": ["energy_efficient"],
+        "initialBudget": 100000,
+        "monthlyMaintenanceCost": 1500,
+        "eolMonth": 60
+    },
+    {
+        "id": "asset-beacon",
+        "name": "FleetTrack X1",
+        "description": "RFID + GPS asset tracker for enterprise warehouses. 50,000 units deployed on day one. One bad OTA bricks them all.",
+        "archetype": "corporate",
+        "difficulty": "extreme",
+        "initialTags": ["large_fleet", "legacy_code", "cloud_dependency", "pii_collection"],
+        "initialBudget": 120000,
+        "monthlyMaintenanceCost": 5000,
+        "eolMonth": 48
+    }
+]

@@ -1,0 +1,244 @@
+{
+    "common": {
+        "budget": "Budget",
+        "doom": "Doom",
+        "compliance": "Compliance",
+        "strategy": "Strategy",
+        "month": "Month",
+        "months": "months",
+        "start": "Start",
+        "restart": "Restart",
+        "continue": "Continue",
+        "selectDevice": "Select Device",
+        "difficulty": "Difficulty",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard",
+        "extreme": "Extreme",
+        "returnToMenu": "Save & Exit",
+        "copyUrl": "Copy URL",
+        "urlCopied": "Copied!",
+        "normalSpeed": "Normal Speed",
+        "fastForward": "Fast Forward",
+        "archetypes": {
+            "consumer": "Consumer",
+            "corporate": "Corporate",
+            "industrial": "Industrial",
+            "medical": "Medical",
+            "appliance": "Appliance"
+        }
+    },
+    "splash": {
+        "title": "THE RECALL RUN",
+        "subtitle": "A 'Hardware is Hard' Simulation",
+        "startButton": "INITIALIZE SIMULATION",
+        "recordSurvival": "Record Survival",
+        "winRate": "Win Rate",
+        "attempts": "Attempts",
+        "recentLogs": "Recent Simulation Logs",
+        "description": "You are the CTO. Your goal: Ship the product. Obstacles: Physics, Supply Chain, and your own Marketing team. Survive 5 years without bankrupting the company or triggering a recall."
+    },
+    "setup": {
+        "chooseDevice": "Choose Your Device",
+        "startSimulation": "Start Simulation",
+        "deviceDescription": "Description",
+        "initialBudget": "Starting Budget",
+        "maintenance": "Monthly Cost"
+    },
+    "simulation": {
+        "systemArchitecture": "System Architecture Status",
+        "releaseManagement": "Revenue Operations",
+        "shipFirmware": "Push a 'Premium Feature' OTA update to drive immediate sales.",
+        "yields": "Yields",
+        "risk": "Risk",
+        "deployUpdate": "Deploy Monetized OTA",
+        "qaFailed": "QA FAILED",
+        "stabilityWarning": "System too unstable (Doom > 50%)",
+        "engineeringStrategy": "Engineering Strategy",
+        "systemLogs": "System Logs",
+        "nominal": "NOMINAL",
+        "warning": "WARNING"
+    },
+    "strategies": {
+        "full": {
+            "label": "Mil-Spec",
+            "desc": "High Cost, Low Risk. The CFO hates you."
+        },
+        "partial": {
+            "label": "Standard",
+            "desc": "Medium Cost, Medium Risk. Breaking things carefully."
+        },
+        "none": {
+            "label": "YOLO Deploy",
+            "desc": "No Cost, High Risk. Chaos mode."
+        }
+    },
+    "crisis": {
+        "title": "CRISIS ALERT",
+        "chooseAction": "Choose your response:",
+        "cost": "Cost",
+        "doomImpact": "Doom Impact"
+    },
+    "victory": {
+        "title": "SIMULATION COMPLETE",
+        "survived": "You survived the full product lifecycle!",
+        "shareResult": "Share Result",
+        "playAgain": "Play Again",
+        "shareTemplate": "I survived {{duration}} with the {{device}}! Budget: {{budget}}."
+    },
+    "autopsy": {
+        "title": "PRODUCT FAILURE",
+        "gameOver": "Your device has failed.",
+        "causeOfDeath": "Cause of Death",
+        "doomOverload": "Technical Debt Overload",
+        "budgetDepleted": "Budget Exhausted",
+        "tryAgain": "Try Again",
+        "shareTemplate": "My {{device}} was RECALLED after {{duration}}! {{blame}} Budget: {{budget}}."
+    },
+    "tutorial": {
+        "welcome": {
+            "title": "Welcome to Prophet Labs",
+            "subtitle": "The Recall Run: IoT Doom Simulator",
+            "content": "Your goal: Keep an IoT device alive for 5 years without going bankrupt or accumulating too much technical debt."
+        },
+        "setup_device": {
+            "title": "Choose Your Device",
+            "content": "Each device has different challenges. Check the \"Difficulty\" rating - harder devices have tighter budgets and more regulatory requirements."
+        },
+        "setup_budget": {
+            "title": "Watch Your Budget",
+            "content": "Money keeps the lights on. If you run out, game over. Maintenance costs drain your budget every month."
+        },
+        "sim_doom": {
+            "title": "The Doom Meter",
+            "content": "This is Technical Debt. Bad decisions add Doom. If it hits 100%, your product fails catastrophically."
+        },
+        "sim_ship": {
+            "title": "Generate Revenue",
+            "content": "Need cash? Deploy a monetized OTA update. It earns revenue but increases Technical Debt (Doom) due to rushed features. You cannot deploy if Doom > 50%."
+        },
+        "sim_events": {
+            "title": "Crisis Events",
+            "content": "Random disasters will strike. Regulatory audits, cyberattacks, supply chain issues. Your choices matter."
+        },
+        "skip": "Skip Tutorial",
+        "gotIt": "Got it"
+    },
+    "audio": {
+        "mute": "Mute Sound",
+        "unmute": "Unmute Sound"
+    },
+    "privacy": {
+        "link": "Privacy Policy"
+    },
+    "footer": {
+        "privacy": "Privacy Policy",
+        "feedback": "Bug Reports & Suggestions"
+    },
+    "system": {
+        "title": "System Architecture Status",
+        "hoverHint": "Hover over components to inspect hardware/software stack.",
+        "issues": "Issues:",
+        "status": {
+            "nominal": "NOMINAL",
+            "warning": "WARNING"
+        },
+        "nodes": {
+            "cloud": {
+                "label": "Cloud Backend",
+                "description": "The server infrastructure. Infinite scale, infinite cost. Vendor lock-in risk."
+            },
+            "network": {
+                "label": "Connectivity",
+                "description": "The attack pipe. Encrypted? Authenticated? Or just open telnet?"
+            },
+            "compute": {
+                "label": "Silicon (AI/MCU)",
+                "description": "The brain. Executes code. Susceptible to cloning, glitching, and cosmic rays."
+            },
+            "storage": {
+                "label": "Flash Storage",
+                "description": "Where firmware lives. Cheap NAND corrupts data. Secure enclaves define trust."
+            },
+            "power": {
+                "label": "Power & Safety",
+                "description": "Battery management and thermal regulation. Failure means fire."
+            },
+            "security": {
+                "label": "Security & Compliance",
+                "description": "Certificates, Keys, and HSMs. The only thing standing between you and a botnet."
+            }
+        },
+        "tags": {
+            "cloud_dependency": "Cloud Dependency",
+            "gdpr_violation": "GDPR Violation",
+            "privacy_risk": "Privacy Risk",
+            "no_encryption": "No Encryption",
+            "default_password": "Default Password",
+            "tech_debt": "Technical Debt",
+            "bad_flash": "Bad Flash",
+            "data_loss": "Data Loss",
+            "battery_risk": "Battery Risk",
+            "regulatory_risk": "Regulatory Risk",
+            "legal_liability": "Legal Liability",
+            "cloned": "Cloned Hardware",
+            "server_crash": "Server Outage"
+        }
+    },
+    "logs": {
+        "title": "System Logs",
+        "unknownEvent": "Unknown Event",
+        "unknownAction": "Unknown Action",
+        "doomIncrease": "+{{count}}% Doom"
+    },
+    "blame": {
+        "departments": {
+            "Engineering": "Engineering",
+            "Marketing": "Marketing",
+            "Legal": "Legal",
+            "Supply_Chain": "Supply Chain",
+            "Finance": "Finance",
+            "Management": "Management"
+        },
+        "statements": {
+            "Engineering": [
+                "shipped before the security audit was done.",
+                "thought \"it works on my machine\" was good enough.",
+                "left the debug port open in production.",
+                "skipped the pen test to meet the deadline.",
+                "used a deprecated crypto library."
+            ],
+            "Marketing": [
+                "demanded AI features on an 8-bit MCU.",
+                "promised 5-year support for a 2-year chip.",
+                "said \"just ship it before Christmas.\"",
+                "wanted Bluetooth AND WiFi AND LoRa on the same board.",
+                "scheduled the launch before the hardware arrived."
+            ],
+            "Legal": [
+                "missed the CRA compliance deadline.",
+                "ignored the GDPR requirements.",
+                "forgot to update the privacy policy.",
+                "didn't read the new EU regulations."
+            ],
+            "Supply_Chain": [
+                "chose the cheapest supplier.",
+                "didn't have a backup for the single-source chip.",
+                "ignored the lead time warnings.",
+                "ordered parts from a suspicious Unverified Vendor."
+            ],
+            "Finance": [
+                "cut the security budget by 80%.",
+                "said testing was \"too expensive.\"",
+                "refused to renew the cloud contract.",
+                "wouldn't pay for the firmware update infrastructure."
+            ],
+            "Management": [
+                "asked \"can't we just add blockchain?\"",
+                "insisted on launching during a chip shortage.",
+                "changed the requirements three weeks before launch.",
+                "ignored every warning from the engineering team."
+            ]
+        }
+    }
+}

@@ -1,0 +1,244 @@
+{
+    "common": {
+        "budget": "Presupuesto",
+        "doom": "Caos",
+        "compliance": "Cumplimiento",
+        "strategy": "Estrategia",
+        "month": "Mes",
+        "months": "meses",
+        "start": "Iniciar",
+        "restart": "Reiniciar",
+        "continue": "Continuar",
+        "selectDevice": "Seleccionar Dispositivo",
+        "difficulty": "Dificultad",
+        "easy": "Facil",
+        "medium": "Medio",
+        "hard": "Dificil",
+        "extreme": "Extremo",
+        "returnToMenu": "Guardar y Salir",
+        "copyUrl": "Copiar URL",
+        "urlCopied": "Copiado!",
+        "normalSpeed": "Velocidad Normal",
+        "fastForward": "Avance Rápido",
+        "archetypes": {
+            "consumer": "Consumo",
+            "corporate": "Corporativo",
+            "industrial": "Industrial",
+            "medical": "Medico",
+            "appliance": "Electrodomestico"
+        }
+    },
+    "splash": {
+        "title": "THE RECALL RUN",
+        "subtitle": "Una Simulación de 'El Hardware es Difícil'",
+        "startButton": "INICIAR SIMULACION",
+        "recordSurvival": "Record de Supervivencia",
+        "winRate": "Tasa de Victoria",
+        "attempts": "Intentos",
+        "recentLogs": "Registros de Simulacion Recientes",
+        "description": "Eres el CTO. Tu objetivo: Lanzar el producto. Obstáculos: Física, Cadena de Suministro y tu propio equipo de Marketing. Sobrevive 5 años sin llevar a la empresa a la quiebra ni provocar un retiro del mercado."
+    },
+    "setup": {
+        "chooseDevice": "Elige Tu Dispositivo",
+        "startSimulation": "Iniciar Simulacion",
+        "deviceDescription": "Descripcion",
+        "initialBudget": "Presupuesto Inicial",
+        "maintenance": "Costo Mensual"
+    },
+    "simulation": {
+        "systemArchitecture": "Estado de Arquitectura del Sistema",
+        "releaseManagement": "Operaciones de Ingresos",
+        "shipFirmware": "Enviar actualizacion OTA de 'Funciones Premium' para impulsar ventas inmediatas.",
+        "yields": "Genera",
+        "risk": "Riesgo",
+        "deployUpdate": "Desplegar OTA Monetizada",
+        "qaFailed": "QA FALLIDO",
+        "stabilityWarning": "Sistema inestable (Caos > 50%)",
+        "engineeringStrategy": "Estrategia de Ingenieria",
+        "systemLogs": "Registros del Sistema",
+        "nominal": "NOMINAL",
+        "warning": "ADVERTENCIA"
+    },
+    "strategies": {
+        "full": {
+            "label": "Grado Militar",
+            "desc": "Alto Costo, Bajo Riesgo. El CFO te odia."
+        },
+        "partial": {
+            "label": "Estándar",
+            "desc": "Costo Medio. El promedio de la industria."
+        },
+        "none": {
+            "label": "YOLO Deploy",
+            "desc": "Costo Cero, Riesgo Máximo. Deploy en viernes a las 5 PM."
+        }
+    },
+    "crisis": {
+        "title": "ALERTA DE CRISIS",
+        "chooseAction": "Elige tu respuesta:",
+        "cost": "Costo",
+        "doomImpact": "Impacto de Caos"
+    },
+    "victory": {
+        "title": "SIMULACION COMPLETADA",
+        "survived": "Sobreviviste el ciclo de vida completo del producto!",
+        "shareResult": "Compartir Resultado",
+        "playAgain": "Jugar de Nuevo",
+        "shareTemplate": "¡Sobrevivi {{duration}} con el {{device}}! Presupuesto: {{budget}}."
+    },
+    "autopsy": {
+        "title": "FALLO DEL PRODUCTO",
+        "gameOver": "Tu dispositivo ha fallado.",
+        "causeOfDeath": "Causa de Muerte",
+        "doomOverload": "Sobrecarga de Deuda Tecnica",
+        "budgetDepleted": "Presupuesto Agotado",
+        "tryAgain": "Intentar de Nuevo",
+        "shareTemplate": "¡Mi {{device}} fue RETIRADO tras {{duration}}! {{blame}} Presupuesto: {{budget}}."
+    },
+    "tutorial": {
+        "welcome": {
+            "title": "Bienvenido a Prophet Labs",
+            "subtitle": "The Recall Run: Simulador de Caos IoT",
+            "content": "Tu objetivo: Mantener un dispositivo IoT vivo durante 5 años sin quedarte en bancarrota o acumular demasiada deuda técnica."
+        },
+        "setup_device": {
+            "title": "Elige Tu Dispositivo",
+            "content": "Cada dispositivo tiene desafíos diferentes. Revisa la calificación de \"Dificultad\": los dispositivos más difíciles tienen presupuestos más ajustados y más requisitos regulatorios."
+        },
+        "setup_budget": {
+            "title": "Vigila Tu Presupuesto",
+            "content": "El dinero mantiene las luces encendidas. Si se acaba, fin del juego. Los costos de mantenimiento drenan tu presupuesto cada mes."
+        },
+        "sim_doom": {
+            "title": "El Medidor de Caos",
+            "content": "Esto es Deuda Técnica. Las malas decisiones añaden Caos. Si llega al 100%, tu producto falla catastróficamente."
+        },
+        "sim_ship": {
+            "title": "Generar Ingresos",
+            "content": "¿Necesitas efectivo? Despliega una actualización OTA monetizada. Genera ingresos pero aumenta la Deuda Técnica (Caos) debido a funciones apresuradas. No puedes desplegar si Caos > 50%."
+        },
+        "sim_events": {
+            "title": "Eventos de Crisis",
+            "content": "Desastres aleatorios ocurrirán. Auditorías regulatorias, ciberataques, problemas de cadena de suministro. Tus elecciones importan."
+        },
+        "skip": "Saltar Tutorial",
+        "gotIt": "Entendido"
+    },
+    "audio": {
+        "mute": "Silenciar Sonido",
+        "unmute": "Activar Sonido"
+    },
+    "privacy": {
+        "link": "Politica de Privacidad"
+    },
+    "footer": {
+        "privacy": "Politica de Privacidad",
+        "feedback": "Reportar Errores y Sugerencias"
+    },
+    "system": {
+        "title": "Estado de Arquitectura del Sistema",
+        "hoverHint": "Pase el cursor sobre los componentes para inspeccionar la pila de hardware/software.",
+        "issues": "Problemas:",
+        "status": {
+            "nominal": "NOMINAL",
+            "warning": "ADVERTENCIA"
+        },
+        "nodes": {
+            "cloud": {
+                "label": "Backend en la Nube",
+                "description": "Infraestructura del servidor. Escala infinita, costo infinito. Riesgo de bloqueo del proveedor."
+            },
+            "network": {
+                "label": "Conectividad",
+                "description": "El vector de ataque. Cifrado? Autenticado? O simplemente telnet abierto?"
+            },
+            "compute": {
+                "label": "Silicio (IA/MCU)",
+                "description": "El cerebro. Ejecuta codigo. Susceptible a clonacion, fallos y rayos cosmicos."
+            },
+            "storage": {
+                "label": "Almacenamiento Flash",
+                "description": "Donde vive el firmware. NAND barato corrompe datos. Enclaves seguros definen la confianza."
+            },
+            "power": {
+                "label": "Energia y Seguridad",
+                "description": "Gestion de bateria y regulacion termica. El fallo significa fuego."
+            },
+            "security": {
+                "label": "Seguridad y Cumplimiento",
+                "description": "Certificados, Claves y HSM. Lo unico que se interpone entre usted y una botnet."
+            }
+        },
+        "tags": {
+            "cloud_dependency": "Dependencia de la Nube",
+            "gdpr_violation": "Violación de GDPR",
+            "privacy_risk": "Riesgo de Privacidad",
+            "no_encryption": "Sin Cifrado",
+            "default_password": "Password por Defecto",
+            "tech_debt": "Deuda Técnica",
+            "bad_flash": "Flash Defectuosa",
+            "data_loss": "Pérdida de Datos",
+            "battery_risk": "Riesgo de Batería",
+            "regulatory_risk": "Riesgo Regulatorio",
+            "legal_liability": "Responsabilidad Legal",
+            "cloned": "Hardware Clonado",
+            "server_crash": "Caída del Servidor"
+        }
+    },
+    "logs": {
+        "title": "Registros del Sistema",
+        "unknownEvent": "Evento Desconocido",
+        "unknownAction": "Accion Desconocida",
+        "doomIncrease": "+{{count}}% Caos"
+    },
+    "blame": {
+        "departments": {
+            "Engineering": "Ingeniería",
+            "Marketing": "Marketing",
+            "Legal": "Legal",
+            "Supply_Chain": "Cadena de Suministro",
+            "Finance": "Finanzas",
+            "Management": "Gerencia"
+        },
+        "statements": {
+            "Engineering": [
+                "se envió antes de realizar la auditoría de seguridad.",
+                "pensó que \"funciona en mi máquina\" era suficiente.",
+                "dejó el puerto de depuración abierto en producción.",
+                "se saltó la prueba de penetración para cumplir con el plazo.",
+                "utilizó una biblioteca criptográfica obsoleta."
+            ],
+            "Marketing": [
+                "exigió funciones de IA en un MCU de 8 bits.",
+                "prometió soporte de 5 años para un chip de 2 años.",
+                "dijo \"simplemente envíalo antes de Navidad\".",
+                "quería Bluetooth Y WiFi Y LoRa en la misma placa.",
+                "programó el lanzamiento antes de que llegara el hardware."
+            ],
+            "Legal": [
+                "no cumplió con el plazo de cumplimiento de la CRA.",
+                "ignoró los requisitos de la GDPR.",
+                "olvidó actualizar la política de privacidad.",
+                "no leyó las nuevas regulaciones de la UE."
+            ],
+            "Supply_Chain": [
+                "eligió al proveedor más barato.",
+                "no tenía un respaldo para el chip de fuente única.",
+                "ignoró las advertencias sobre el tiempo de entrega.",
+                "pidió piezas a un vendedor sospechoso de Marketplace Online."
+            ],
+            "Finance": [
+                "recortó el presupuesto de seguridad en un 80%.",
+                "dijo que las pruebas eran \"demasiado caras\".",
+                "se negó a renovar el contrato de la nube.",
+                "no pagaría por la infraestructura de actualización de firmware."
+            ],
+            "Management": [
+                "preguntó \"¿no podemos simplemente añadir blockchain?\"",
+                "insistió en el lanzamiento durante una escasez de chips.",
+                "cambió los requisitos tres semanas antes del lanzamiento.",
+                "ignoró todas las advertencias del equipo de ingeniería."
+            ]
+        }
+    }
+}

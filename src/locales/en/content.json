@@ -1,0 +1,608 @@
+{
+    "event_flash_shortage": {
+        "title": "Flash Memory Shortage",
+        "description": "Supply chain crisis! The automotive-grade flash chips are backordered for 52 weeks.",
+        "choices": {
+            "choice_cheap_flash": "Use Generic Consumer Flash from Overseas Vendors",
+            "choice_redesign": "Redesign PCB for new footprint"
+        }
+    },
+    "event_mcu_shortage": {
+        "title": "Global Silicon Famine",
+        "description": "Your MCU distributor just ghosted you. The lead time is now 96 weeks. A broker overseas says they have 'compatible' stock.",
+        "choices": {
+            "choice_buy_clones": "Buy the 'compatible' chips (No questions asked)",
+            "choice_redesign_mcu": "Emergency Redesign for available part",
+            "choice_stop_ship": "Halt production until stock returns"
+        }
+    },
+    "event_crowdfunding_hype": {
+        "title": "Pre-Order Hype Check",
+        "description": "The marketing team wants to launch a Crowdfunding Campaign. 'Just promise them the moon, we'll figure out the physics later.'",
+        "choices": {
+            "choice_hype_ai": "Promise 'General Artificial Intelligence' ($$$)",
+            "choice_hype_lifetime": "Promise 'Lifetime Free Cloud Storage'",
+            "choice_stay_humble": "Promise what we can actually build"
+        }
+    },
+    "event_fake_ai_exposed": {
+        "title": "Fake AI Exposed",
+        "description": "A researcher decompiled your app and found your 'AI' is just 500 if-statements. The internet is laughing at you.",
+        "choices": {
+            "choice_fake_ai_admit": "Admit it ('It's Symbolic AI!')",
+            "choice_fake_ai_refund": "Offer partial refunds"
+        }
+    },
+    "event_hamster_hack": {
+        "title": "Smart Cage Hack",
+        "description": "Hackers accessed the unencrypted MQTT relay. The hamster is now participating in a DDoS attack (and is very warm).",
+        "choices": {
+            "choice_hamster_patch": "Emergency Firmware Patch",
+            "choice_hamster_deny": "Blame the owner's WiFi"
+        }
+    },
+    "event_drm_outage": {
+        "title": "DRM Server Outage",
+        "description": "Your authentication server is down. 50,000 customers cannot use the product they 'bought'.",
+        "choices": {
+            "choice_drm_disable": "Push update to disable DRM checks (Free fix!)",
+            "choice_drm_provision": "Provision emergency capacity & fix auth service"
+        }
+    },
+    "event_data_corruption": {
+        "title": "Bit Rot Detected",
+        "description": "Users are reporting their devices are forgetting their WiFi passwords. Your flash vendor says it's a 'known characteristic'.",
+        "choices": {
+            "choice_ignore_it": "It's a feature, not a bug",
+            "choice_recall_units": "Recall affected units"
+        }
+    },
+    "event_gdpr_audit": {
+        "title": "Surprise GDPR Audit",
+        "description": "The EU Commission wants to know where you store the user's voice logs. They mention SOMETHING about 'Article 25 - Data Protection by Design'.",
+        "choices": {
+            "choice_bribe": "Hire 'Consultants' to delay",
+            "choice_clean_up": "Panic delete everything",
+            "choice_proper_fix": "Implement proper data handling"
+        }
+    },
+    "event_botnet": {
+        "title": "Mirai 2.0 Infection",
+        "description": "Your devices are being used to DDoS a cat food website in Estonia. The botnet operators send a thank you note.",
+        "choices": {
+            "choice_ota_patch": "Emergency OTA Patch",
+            "choice_deny": "Deny involvement via PR"
+        }
+    },
+    "event_marketing_pivot": {
+        "title": "AI Pivot",
+        "description": "The CEO saw a GenAI demo. Implement 'Chat with your Juicer' feature by next week.",
+        "choices": {
+            "choice_fake_ai": "Write a regex script and call it AI",
+            "choice_real_ai": "Integrate actual LLM (Budget blown)"
+        }
+    },
+    "event_cra_warning": {
+        "title": "CRA Compliance Letter",
+        "description": "The EU has sent your company a 'friendly reminder' about the upcoming Cyber Resilience Act deadline. Your SBOM is... non-existent.",
+        "choices": {
+            "choice_ignore_cra": "Brexit means Brexit, right? Oh wait...",
+            "choice_scramble_sbom": "Hire contractor to generate SBOM",
+            "choice_proper_sbom": "Implement CI/CD SBOM generation"
+        }
+    },
+    "event_cra_enforcement": {
+        "title": "CRA Enforcement Action",
+        "description": "December 2027. The CRA is now fully enforced. EU customs has seized your latest shipment. Your CE mark is 'under review'.",
+        "choices": {
+            "choice_exit_eu": "Exit EU market entirely",
+            "choice_emergency_compliance": "Emergency compliance program ($$$)"
+        }
+    },
+    "event_psti_enforcement": {
+        "title": "UK PSTI Violation",
+        "description": "UK Trading Standards contacts you. Apparently 'admin/admin' is not an acceptable default password. Who knew?",
+        "choices": {
+            "choice_exit_uk": "Exit UK market",
+            "choice_fix_passwords": "Implement unique passwords per device"
+        }
+    },
+    "event_ransomware": {
+        "title": "Ransomware Attack",
+        "description": "Your cloud backend has been encrypted. The hackers want 50 BTC. Your backup strategy was 'we'll figure it out later'.",
+        "choices": {
+            "choice_pay_ransom": "Pay the ransom (this is illegal in some jurisdictions)",
+            "choice_rebuild": "Rebuild from scratch",
+            "choice_call_experts": "Engage incident response team"
+        }
+    },
+    "event_debug_port_exploit": {
+        "title": "Debug Port Exposed",
+        "description": "Security researchers found your JTAG port is active in production. Your firmware is now on GitHub.",
+        "choices": {
+            "choice_dmca": "Send DMCA takedown (Streisand effect incoming)",
+            "choice_fuse_blow": "Rush new production with fuses blown",
+            "choice_secure_boot": "Implement full secure boot chain"
+        }
+    },
+    "event_silicon_eol": {
+        "title": "Main Chip End-of-Life",
+        "description": "Your SoC vendor announces they're discontinuing your chip. You have 18 months to find an alternative.",
+        "choices": {
+            "choice_stockpile": "Lifetime buy stockpile",
+            "choice_quick_port": "Quick port to similar chip",
+            "choice_proper_migration": "Proper hardware migration project"
+        }
+    },
+    "event_ota_brick": {
+        "title": "OTA Update Disaster",
+        "description": "Your latest firmware update has bricked 15% of deployed devices. Social media is not happy.",
+        "choices": {
+            "choice_silent_replacement": "Silent replacement program",
+            "choice_public_recall": "Public recall announcement",
+            "choice_implement_rollback": "Implement A/B partitions for future"
+        }
+    },
+    "event_cloud_price_hike": {
+        "title": "Cloud Vendor Lock-in",
+        "description": "The Cloud Provider announces 300% price increase for IoT Service. Your entire fleet uses their proprietary protocol.",
+        "choices": {
+            "choice_pay_up": "Accept the new pricing",
+            "choice_migration": "Migrate to standard protocols"
+        }
+    },
+    "event_insurance_denial": {
+        "title": "Cyber Insurance Denied",
+        "description": "Your cyber insurance claim is denied. 'Insufficient security controls' they say. Something about SBOM and penetration testing.",
+        "choices": {
+            "choice_sue_insurer": "Sue the insurance company",
+            "choice_accept_loss": "Accept the loss and move on"
+        }
+    },
+    "event_battery_compliance": {
+        "title": "EU Battery Regulation",
+        "description": "New EU Battery Regulation requires a 'Digital Battery Passport'. Your battery management system logs... nothing.",
+        "choices": {
+            "choice_fake_data": "Generate plausible-looking data",
+            "choice_implement_bms": "Implement proper BMS logging"
+        }
+    },
+    "event_ai_act": {
+        "title": "EU AI Act Audit",
+        "description": "Your 'AI-powered' feature triggers EU AI Act scrutiny. They want to see your risk management system and model cards.",
+        "choices": {
+            "choice_fake_ai_remove": "Quietly remove AI feature",
+            "choice_ai_compliance": "Implement AI risk management"
+        }
+    },
+    "event_competitor_clone": {
+        "title": "Gray Market Clone",
+        "description": "A perfect clone of your product appears on a major marketplace at 1/3 the price. It even has your firmware, bugs included.",
+        "choices": {
+            "choice_legal_action": "Launch international legal action",
+            "choice_race_bottom": "Compete on price"
+        }
+    },
+    "event_apt_detected": {
+        "title": "Nation-State Interest",
+        "description": "Threat intelligence suggests a nation-state APT is targeting your device category. Your security posture is... optimistic.",
+        "choices": {
+            "choice_ignore_apt": "We're not that important, surely",
+            "choice_security_audit": "Commission third-party security audit",
+            "choice_zero_trust": "Implement zero-trust architecture"
+        }
+    },
+    "event_ewaste_violation": {
+        "title": "E-Waste Disposal Crisis",
+        "description": "Old devices are appearing in landfills with PII still accessible. The EU ESPR wants to 'discuss secure disposal procedures'.",
+        "choices": {
+            "choice_ignore_ewaste": "Not our problem anymore",
+            "choice_retrofit_eol": "Retrofit secure wipe capability"
+        }
+    },
+    "event_zombie_lawsuit": {
+        "title": "Zombie Device Class Action",
+        "description": "A class action lawsuit alleges your unpatchable devices from 2019 are being used to attack hospitals.",
+        "choices": {
+            "choice_settle": "Settle out of court",
+            "choice_fight_lawsuit": "Fight in court"
+        }
+    },
+    "event_fda_raid": {
+        "title": "Surprise FDA Inspection",
+        "description": "Inspectors have arrived. They want to see the Clinical Evaluation Report (CER) for your latest firmware patch.",
+        "choices": {
+            "choice_stall_fda": "Stall them with 'Proprietary Data' claims",
+            "choice_audit_prep": "Launch Emergency Audit Prep"
+        }
+    },
+    "event_influencer_takedown": {
+        "title": "Mega-Influencer Takedown",
+        "description": "TechRoast (15M subs) just dropped a video: 'The Snuggle-Bot is SPYING on you'. It has 2M views in an hour.",
+        "choices": {
+            "choice_dmca_video": "DMCA the video (Streisand Effect)",
+            "choice_sponsor_apology": "Sponsor an apology video"
+        }
+    },
+    "event_quantum_harvest": {
+        "title": "Harvest Now, Decrypt Later",
+        "description": "Intelligence agencies are recording your encrypted traffic. Your ECC-256 keys will be crackable by quantum computers in ~8 years. Your device lasts 10.",
+        "choices": {
+            "choice_ignore_quantum": "That's a 'Future Us' problem",
+            "choice_implement_pqc": "Implement PQC (Crystal Kyber/Dilithium)"
+        }
+    },
+    "event_ble_exploit": {
+        "title": "Cheap Bluetooth Replay",
+        "description": "A Tech Vlogger opened your lock with a $5 Microcontroller. It's a simple replay attack. 'Bank Grade Security' is now a meme.",
+        "choices": {
+            "choice_app_fix": "Software fix: Rolling codes via App",
+            "choice_hardware_recall": "Full Hardware Recall (Crypto Coprocessor)"
+        }
+    },
+    "event_stuxnet_usb": {
+        "title": "The Parking Lot USB",
+        "description": "An operator plugged a USB drive labeled 'Salary Bonuses 2026' into the airgapped control console.",
+        "choices": {
+            "choice_epoxy_ports": "Epoxy glue all USB ports",
+            "choice_incident_response": "Scrub the SCADA network"
+        }
+    },
+    "event_ai_prohibited": {
+        "title": "Prohibited AI Practice",
+        "description": "Marketing pushed an OTA update enabling 'Emotion Recognition' to optimize ads. Legal warns this violates EU AI Act Article 5 (Prohibited Practices).",
+        "choices": {
+            "choice_ai_rollback": "Emergency Rollback (Kill the feature)",
+            "choice_ai_fight": "Claim it's for 'User Safety' (Fight the regulators)"
+        }
+    },
+    "event_ai_transparency": {
+        "title": "GPAI Transparency Audit",
+        "description": "Regulators demand 'Article 53' transparency docs for your GenAI chatbot. Since you wrappered a black-box API, you have zero documentation.",
+        "choices": {
+            "choice_ai_lawyers": "Hire top-tier law firm to delay",
+            "choice_ai_open": "Panic-switch to Open Source Model"
+        }
+    },
+    "event_ai_bias": {
+        "title": "Algorithmic Bias Scandal",
+        "description": "Users discovered your smart camera auto-tags minorities as 'Suspicious'. Social Media is melting down. Data governance was nonexistent.",
+        "choices": {
+            "choice_bias_deny": "Deny it ('It's a feature!')",
+            "choice_bias_fix": "Apologize and Global Retrain"
+        }
+    },
+    "event_cra_vuln_report": {
+        "title": "CRA: Zero-Day Discovery",
+        "description": "A researcher found a root shell. Under the EU Cyber Resilience Act, you MUST provide an early warning to ENISA within 24 hours and a full notification within 72 hours.",
+        "choices": {
+            "choice_cra_report": "Report to ENISA (Risk Leak)",
+            "choice_cra_coverup": "Quietly Patch & Don't Tell (Illegal)"
+        }
+    },
+    "event_gpsr_choking": {
+        "title": "GPSR: Choking Hazard",
+        "description": "A toddler swallowed the volume knob. The General Product Safety Regulation demands an immediate recall unless you can prove it's an isolated incident.",
+        "choices": {
+            "choice_gpsr_recall": "Voluntary Recall ( expensive)",
+            "choice_gpsr_deny": "Send 'Super Glue' kits to users"
+        }
+    },
+    "event_coppa_violation": {
+        "title": "Privacy: The 'Listening' Bear",
+        "description": "Your AI bear was recording children's secrets and training the model. Huge GDPR-K and COPPA violations.",
+        "choices": {
+            "choice_coppa_settle": "Settle with FTC (£$$$)",
+            "choice_coppa_ignore": "Claim 'Legitimate Interest'"
+        }
+    },
+    "event_cert_expiry": {
+        "title": "Root Certificate Expired",
+        "description": "It's the Y2K of IoT! Your root CA certificate just expired. 10,000 devices are now bricks because they can't handshake with your server.",
+        "choices": {
+            "choice_usb_update": "Manual USB Update Campaign (Costly)",
+            "choice_disable_ssl": "Push OTA via HTTP (Disable SSL)",
+            "choice_ignore_bricks": "Ignore old devices (EOL them)"
+        }
+    },
+    "event_bill_shock": {
+        "title": "Cloud Bill Shock",
+        "description": "An intern left debug logging enabled on the entire fleet. Your cloud storage bill is $100,000 this month.",
+        "choices": {
+            "choice_pay_bill": "Pay it and fix the config",
+            "choice_dispute_bill": "Dispute with Cloud Support",
+            "choice_turn_off_logs": "Turn off all logging & pray"
+        }
+    },
+    "event_sbom_vuln": {
+        "title": "SBOM Vulnerability Found",
+        "description": "Security researchers found a critical RCE in 'left-pad-iot', a library you use everywhere. It allows unauthenticated root access.",
+        "choices": {
+            "choice_patch_sbom": "Develop & Deploy Hotfix",
+            "choice_waf_rules": "Block attack at Cloud WAF",
+            "choice_deny_vuln": "Deny involvement ('We don't use that version')"
+        }
+    },
+    "omni-juice": {
+        "name": "Omni-Juice 4000",
+        "description": "A $700 Wi-Fi connected juice press that requires a subscription to squeeze. The firmware was last updated in 2019."
+    },
+    "industrial-sentinel": {
+        "name": "Sentinel X100",
+        "description": "A vibration sensor for nuclear centrifuges. Runs on a coin cell for 10 years. The update port is epoxy-sealed."
+    },
+    "smart-lock": {
+        "name": "Safe-T Lock 5000",
+        "description": "Bluetooth-enabled smart lock for short-term rental hosts. 'Bank-grade encryption' (AES-128 with a fixed IV)."
+    },
+    "snuggle-bot": {
+        "name": "The Snuggle-Bot",
+        "description": "An AI companion for loneliness equipped with 4K cameras, always-on microphones, and 'cloud-based personality storage'."
+    },
+    "zen-cage": {
+        "name": "The Zen-Cage",
+        "description": "Automated Hamster Habitat with granular temperature control. The heater relay is controlled via unencrypted MQTT."
+    },
+    "smart-fridge": {
+        "name": "FridgeOS X1",
+        "description": "Enterprise-grade smart refrigerator with 'blockchain-verified freshness'. Ships with SSH enabled and password 'admin'."
+    },
+    "health-tracker": {
+        "name": "VitalBand Pro",
+        "description": "Wearable health tracker that syncs heart rate, sleep, and location data. GDPR compliance is 'on the roadmap'."
+    },
+    "cuddlebot-ai": {
+        "name": "CuddleBot AI",
+        "description": "An LLM-powered teddy bear that 'learns' from children. GPSR and COPPA nightmare."
+    },
+    "event_ccpa_flood": {
+        "title": "CCPA Data Request Flood",
+        "description": "California users have discovered the 'Delete My Data' button. Your inbox has 2,000 requests and a 45-day compliance deadline.",
+        "choices": {
+            "choice_ccpa_automate": "Build automated deletion pipeline",
+            "choice_ccpa_manual": "Handle manually (intern overtime)",
+            "choice_ccpa_ignore": "Ignore requests (they won't sue, right?)"
+        }
+    },
+    "event_cisa_kev": {
+        "title": "CISA Known Exploited Vulnerability",
+        "description": "CISA just added your firmware vulnerability to the KEV catalog. Federal customers are contractually required to drop you in 14 days.",
+        "choices": {
+            "choice_kev_patch": "Emergency firmware patch (all hands)",
+            "choice_kev_exit_fed": "Exit federal market quietly"
+        }
+    },
+    "event_data_broker": {
+        "title": "Data Broker Leak",
+        "description": "Your 'anonymized' telemetry data was re-identified by researchers. Turns out device UUID + ZIP code = person. Class action lawyers are circling.",
+        "choices": {
+            "choice_broker_settle": "Settle class action quietly",
+            "choice_broker_fight": "Fight in court ('It was anonymized!')",
+            "choice_broker_fix": "Implement differential privacy + settle"
+        }
+    },
+    "event_right_to_repair": {
+        "title": "EU Right to Repair Directive",
+        "description": "The EU Right to Repair directive now applies to your category. You must publish schematics and provide spare parts for 7 years.",
+        "choices": {
+            "choice_repair_comply": "Release documentation and parts catalog",
+            "choice_repair_lobby": "Lobby for exemption",
+            "choice_repair_exit": "Exit EU market"
+        }
+    },
+    "event_tariff_shock": {
+        "title": "Trade Tariff Shock",
+        "description": "New 25% tariffs on electronics from your primary manufacturing hub. Your BOM cost just spiked. Shareholders want answers.",
+        "choices": {
+            "choice_tariff_absorb": "Absorb costs (margin compression)",
+            "choice_tariff_pass": "Pass to customers (+15% price)",
+            "choice_tariff_relocate": "Relocate manufacturing (long-term fix)"
+        }
+    },
+    "event_rare_earth": {
+        "title": "Rare Earth Minerals Shortage",
+        "description": "Geopolitical tensions have restricted rare earth exports. Your motor supplier just paused production indefinitely.",
+        "choices": {
+            "choice_rare_stockpile": "Emergency stockpile (if you can find any)",
+            "choice_rare_redesign": "Redesign with alternative materials",
+            "choice_rare_pause": "Pause production (wait it out)"
+        }
+    },
+    "event_security_kudos": {
+        "title": "Security Researcher Kudos",
+        "description": "A famous security researcher tweets: 'I just audited [YOUR DEVICE] and... it's actually secure? What timeline is this?' You're going viral for good reasons.",
+        "choices": {
+            "choice_kudos_humble": "Stay humble, thank the community",
+            "choice_kudos_marketing": "Launch 'Security First' marketing campaign"
+        }
+    },
+    "eco-thermo": {
+        "name": "GreenTemp Pro",
+        "description": "Energy-efficient smart thermostat with Matter support. Simple, well-documented, minimal attack surface. Perfect for your first product launch."
+    },
+    "asset-beacon": {
+        "name": "FleetTrack X1",
+        "description": "RFID + GPS asset tracker for enterprise warehouses. 50,000 units deployed on day one. One bad OTA bricks them all."
+    },
+    "event_revenue_collapse": {
+        "title": "Revenue Collapse",
+        "description": "Being banned from key markets has finally hit the bottom line. Quarterly revenue is down 40% and cash flow is critical.",
+        "choices": {
+            "choice_revenue_layoffs": "Emergency layoffs (cut QA team)",
+            "choice_revenue_rebrand": "Desperate rebrand ('New & Safe!')"
+        }
+    },
+    "event_shareholder_revolt": {
+        "title": "Shareholder Revolt",
+        "description": "Investors are furious about the margin compression. They demand immediate cost-cutting or a leadership change.",
+        "choices": {
+            "choice_cut_quality": "Switch to cheaper components",
+            "choice_ignore_investors": "Hold the line (Quality First)"
+        }
+    },
+    "event_supply_resilience": {
+        "title": "Supply Chain Resilience",
+        "description": "A competitor just went bankrupt due to the shortage, but your stockpile kept you shipping. The market rewards your foresight.",
+        "choices": {
+            "choice_resilience_bonus": "Expand market share"
+        }
+    },
+    "event_legal_settlement": {
+        "title": "Class Action Settlement",
+        "description": "The lawsuits have piled up. Your legal team advises settling before discovery reveals the embarrassing Team Chat messages.",
+        "choices": {
+            "choice_settle_all": "Settle all claims",
+            "choice_fight_forever": "Fight forever (Drain the treasury)"
+        }
+    },
+    "event_regulatory_fine": {
+        "title": "Regulatory Fine",
+        "description": "Regulators have lost patience with your minimal compliance efforts. A significant fine has been levied.",
+        "choices": {
+            "choice_pay_fine": "Pay fine and commit to compliance",
+            "choice_appeal_fine": "Appeal the fine"
+        }
+    },
+    "event_legacy_crash": {
+        "title": "Legacy Code Crash",
+        "description": "That 'temp fix' from last year just caused a cascading failure in the core loop. Devices are rebooting every 5 minutes.",
+        "choices": {
+            "choice_rewrite_core": "Emergency Core Rewrite",
+            "choice_patch_patch": "Patch the patch (Technical interest)"
+        }
+    },
+    "event_eu_green_grant": {
+        "title": "EU Green Deal Grant",
+        "description": "Your commitment to sustainability qualifies you for an EU innovation grant.",
+        "choices": {
+            "choice_accept_grant": "Accept the grant"
+        }
+    },
+    "event_fintech_deal": {
+        "title": "FinTech Partnership",
+        "description": "Bank partners trust your hardware security module for their new app.",
+        "choices": {
+            "choice_sign_deal": "Sign the partnership"
+        }
+    },
+    "event_local_ai_theft": {
+        "title": "Local AI Model Stolen",
+        "description": "Your proprietary Edge AI model was extracted from the device firmware via a glitching attack. It's now trending on the Public Model Hub.",
+        "choices": {
+            "choice_move_cloud": "Move critical logic to Cloud (Protect IPR)",
+            "choice_obfuscate": "Better obfuscation (Delay tactics)"
+        }
+    },
+    "event_clinical_study": {
+        "title": "Clinical Validation Opportunity",
+        "description": "A university hospital offers to run a clinical study on your device's data accuracy. It's expensive but validates your tech.",
+        "choices": {
+            "choice_run_study": "Fund the study",
+            "choice_skip_study": "We don't need 'science', we have marketing"
+        }
+    },
+    "event_certification_drive": {
+        "title": "EU Compliance Certification",
+        "description": "The legal team suggests proactive certification for the EU market before the regulators come knocking.",
+        "choices": {
+            "choice_full_cert": "Full GDPA & CRA Certification",
+            "choice_self_declare": "Self-Declaration of Conformity (Risky)"
+        }
+    },
+    "event_fraud_leak": {
+        "title": "Whistleblower Leak",
+        "description": "A former engineer has leaked your falsified battery compliance data to The Tech Crunch. The report is damning.",
+        "choices": {
+            "choice_fraud_deny": "Deny everything (Streisand Effect)",
+            "choice_settle_fraud": "Admit 'calibration errors' and settle"
+        }
+    },
+    "event_apt_strike": {
+        "title": "Logic Bomb Detonation",
+        "description": "The nation-state actors that infiltrated your network months ago have triggered a kill-switch. Your fleet is turning into bricks.",
+        "choices": {
+            "choice_burn_infra": "Purge all affected systems (Total reset)",
+            "choice_negotiate_terror": "This is beyond us... call the NSA"
+        }
+    },
+    "event_greenpeace_report": {
+        "title": "Landfill Investigation",
+        "description": "Investigative journalists found your devices in a Ghanaian landfill. They were supposed to be recycled, but they are just leaking lithium.",
+        "choices": {
+            "choice_greenwashing": "Launch 'Green Future' ad campaign",
+            "choice_cleanup": "Fund cleanup program"
+        }
+    },
+    "event_silent_outage": {
+        "title": "Silent Fleet Failure",
+        "description": "Customers are screaming on Social Media, but your dashboards show all green. You flew blind and hit a mountain.",
+        "choices": {
+            "choice_fire_fight": "All-hands manual debugging",
+            "choice_install_observability": "Emergency Datadog contract"
+        }
+    },
+    "event_quantum_apocalypse": {
+        "title": "Harvest Now, Decrypt Later",
+        "description": "It's 2030. Quantum computers just broke RSA-2048. All that data you collected 5 years ago is now public.",
+        "choices": {
+            "choice_quantum_panic": "Panic (There is no fix)"
+        }
+    },
+    "event_massive_recall": {
+        "title": "Catastrophic Component Failure",
+        "description": "The cheap capacitors you used to save $0.02 are popping after 18 months. It's not a bug, it's chemistry.",
+        "choices": {
+            "choice_recall_everything": "Total Product Recall",
+            "choice_ignore_failures": "Claim it's 'User Error'"
+        }
+    },
+    "event_banhammer": {
+        "title": "Regulator Shut Down",
+        "description": "You've been on probation for a year. You missed the deadline. The FDA/FCC/CE has revoked your license to sell.",
+        "choices": {
+            "choice_market_exit": "Withdraw from market",
+            "choice_shadow_ops": "Sell through shell companies (Illegal)"
+        }
+    },
+    "system": {
+        "title": "System Architecture Status",
+        "hoverHint": "Hover over components to inspect hardware/software stack.",
+        "issues": "Issues:",
+        "status": {
+            "nominal": "NOMINAL",
+            "warning": "WARNING"
+        },
+        "nodes": {
+            "cloud": {
+                "label": "Cloud Backend",
+                "description": "The server infrastructure. Infinite scale, infinite cost. Vendor lock-in risk."
+            },
+            "network": {
+                "label": "Connectivity",
+                "description": "The attack pipe. Encrypted? Authenticated? Or just open telnet?"
+            },
+            "compute": {
+                "label": "Silicon (AI/MCU)",
+                "description": "The brain. Executes code. Susceptible to cloning, glitching, and cosmic rays."
+            },
+            "storage": {
+                "label": "Flash Storage",
+                "description": "Where firmware lives. Cheap NAND corrupts data. Secure enclaves define trust."
+            },
+            "power": {
+                "label": "Power & Safety",
+                "description": "Battery management and thermal regulation. Failure means fire."
+            },
+            "security": {
+                "label": "Security & Compliance",
+                "description": "Certificates, Keys, and HSMs. The only thing standing between you and a botnet."
+            }
+        }
+    },
+    "logs": {
+        "title": "System Logs",
+        "unknownEvent": "Unknown Event",
+        "unknownAction": "Unknown Action",
+        "doomIncrease": "+{{count}}% Doom"
+    }
+}

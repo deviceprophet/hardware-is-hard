@@ -1,0 +1,54 @@
+---
+import { GameContainer } from '../../components/game/GameContainer';
+import '../../styles/global.css';
+
+const title = 'The Recall Run | Device Prophet Labs';
+const ogTitle = 'The Recall Run: IoT Doom Simulator';
+const description =
+    'Can you survive 5 years of hacks, EU regulations, and budget cuts? A survival horror game for embedded engineers.';
+
+// Strip trailing slash from BASE_URL to ensure clean paths (e.g. /labs instead of /labs/)
+const basePath = '/labs';
+const ogImage = `${basePath}/og-image.jpg`;
+const siteUrl = 'https://www.deviceprophet.com';
+const canonicalUrl = `${siteUrl}${basePath}/`;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
+        <link rel="manifest" href={`${basePath}/manifest.json`} />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Device Prophet Labs" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={ogTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                background-color: #020617;
+            }
+        </style>
+    </head>
+    <body>
+        <GameContainer client:only="react" />
+    </body>
+</html>

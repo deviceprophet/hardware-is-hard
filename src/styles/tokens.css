@@ -1,0 +1,135 @@
+/* Design Tokens - The Recall Run
+ * Tokyo Night inspired palette with terminal aesthetic
+ * Using local Fira Code for consistency, privacy, and offline support
+ */
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/labs/fonts/FiraCode-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/labs/fonts/FiraCode-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* ===== TYPOGRAPHY ===== */
+    /* Local Fira Code -> System Fallbacks */
+    --font-mono:
+        'Fira Code', ui-monospace, 'Cascadia Code', 'Source Code Pro', 'SF Mono', 'Consolas',
+        'Monaco', monospace;
+
+    /* ===== COLORS - Tokyo Night Inspired ===== */
+
+    /* Backgrounds */
+    --bg-primary: #1a1b26;
+    --bg-secondary: #24283b;
+    --bg-tertiary: #414868;
+    --bg-elevated: #1f2335;
+
+    /* Text */
+    --text-primary: #c0caf5;
+    --text-secondary: #9aa5ce;
+    --text-tertiary: #565f89;
+    --text-inverse: #1a1b26;
+
+    /* Doom Progression */
+    --doom-safe: #9ece6a;
+    --doom-warning: #e0af68;
+    --doom-danger: #f7768e;
+    --doom-critical: #db4b4b;
+
+    /* Actions */
+    --action-primary: #7aa2f7;
+    --action-success: #9ece6a;
+    --action-danger: #f7768e;
+    --action-muted: #565f89;
+
+    /* Borders */
+    --border-default: #3b4261;
+    --border-hover: #7aa2f7;
+    --border-danger: #f7768e;
+
+    /* ===== SPACING ===== */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* ===== ANIMATION ===== */
+    --anim-fast: 150ms;
+    --anim-normal: 300ms;
+    --anim-slow: 500ms;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* ===== SHADOWS ===== */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --shadow-glow-danger: 0 0 20px rgba(247, 118, 142, 0.3);
+    --shadow-glow-success: 0 0 20px rgba(158, 206, 106, 0.3);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --anim-fast: 0ms;
+        --anim-normal: 0ms;
+        --anim-slow: 0ms;
+    }
+}
+
+/* Utility classes for design tokens */
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.text-doom-safe {
+    color: var(--doom-safe);
+}
+
+.text-doom-warning {
+    color: var(--doom-warning);
+}
+
+.text-doom-danger {
+    color: var(--doom-danger);
+}
+
+.text-doom-critical {
+    color: var(--doom-critical);
+}
+
+.bg-doom-safe {
+    background-color: var(--doom-safe);
+}
+
+.bg-doom-warning {
+    background-color: var(--doom-warning);
+}
+
+.bg-doom-danger {
+    background-color: var(--doom-danger);
+}
+
+.bg-doom-critical {
+    background-color: var(--doom-critical);
+}
