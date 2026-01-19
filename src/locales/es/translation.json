@@ -240,5 +240,14 @@
                 "ignoró todas las advertencias del equipo de ingeniería."
             ]
         }
+    },
+    "shared": {
+        "incoming": "Transmisión Entrante",
+        "missionSuccess": "MISIÓN EXITOSA",
+        "missionFailed": "MISIÓN FALLIDA",
+        "victoryDesc": "Un jugador guió al {{device}} a través del ciclo de vida completo del producto.",
+        "failureDesc": "El {{device}} fue retirado tras {{duration}}.",
+        "challenge": "¿Puedes hacerlo mejor?",
+        "launch": "INICIAR SIMULACIÓN"
     }
 }

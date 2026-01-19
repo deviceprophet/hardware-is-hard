@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGameStore } from '../../../adapters/react';
 import { formatGameDate, formatBudget } from '../../../utils';
 import { useTranslatedDevice } from '../../../hooks/useTranslatedContent';
 
 export const SharedResultView: React.FC = () => {
+    const { t } = useTranslation();
     const result = useGameStore(state => state.sharedResult);
     const goToSetup = useGameStore(state => state.goToSetup);
     // Direct engine access for setup
@@ -48,7 +50,7 @@ export const SharedResultView: React.FC = () => {
             data-testid="shared-result-view"
         >
             <div className="uppercase tracking-[0.2em] text-xs font-bold mb-4 opacity-70">
-                Incoming Transmission
+                {t('shared.incoming')}
             </div>
 
             {/* Title */}
@@ -56,13 +58,14 @@ export const SharedResultView: React.FC = () => {
                 className="text-4xl md:text-5xl font-black mb-2 tracking-tighter"
                 style={{ color: outcomeColor }}
             >
-                {isVictory ? 'MISSION SUCCESS' : 'MISSION FAILED'}
+                {t(isVictory ? 'shared.missionSuccess' : 'shared.missionFailed')}
             </h1>
 
             <p className="text-lg mb-8 max-w-md" style={{ color: 'var(--text-primary)' }}>
-                {isVictory
-                    ? `A player guided the ${deviceName} to a full lifecycle release.`
-                    : `The ${deviceName} was recalled after ${formatGameDate(result.m)}.`}
+                {t(isVictory ? 'shared.victoryDesc' : 'shared.failureDesc', {
+                    device: deviceName,
+                    duration: formatGameDate(result.m)
+                })}
             </p>
 
             {/* Stats Grid */}
@@ -72,7 +75,7 @@ export const SharedResultView: React.FC = () => {
 
                 <div className="p-3 text-center">
                     <div className="text-[10px] uppercase tracking-wider mb-1 opacity-60">
-                        Budget
+                        {t('common.budget')}
                     </div>
                     <div className="text-xl font-bold" style={{ color: getBudgetColor() }}>
                         {formatBudget(result.b)}
@@ -80,7 +83,7 @@ export const SharedResultView: React.FC = () => {
                 </div>
                 <div className="p-3 text-center">
                     <div className="text-[10px] uppercase tracking-wider mb-1 opacity-60">
-                        Compliance
+                        {t('common.compliance')}
                     </div>
                     <div
                         className="text-xl font-bold"
@@ -89,15 +92,17 @@ export const SharedResultView: React.FC = () => {
                                 result.c >= 70
                                     ? 'var(--doom-safe)'
                                     : result.c < 40
-                                      ? 'var(--doom-danger)'
-                                      : 'var(--doom-warning)'
+                                        ? 'var(--doom-danger)'
+                                        : 'var(--doom-warning)'
                         }}
                     >
                         {result.c}%
                     </div>
                 </div>
                 <div className="p-3 text-center">
-                    <div className="text-[10px] uppercase tracking-wider mb-1 opacity-60">Doom</div>
+                    <div className="text-[10px] uppercase tracking-wider mb-1 opacity-60">
+                        {t('common.doom')}
+                    </div>
                     <div
                         className="text-xl font-bold"
                         style={{
@@ -105,8 +110,8 @@ export const SharedResultView: React.FC = () => {
                                 result.dm < 30
                                     ? 'var(--doom-safe)'
                                     : result.dm >= 60
-                                      ? 'var(--doom-danger)'
-                                      : 'var(--doom-warning)'
+                                        ? 'var(--doom-danger)'
+                                        : 'var(--doom-warning)'
                         }}
                     >
                         {result.dm}%
@@ -116,7 +121,7 @@ export const SharedResultView: React.FC = () => {
 
             {/* CTA */}
             <div className="flex flex-col gap-4 items-center animate-bounce-subtle">
-                <p className="text-sm italic opacity-60">Can you do better?</p>
+                <p className="text-sm italic opacity-60">{t('shared.challenge')}</p>
                 <button
                     onClick={handleAcceptChallenge}
                     className="px-8 py-4 font-bold text-lg rounded-lg shadow-lg hover:scale-105 transition-transform"
@@ -126,7 +131,7 @@ export const SharedResultView: React.FC = () => {
                         boxShadow: `0 0 20px ${outcomeColor}40`
                     }}
                 >
-                    LAUNCH SIMULATION
+                    {t('shared.launch')}
                 </button>
             </div>
         </div>

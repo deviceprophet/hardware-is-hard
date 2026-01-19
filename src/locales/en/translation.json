@@ -240,5 +240,14 @@
                 "ignored every warning from the engineering team."
             ]
         }
+    },
+    "shared": {
+        "incoming": "Incoming Transmission",
+        "missionSuccess": "MISSION SUCCESS",
+        "missionFailed": "MISSION FAILED",
+        "victoryDesc": "A player guided the {{device}} through the full product lifecycle.",
+        "failureDesc": "The {{device}} was recalled after {{duration}}.",
+        "challenge": "Can you do better?",
+        "launch": "LAUNCH SIMULATION"
     }
 }
