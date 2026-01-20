@@ -92,8 +92,8 @@ export const SharedResultView: React.FC = () => {
                                 result.c >= 70
                                     ? 'var(--doom-safe)'
                                     : result.c < 40
-                                        ? 'var(--doom-danger)'
-                                        : 'var(--doom-warning)'
+                                      ? 'var(--doom-danger)'
+                                      : 'var(--doom-warning)'
                         }}
                     >
                         {result.c}%
@@ -110,8 +110,8 @@ export const SharedResultView: React.FC = () => {
                                 result.dm < 30
                                     ? 'var(--doom-safe)'
                                     : result.dm >= 60
-                                        ? 'var(--doom-danger)'
-                                        : 'var(--doom-warning)'
+                                      ? 'var(--doom-danger)'
+                                      : 'var(--doom-warning)'
                         }}
                     >
                         {result.dm}%

@@ -174,7 +174,7 @@ export class GameEngine {
         this.notify();
     }
 
-    goToSetup(): void {
+    goToSetup(preferredDeviceId?: string): void {
         if (!canTransitionPhase(this.state.phase, 'setup')) {
             console.warn(`Invalid phase transition: ${this.state.phase} -> setup`);
             return;
@@ -184,9 +184,17 @@ export class GameEngine {
 
         // Generate random device options
         const allDevices = this.data.getDevices();
-        const persistentId = 'omni-juice';
-        const persistent = allDevices.find(d => d.id === persistentId);
-        const others = allDevices.filter(d => d.id !== persistentId);
+
+        // Determine persistent device (preferred or fallback to omni-juice)
+        const targetId = preferredDeviceId || 'omni-juice';
+        let persistent = allDevices.find(d => d.id === targetId);
+
+        // Fallback if preferred ID is invalid or not found
+        if (!persistent && targetId !== 'omni-juice') {
+            persistent = allDevices.find(d => d.id === 'omni-juice');
+        }
+
+        const others = allDevices.filter(d => d.id !== persistent?.id);
 
         // Shuffle and pick 2 random others
         const pool = [...others];

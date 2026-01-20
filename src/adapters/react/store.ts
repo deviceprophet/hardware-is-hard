@@ -110,7 +110,15 @@ export const useGameStore = create<GameStore>(set => {
         },
 
         goToSetup: () => {
-            engine.goToSetup();
+            let preferredId: string | undefined;
+            try {
+                if (typeof window !== 'undefined') {
+                    preferredId = localStorage.getItem('lastPlayedDeviceId') || undefined;
+                }
+            } catch (e) {
+                console.warn('Failed to read from localStorage', e);
+            }
+            engine.goToSetup(preferredId);
         },
 
         selectDevice: (device: Device) => {
@@ -118,6 +126,14 @@ export const useGameStore = create<GameStore>(set => {
         },
 
         startGame: () => {
+            const state = engine.getState();
+            try {
+                if (state.selectedDevice && typeof window !== 'undefined') {
+                    localStorage.setItem('lastPlayedDeviceId', state.selectedDevice.id);
+                }
+            } catch (e) {
+                console.warn('Failed to save to localStorage', e);
+            }
             engine.startSimulation();
         },
 

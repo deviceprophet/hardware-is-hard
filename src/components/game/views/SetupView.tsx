@@ -51,7 +51,7 @@ export const SetupView: React.FC = () => {
                             <div className="text-[10px] text-slate-300 uppercase tracking-[0.2em] font-mono">
                                 {t(`common.archetypes.${device.archetype}`)}
                             </div>
-                            <p className="text-sm text-slate-300 mt-2 leading-relaxed h-12 line-clamp-2">
+                            <p className="text-sm text-slate-300 mt-2 leading-relaxed h-[4.5rem] line-clamp-3">
                                 {translation?.description || device.description}
                             </p>
                             <div className="mt-4 flex gap-1.5 flex-wrap">
