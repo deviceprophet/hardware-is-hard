@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { SHARE } from '../../../config/constants';
 
+import { getTwitterShareUrl, getLinkedInShareUrl } from '../../../utils/social';
+
 interface ShareButtonsProps {
     shareUrl: string;
     title?: string;
@@ -15,13 +17,8 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
 }) => {
     const [copied, setCopied] = useState(false);
 
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        text
-    )}&url=${encodeURIComponent(shareUrl)}&hashtags=${hashtags.join(',')}`;
-
-    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        shareUrl
-    )}`;
+    const twitterUrl = getTwitterShareUrl(text, shareUrl, hashtags);
+    const linkedInUrl = getLinkedInShareUrl(text, shareUrl, hashtags);
 
     const handleCopy = async () => {
         try {

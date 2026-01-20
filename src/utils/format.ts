@@ -41,6 +41,8 @@ export function formatMonth(value: number): string {
     return rounded.toString();
 }
 
+import i18n from '../i18n';
+
 /**
  * Format game date to "X mo Y d" format
  * Assumes 30 days per month
@@ -48,5 +50,7 @@ export function formatMonth(value: number): string {
 export function formatGameDate(totalMonths: number): string {
     const m = Math.floor(totalMonths);
     const d = Math.floor((totalMonths - m) * 30);
-    return `${m} mo ${d} d`;
+    const mo = i18n.t('common.monthShort');
+    const day = i18n.t('common.dayShort');
+    return d > 0 ? `${m} ${mo} ${d} ${day}` : `${m} ${mo}`;
 }

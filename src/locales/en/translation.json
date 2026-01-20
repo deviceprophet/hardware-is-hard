@@ -6,6 +6,8 @@
         "strategy": "Strategy",
         "month": "Month",
         "months": "months",
+        "monthShort": "mo",
+        "dayShort": "d",
         "start": "Start",
         "restart": "Restart",
         "continue": "Continue",
@@ -18,6 +20,7 @@
         "returnToMenu": "Save & Exit",
         "copyUrl": "Copy URL",
         "urlCopied": "Copied!",
+        "textCopied": "Text copied to clipboard! Paste it in your post.",
         "normalSpeed": "Normal Speed",
         "fastForward": "Fast Forward",
         "archetypes": {

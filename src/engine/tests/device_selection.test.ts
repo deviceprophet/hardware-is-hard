@@ -6,7 +6,10 @@ import devices from '../../data/devices.json';
 import events from '../../data/events.json';
 
 // Mock data provider
-const dataProvider = createDataProvider(devices as unknown as Device[], events as unknown as GameEvent[]);
+const dataProvider = createDataProvider(
+    devices as unknown as Device[],
+    events as unknown as GameEvent[]
+);
 
 describe('Device Selection Logic', () => {
     let engine: GameEngine;

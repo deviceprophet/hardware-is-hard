@@ -73,7 +73,7 @@ describe('DoomMeter', () => {
 describe('TimelineProgress', () => {
     it('should display current month', () => {
         render(<TimelineProgress currentMonth={15} />);
-        expect(screen.getByText('15 mo 0 d')).toBeInTheDocument();
+        expect(screen.getByText('15 mo')).toBeInTheDocument();
     });
 
     it('should display max months', () => {

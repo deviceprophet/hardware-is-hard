@@ -6,10 +6,13 @@ interface TimelineProgressProps {
     maxMonth?: number;
 }
 
+import { useTranslation } from 'react-i18next';
+
 export const TimelineProgress: React.FC<TimelineProgressProps> = ({
     currentMonth,
     maxMonth = 60
 }) => {
+    const { t } = useTranslation();
     const progress = Math.min(100, (currentMonth / maxMonth) * 100);
     const yearMarkers = [12, 24, 36, 48, 60];
 
@@ -20,7 +23,9 @@ export const TimelineProgress: React.FC<TimelineProgressProps> = ({
                 style={{ color: 'var(--text-secondary)' }}
             >
                 <span data-testid="timeline-display">{formatGameDate(currentMonth)}</span>
-                <span>{maxMonth} mo</span>
+                <span>
+                    {maxMonth} {t('common.monthShort')}
+                </span>
             </div>
             <div
                 className="relative h-2 rounded-full overflow-hidden"

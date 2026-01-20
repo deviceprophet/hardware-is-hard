@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useMemo, useState } from 'react';
 import { useGameStore } from '../../../adapters/react';
 import { generateBlame } from '../../../engine/blame-generator';
 import { formatGameDate, formatBudget } from '../../../utils';
+import { getTwitterShareUrl, getLinkedInShareUrl } from '../../../utils/social';
 import eventsData from '../../../data/events.json';
 import type { GameEvent } from '../../../engine/types';
 
@@ -81,13 +82,8 @@ export const AutopsyView: React.FC = () => {
         doom: Math.round(doomLevel)
     });
 
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        shareText
-    )}&url=${encodeURIComponent(resultUrl)}&hashtags=${SHARE.HASHTAGS.join(',')}`;
-
-    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        resultUrl
-    )}`;
+    const twitterUrl = getTwitterShareUrl(shareText, resultUrl, SHARE.HASHTAGS);
+    const linkedInUrl = getLinkedInShareUrl(shareText, resultUrl, SHARE.HASHTAGS);
 
     const handleCopyDebug = async () => {
         try {

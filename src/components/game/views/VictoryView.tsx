@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../../../adapters/react';
 import { formatGameDate, formatBudget } from '../../../utils';
+import { getTwitterShareUrl, getLinkedInShareUrl } from '../../../utils/social';
 import confetti from 'canvas-confetti';
 
 import { useTranslation } from 'react-i18next';
@@ -94,13 +95,8 @@ export const VictoryView: React.FC = () => {
         doom: Math.round(doomLevel)
     });
 
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        shareText
-    )}&url=${encodeURIComponent(resultUrl)}&hashtags=${SHARE.HASHTAGS.join(',')}`;
-
-    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        resultUrl
-    )}`;
+    const twitterUrl = getTwitterShareUrl(shareText, resultUrl, SHARE.HASHTAGS);
+    const linkedInUrl = getLinkedInShareUrl(shareText, resultUrl, SHARE.HASHTAGS);
 
     const handleCopyDebug = async () => {
         try {
