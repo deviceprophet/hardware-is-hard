@@ -604,5 +604,219 @@
         "unknownEvent": "Unknown Event",
         "unknownAction": "Unknown Action",
         "doomIncrease": "+{{count}}% Doom"
+    },
+    "event_privacy_certification": {
+        "title": "Privacy Certification Award",
+        "description": "An independent privacy certification body has completed their audit of your data handling practices. They want to endorse your product as 'Privacy Certified'.",
+        "choices": {
+            "choice_cert_accept": "Accept certification & use in marketing",
+            "choice_cert_decline": "Certification fees are too high"
+        }
+    },
+    "event_secure_boot_victory": {
+        "title": "Secure Boot Vindication",
+        "description": "Security researchers publish a detailed analysis of your secure boot implementation. They call it 'exemplary' and submit it as a case study.",
+        "choices": {
+            "choice_boot_market": "Leverage security posture in marketing"
+        }
+    },
+    "event_ai_compliance_lucky": {
+        "title": "EU AI Act Safe Harbor",
+        "description": "EU AI Act enforcement begins. Your compliance documentation is thorough. Regulators let you operate while competitors face fines.",
+        "choices": {
+            "choice_ai_safe": "Continue operating with clean slate"
+        }
+    },
+    "event_cloud_resilience_payoff": {
+        "title": "Cloud Vendor Lock-in Victory",
+        "description": "Your multi-cloud strategy pays off. Major competitor's sole provider gets hit by massive outage. You're the only vendor still online.",
+        "choices": {
+            "choice_cloud_market_grab": "Acquire their customers"
+        }
+    },
+    "event_sbom_defense": {
+        "title": "SBOM Advantage",
+        "description": "Critical zero-day discovered in a widely-used library. You patch in 48 hours. Competitors struggle because they don't know their dependencies.",
+        "choices": {
+            "choice_sbom_leader": "Market as security leader"
+        }
+    },
+    "event_backup_triumph": {
+        "title": "Ransomware Industry Sweep",
+        "description": "Ransomware sweeps the industry. Your backup strategy lets you restore in hours. Competitors pay millions in ransom.",
+        "choices": {
+            "choice_backup_win": "Recover completely, zero cost"
+        }
+    },
+    "event_energy_crisis_opportunity": {
+        "title": "Energy Crisis Opportunity",
+        "description": "European energy crisis drives demand for ultra-efficient IoT. Your low-power design is suddenly very attractive.",
+        "choices": {
+            "choice_energy_premium": "Raise prices 20% (supply constraints)"
+        }
+    },
+    "event_quantum_ready": {
+        "title": "Post-Quantum Cryptography Win",
+        "description": "First practical quantum computer breaks RSA-2048. Industry panics. Your post-quantum implementation is unaffected.",
+        "choices": {
+            "choice_quantum_license": "License PQC tech to government/defense"
+        }
+    },
+    "event_supplier_lock_in": {
+        "title": "Supplier Exclusivity Deal",
+        "description": "Your largest component supplier offers a 3-year exclusive partnership. Preferential pricing in exchange for guaranteed volume.",
+        "choices": {
+            "choice_supplier_lock": "Sign exclusivity contract",
+            "choice_supplier_free": "Remain flexible & negotiate annually"
+        }
+    },
+    "event_manufacturing_equity": {
+        "title": "Contract Manufacturer Partnership",
+        "description": "Your contract manufacturer offers strategic equity partnership. 15% stake in exchange for priority capacity and operational excellence.",
+        "choices": {
+            "choice_partner_equity": "Accept partnership (dilute but secure supply)",
+            "choice_partner_decline": "Remain fully independent"
+        }
+    },
+    "event_logistics_reroute": {
+        "title": "Container Ship Crisis",
+        "description": "Shipping container crisis. 40% of containers are backlisted. Your Q2 production run is stuck at sea.",
+        "choices": {
+            "choice_reroute_india": "Reroute via India (premium shipping)",
+            "choice_wait_ships": "Wait for resolution (delay shipment)"
+        }
+    },
+    "event_supplier_dies": {
+        "title": "Supplier Bankruptcy",
+        "description": "Your primary component supplier files for Chapter 11. You have 4 weeks of buffer stock. Your options are limited.",
+        "choices": {
+            "choice_reverse_engineer": "Reverse-engineer compatible part",
+            "choice_find_alternate": "Find alternate supplier at premium cost"
+        }
+    },
+    "event_pen_test_failure": {
+        "title": "Penetration Test Results",
+        "description": "Third-party penetration testing reveals multiple high-severity vulnerabilities in firmware and cloud API.",
+        "choices": {
+            "choice_fix_vulns": "Emergency fix sprint (3 weeks)",
+            "choice_defer_fixes": "Plan fixes for next quarter"
+        }
+    },
+    "event_firmware_attestation": {
+        "title": "Firmware Attestation Standard",
+        "description": "Industry working group recommends cryptographic firmware verification. Competitors ignore it. You can get ahead of the curve.",
+        "choices": {
+            "choice_implement_attestation": "Implement verification layer",
+            "choice_skip_attestation": "Skip (too complex for now)"
+        }
+    },
+    "event_sbom_audit_chain": {
+        "title": "Supply Chain Software Audit",
+        "description": "Comprehensive audit of third-party libraries reveals: 3 high-severity vulns, 12 medium, 40+ low. Decision time.",
+        "choices": {
+            "choice_patch_and_track": "Patch all + implement SBOM tracking",
+            "choice_ignore_audit": "It's third-party code, not our problem"
+        }
+    },
+    "event_red_team_purple": {
+        "title": "Red Team Exercise",
+        "description": "Internal red team tests your zero-trust architecture. They breach the perimeter in 4 hours but can't lateral-move. Impressive.",
+        "choices": {
+            "choice_purple_team": "Establish ongoing purple team program"
+        }
+    },
+    "event_patent_filing": {
+        "title": "Patent Filing Opportunity",
+        "description": "Your firmware implements a novel compression algorithm not seen in the industry. Patent attorney recommends filing internationally.",
+        "choices": {
+            "choice_file_patent": "File international patent suite",
+            "choice_trade_secret": "Keep as trade secret (cheaper)"
+        }
+    },
+    "event_industrial_espionage": {
+        "title": "Competitor Intelligence Risk",
+        "description": "Competitor's engineer applies for job. Brings 'reference materials' on USB. Legal flags it as potential IP theft attempt.",
+        "choices": {
+            "choice_report_law": "Report to law enforcement",
+            "choice_hire_protect": "Hire & strengthen trade secret procedures"
+        }
+    },
+    "event_open_source_strategy": {
+        "title": "Open Source Opportunity",
+        "description": "Consider open-sourcing non-critical reference code. Build ecosystem goodwill and attract talented contributors.",
+        "choices": {
+            "choice_open_source": "Release open-source SDK",
+            "choice_proprietary_only": "Keep everything proprietary"
+        }
+    },
+    "event_differential_privacy": {
+        "title": "Differential Privacy Proposal",
+        "description": "Privacy researcher proposes differential privacy layer for telemetry. Adds noise to prevent re-identification of users.",
+        "choices": {
+            "choice_implement_dp": "Implement differential privacy layer",
+            "choice_skip_dp": "Too expensive & complex"
+        }
+    },
+    "event_zero_knowledge_proof": {
+        "title": "Zero-Knowledge Authentication",
+        "description": "Fintech partner proposes ZKP integration for passwordless authentication. Novel technology but reduces liability significantly.",
+        "choices": {
+            "choice_implement_zkp": "Implement ZKP authentication",
+            "choice_skip_zkp": "Stick with conventional auth"
+        }
+    },
+    "event_government_tender": {
+        "title": "Government Procurement Contract",
+        "description": "National government agency wants 15,000 units/year for 3 years. Lucrative but requires compliance certifications you already have.",
+        "choices": {
+            "choice_bid_gov": "Bid for government contract",
+            "choice_decline_gov": "Too much regulatory overhead"
+        }
+    },
+    "event_vc_series_a": {
+        "title": "Series A Funding Round",
+        "description": "Venture capital firm wants to invest for 18% equity. Accelerates growth but dilutes control.",
+        "choices": {
+            "choice_accept_vc": "Accept Series A funding",
+            "choice_bootstrap": "Bootstrap (slow but independent)"
+        }
+    },
+    "event_insurance_premium_cut": {
+        "title": "Cyber Insurance Premium Cut",
+        "description": "Your security posture audit results in 45% premium reduction on cyber liability insurance. The CFO is thrilled.",
+        "choices": {
+            "choice_insurance_cut": "Accept premium reduction"
+        }
+    },
+    "event_tech_debt_explosion": {
+        "title": "Tech Debt Meltdown",
+        "description": "Years of 'quick fixes' cascade. Three subsystems fail simultaneously under load. The intern's hotfix from 2024 is the root cause.",
+        "choices": {
+            "choice_debt_rewrite": "Full subsystem rewrite",
+            "choice_debt_spiral": "Patch the patches (again)"
+        }
+    },
+    "event_blind_ops_strike": {
+        "title": "Silent Outage Discovery",
+        "description": "6-hour fleet outage goes undetected by your dashboards. Customers flood social media while you're blissfully unaware.",
+        "choices": {
+            "choice_emergency_observe": "Emergency observability contract",
+            "choice_manual_triage": "All-hands manual debugging"
+        }
+    },
+    "event_viral_momentum_surge": {
+        "title": "Viral Demand Spike",
+        "description": "Your product goes viral on TikTok. Demand exceeds supply by 10x. You have 2 weeks to decide: scale or miss the window.",
+        "choices": {
+            "choice_scale_fast": "Rush production scaling (risky)",
+            "choice_scale_managed": "Managed scaling (premium pricing)"
+        }
+    },
+    "event_recalled_redemption": {
+        "title": "Recall Redemption",
+        "description": "Your recall completed. Offer lifetime warranty and extended support as goodwill to rebuild customer trust.",
+        "choices": {
+            "choice_warranty_boost": "Offer lifetime warranty program"
+        }
     }
 }

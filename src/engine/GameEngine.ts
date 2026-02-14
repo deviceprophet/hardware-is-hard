@@ -28,7 +28,14 @@ import type {
     GameCommand
 } from './types';
 
-import { DEFAULT_CONFIG, OTA_MONETIZATION_CONFIG } from './constants';
+import {
+    DEFAULT_CONFIG,
+    OTA_MONETIZATION,
+    BUDGET_STRESS_TIERS,
+    SETUP,
+    INITIAL_COMPLIANCE,
+    NO_LAST_EVENT
+} from './constants';
 
 // Extracted modules
 import { defaultRandomProvider } from './random';
@@ -186,12 +193,12 @@ export class GameEngine {
         const allDevices = this.data.getDevices();
 
         // Determine persistent device (preferred or fallback to omni-juice)
-        const targetId = preferredDeviceId || 'omni-juice';
+        const targetId = preferredDeviceId || SETUP.FALLBACK_DEVICE_ID;
         let persistent = allDevices.find(d => d.id === targetId);
 
         // Fallback if preferred ID is invalid or not found
-        if (!persistent && targetId !== 'omni-juice') {
-            persistent = allDevices.find(d => d.id === 'omni-juice');
+        if (!persistent && targetId !== SETUP.FALLBACK_DEVICE_ID) {
+            persistent = allDevices.find(d => d.id === SETUP.FALLBACK_DEVICE_ID);
         }
 
         const others = allDevices.filter(d => d.id !== persistent?.id);
@@ -200,10 +207,10 @@ export class GameEngine {
         const pool = [...others];
         for (let i = pool.length - 1; i > 0; i--) {
             const j = this.random.randomInt(i + 1);
-            [pool[i], pool[j]] = [pool[j], pool[i]];
+            [pool[i], pool[j]] = [pool[j]!, pool[i]!];
         }
 
-        const randomPicks = pool.slice(0, 2);
+        const randomPicks = pool.slice(0, SETUP.RANDOM_DEVICE_COUNT);
         this.state.availableDevices = persistent ? [persistent, ...randomPicks] : randomPicks;
 
         this.notify();
@@ -219,7 +226,7 @@ export class GameEngine {
         this.state.selectedDevice = device;
         this.state.budget = device.initialBudget;
         this.state.activeTags = [...device.initialTags];
-        this.state.complianceLevel = 100;
+        this.state.complianceLevel = INITIAL_COMPLIANCE;
         this.state.fundingLevel = 'full';
         this.notify();
     }
@@ -237,7 +244,7 @@ export class GameEngine {
 
         this.state.phase = 'simulation';
         this.state.timelineMonth = 0;
-        this.state.lastEventMonth = -1;
+        this.state.lastEventMonth = NO_LAST_EVENT;
         this.state.isPaused = false;
         this.notify();
     }
@@ -287,13 +294,13 @@ export class GameEngine {
         }
 
         // Quality Gate: Cannot ship if Doom > 50%
-        if (this.state.doomLevel >= this.config.maxDoom * 0.5) {
+        if (this.state.doomLevel >= this.config.maxDoom * OTA_MONETIZATION.DOOM_THRESHOLD) {
             return;
         }
 
-        this.state.budget += OTA_MONETIZATION_CONFIG.REWARD;
-        this.state.doomLevel += OTA_MONETIZATION_CONFIG.DOOM_PENALTY;
-        this.advanceTime(1);
+        this.state.budget += OTA_MONETIZATION.REWARD;
+        this.state.doomLevel += OTA_MONETIZATION.DOOM_PENALTY;
+        this.advanceTime(OTA_MONETIZATION.TIME_ADVANCE);
     }
 
     triggerCrisis(eventId: string): void {
@@ -435,6 +442,18 @@ export class GameEngine {
             0,
             Math.min(100, this.state.complianceLevel + result.complianceChange)
         );
+
+        // Financial stress: deep debt creates investor/creditor doom pressure
+        let budgetDoom = 0;
+        for (const tier of BUDGET_STRESS_TIERS) {
+            if (this.state.budget < tier.threshold) budgetDoom += tier.doomPerMonth;
+        }
+        if (budgetDoom > 0) {
+            this.state.doomLevel = Math.min(
+                this.config.maxDoom,
+                this.state.doomLevel + budgetDoom * monthsPassed
+            );
+        }
 
         for (const tag of result.newTagsToAdd) {
             if (!this.state.activeTags.includes(tag)) {

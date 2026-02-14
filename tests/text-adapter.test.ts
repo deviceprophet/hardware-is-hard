@@ -34,7 +34,7 @@ describe('Text UI Adapter & Game Logic', () => {
         expect(state.availableDevices.length).toBeLessThanOrEqual(3);
 
         // Verify "Persistent" device logic (Slot 1 is Omni-Juice)
-        expect(state.availableDevices[0].id).toBe('omni-juice');
+        expect(state.availableDevices[0]!.id).toBe('omni-juice');
     });
 
     test('should allow full game flow via adapter', () => {
@@ -52,7 +52,7 @@ describe('Text UI Adapter & Game Logic', () => {
         expect(adapter.getState().phase).toBe('setup');
 
         // 2. Select Device
-        const deviceToSelect = adapter.getState().availableDevices[0];
+        const deviceToSelect = adapter.getState().availableDevices[0]!;
         adapter.sendCommand({ type: 'SELECT_DEVICE', deviceId: deviceToSelect.id });
         adapter.sendCommand({ type: 'START_SIMULATION' });
 
@@ -67,7 +67,7 @@ describe('Text UI Adapter & Game Logic', () => {
                 expect(crisis).not.toBeNull();
 
                 // Solve it
-                const choice = crisis!.choices[0];
+                const choice = crisis!.choices[0]!;
                 adapter.sendCommand({ type: 'RESOLVE_CRISIS', choiceId: choice.id });
                 expect(adapter.getState().phase).toBe('simulation');
             } else {

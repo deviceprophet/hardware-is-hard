@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import compress from 'astro-compress';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { buildDefines } from './scripts/build-defines.mjs';
 
 // https://astro.build/config
@@ -43,7 +44,16 @@ export default defineConfig({
 
     vite: {
         // @ts-expect-error - tailwindcss vite plugin type mismatch
-        plugins: [tailwindcss()],
+        plugins: [
+            tailwindcss(),
+            process.env.ANALYZE &&
+                visualizer({
+                    open: true,
+                    filename: 'dist/stats.html',
+                    gzipSize: true,
+                    brotliSize: true
+                })
+        ].filter(Boolean),
 
         define: buildDefines,
 

@@ -21,6 +21,11 @@
         "copyUrl": "Copiar URL",
         "urlCopied": "Copiado!",
         "textCopied": "¡Texto copiado! Pégalo en tu publicación.",
+        "share": "Compartir",
+        "shareVictory": "Compartir Victoria",
+        "shareFailure": "Compartir Fracaso",
+        "debugCopied": "¡Estado de depuración copiado!",
+        "debugCopy": "Copiar estado de depuración para reportes de errores",
         "normalSpeed": "Velocidad Normal",
         "fastForward": "Avance Rápido",
         "archetypes": {
@@ -39,6 +44,10 @@
         "winRate": "Tasa de Victoria",
         "attempts": "Intentos",
         "recentLogs": "Registros de Simulacion Recientes",
+        "date": "Fecha",
+        "device": "Dispositivo",
+        "outcome": "Resultado",
+        "survived": "Sobrevivido",
         "description": "Eres el CTO. Tu objetivo: Lanzar el producto. Obstáculos: Física, Cadena de Suministro y tu propio equipo de Marketing. Sobrevive 5 años sin llevar a la empresa a la quiebra ni provocar un retiro del mercado."
     },
     "setup": {
@@ -243,6 +252,61 @@
                 "ignoró todas las advertencias del equipo de ingeniería."
             ]
         }
+    },
+    "achievements": {
+        "title": "Logros",
+        "first_blood": {
+            "name": "Primera Sangre",
+            "desc": "Completa tu primera partida"
+        },
+        "survivor": {
+            "name": "Superviviente",
+            "desc": "Gana una partida"
+        },
+        "budget_hawk": {
+            "name": "Halcon del Presupuesto",
+            "desc": "Gana con $80K+ restantes"
+        },
+        "doom_dancer": {
+            "name": "Bailarin del Caos",
+            "desc": "Gana con 70%+ de caos"
+        },
+        "clean_slate": {
+            "name": "Borrón y Cuenta Nueva",
+            "desc": "Gana con 10% o menos de caos"
+        },
+        "veteran": {
+            "name": "Veterano",
+            "desc": "Juega 10 partidas"
+        },
+        "undefeated": {
+            "name": "Invicto",
+            "desc": "Gana 5+ partidas sin perder"
+        },
+        "speed_run": {
+            "name": "Velocista",
+            "desc": "Gana con 3 o menos crisis"
+        },
+        "crisis_veteran": {
+            "name": "Veterano de Crisis",
+            "desc": "Enfrenta 10+ crisis en una partida"
+        },
+        "all_devices": {
+            "name": "Coleccionista",
+            "desc": "Juega los 7 tipos de dispositivos"
+        }
+    },
+    "keyboardHelp": {
+        "title": "Atajos de Teclado",
+        "pressHint": "Pulsa ? para ayuda",
+        "advance": "Avanzar tiempo",
+        "ship": "Desplegar actualizacion OTA",
+        "full": "Estrategia Grado Militar",
+        "partial": "Estrategia Estandar",
+        "none": "Estrategia YOLO Deploy",
+        "toggle": "Alternar velocidad",
+        "help": "Alternar esta ayuda",
+        "close": "Cerrar"
     },
     "shared": {
         "incoming": "Transmisión Entrante",

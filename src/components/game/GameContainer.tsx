@@ -8,14 +8,27 @@ import { LanguageSelector } from './ui/LanguageSelector';
 import { Footer } from './ui/Footer';
 import '../../i18n'; // Initialize i18n
 
-// Views
+// Views - lazy loaded for code splitting
+// SplashView is eagerly loaded since it's the initial view
 import { SplashView } from './views/SplashView';
-import { SetupView } from './views/SetupView';
-import { SimulationView } from './views/SimulationView';
-import { CrisisView } from './views/CrisisView';
-import { AutopsyView } from './views/AutopsyView';
-import { VictoryView } from './views/VictoryView';
-import { SharedResultView } from './views/SharedResultView';
+const SetupView = React.lazy(() =>
+    import('./views/SetupView').then(m => ({ default: m.SetupView }))
+);
+const SimulationView = React.lazy(() =>
+    import('./views/SimulationView').then(m => ({ default: m.SimulationView }))
+);
+const CrisisView = React.lazy(() =>
+    import('./views/CrisisView').then(m => ({ default: m.CrisisView }))
+);
+const AutopsyView = React.lazy(() =>
+    import('./views/AutopsyView').then(m => ({ default: m.AutopsyView }))
+);
+const VictoryView = React.lazy(() =>
+    import('./views/VictoryView').then(m => ({ default: m.VictoryView }))
+);
+const SharedResultView = React.lazy(() =>
+    import('./views/SharedResultView').then(m => ({ default: m.SharedResultView }))
+);
 
 // Inner component with game logic
 const GameContent: React.FC = () => {

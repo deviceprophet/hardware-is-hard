@@ -212,11 +212,11 @@ export class GameSimulator {
 
             for (let i = 0; i < gamesPerDevice; i++) {
                 const seed = config.baseSeed + d * gamesPerDevice + i;
-                const result = this.simulateGame(device.id, seed, config.choiceStrategy);
+                const result = this.simulateGame(device!.id, seed, config.choiceStrategy);
                 results.push(result);
 
                 if (config.verbose && i % 100 === 0) {
-                    console.log(`Device ${device.id}: ${i}/${gamesPerDevice} games`);
+                    console.log(`Device ${device!.id}: ${i}/${gamesPerDevice} games`);
                 }
             }
         }
@@ -260,22 +260,22 @@ export class GameSimulator {
     ): Choice {
         switch (strategy) {
             case 'random':
-                return random.pick(choices) ?? choices[0];
+                return random.pick(choices) ?? choices[0]!;
 
             case 'safe':
-                return [...choices].sort((a, b) => a.doomImpact - b.doomImpact)[0];
+                return [...choices].sort((a, b) => a.doomImpact - b.doomImpact)[0]!;
 
             case 'risky':
-                return [...choices].sort((a, b) => b.doomImpact - a.doomImpact)[0];
+                return [...choices].sort((a, b) => b.doomImpact - a.doomImpact)[0]!;
 
             case 'cheap':
-                return [...choices].sort((a, b) => a.cost - b.cost)[0];
+                return [...choices].sort((a, b) => a.cost - b.cost)[0]!;
 
             case 'expensive':
-                return [...choices].sort((a, b) => b.cost - a.cost)[0];
+                return [...choices].sort((a, b) => b.cost - a.cost)[0]!;
 
             default:
-                return choices[0];
+                return choices[0]!;
         }
     }
 
@@ -410,7 +410,7 @@ export class GameSimulator {
             for (const result of results) {
                 for (let i = 0; i < result.eventSequence.length; i++) {
                     if (result.eventSequence[i] === event.id) {
-                        const choiceId = result.choiceSequence[i];
+                        const choiceId = result.choiceSequence[i]!;
                         choiceDist.set(choiceId, (choiceDist.get(choiceId) ?? 0) + 1);
 
                         // Find the choice to get doom/cost

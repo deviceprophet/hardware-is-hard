@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { HistoryEntry } from '../../../engine/types';
-import { formatGameDate } from '../../../utils';
+import type { HistoryEntry } from '@/engine/types';
+import { formatGameDate } from '@/utils';
 
 interface LogPanelProps {
     history: readonly HistoryEntry[];
 }
 
-import { useTranslatedEvents } from '../../../hooks/useTranslatedContent';
+import { useTranslatedEvents } from '@/hooks/useTranslatedContent';
 
 export const LogPanel: React.FC<LogPanelProps> = ({ history }) => {
     const containerRef = useRef<HTMLDivElement>(null);

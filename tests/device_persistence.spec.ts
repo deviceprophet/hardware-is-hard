@@ -2,9 +2,12 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Device Selection Persistence', () => {
     test.beforeEach(async ({ page }) => {
-        // Clear local storage and disable tutorial
+        // Clear local storage ONCE at the start of the test across all navigations
+        await page.goto('./');
+        await page.evaluate(() => localStorage.clear());
+
+        // Disable tutorial
         await page.addInitScript(() => {
-            localStorage.clear();
             localStorage.setItem(
                 'hardware_tutorial_completed',
                 JSON.stringify({
@@ -37,9 +40,9 @@ test.describe('Device Selection Persistence', () => {
         const firstCard = page.getByTestId('device-card').first();
         await expect(firstCard).toContainText('Omni-Juice 4000');
 
-        // 2. Play with a SPECIFIC device (Sentinel X100) to be deterministic
-        const targetDeviceName = 'Sentinel X100';
-        const otherCard = page.getByText(targetDeviceName);
+        // 2. Play with a SPECIFIC device (the second one available)
+        const otherCard = page.getByTestId('device-card').nth(1);
+        const targetDeviceName = await otherCard.locator('h2').innerText();
 
         console.log(`Selecting device: ${targetDeviceName}`);
         await otherCard.click();

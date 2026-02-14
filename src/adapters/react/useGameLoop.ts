@@ -8,6 +8,7 @@
 import { useEffect, useRef } from 'react';
 import { useGameStore } from './store';
 import { monthsPerMs, DEFAULT_CONFIG } from '../../engine';
+import { GAME_LOOP } from '../../engine/constants';
 
 const MONTHS_PER_MS = monthsPerMs(DEFAULT_CONFIG);
 
@@ -26,7 +27,7 @@ export const useGameLoop = () => {
     const loop = (time: number) => {
         if (lastTimeRef.current !== 0) {
             const deltaTime = time - lastTimeRef.current;
-            const multiplier = gameSpeed === 'fast' ? 3.0 : 1.0;
+            const multiplier = gameSpeed === 'fast' ? GAME_LOOP.FAST_SPEED_MULTIPLIER : 1.0;
 
             if (!isPaused && phase === 'simulation') {
                 accumulatedTimeRef.current += deltaTime * multiplier;
@@ -45,7 +46,7 @@ export const useGameLoop = () => {
         if (phase === 'simulation') {
             const currentInternalMonth = accumulatedTimeRef.current * MONTHS_PER_MS;
             // If store time is significantly ahead of internal time (e.g. loaded save), sync up
-            if (timelineMonth > currentInternalMonth + 0.1) {
+            if (timelineMonth > currentInternalMonth + GAME_LOOP.SYNC_THRESHOLD) {
                 accumulatedTimeRef.current = timelineMonth / MONTHS_PER_MS;
             }
         }

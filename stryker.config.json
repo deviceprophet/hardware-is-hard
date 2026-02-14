@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/stryker-mutator/stryker/master/packages/core/schema/stryker-schema.json",
+    "testRunner": "vitest",
+    "plugins": ["@stryker-mutator/vitest-runner"],
+    "checkers": [],
+    "mutate": [
+        "src/engine/logic/**/*.ts",
+        "src/engine/achievements.ts",
+        "src/engine/blame-generator.ts",
+        "src/engine/state-manager.ts",
+        "src/engine/event-processor.ts"
+    ],
+    "reporters": ["html", "clear-text", "progress"],
+    "htmlReporter": {
+        "fileName": "reports/mutation/index.html"
+    },
+    "thresholds": {
+        "high": 80,
+        "low": 60,
+        "break": 50
+    },
+    "concurrency": 2,
+    "timeoutMS": 30000,
+    "ignoreStatic": true
+}

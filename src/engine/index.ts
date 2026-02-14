@@ -28,14 +28,11 @@ export type {
     GameCommand
 } from './types';
 
-// Valid transitions constant
-export { VALID_TRANSITIONS } from './types';
-
 // Engine class and utilities
 export { GameEngine, type StateListener } from './GameEngine';
 
 // Random providers (extracted module)
-export { defaultRandomProvider, createSeededRandom, shuffleArray } from './random';
+export { defaultRandomProvider, createSeededRandom } from './random';
 
 // Event processing (extracted module)
 export {

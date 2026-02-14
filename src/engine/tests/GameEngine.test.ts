@@ -318,8 +318,8 @@ describe('GameEngine', () => {
 
             const history = engine.getState().history;
             expect(history).toHaveLength(1);
-            expect(history[0].eventId).toBe('event-always');
-            expect(history[0].choiceId).toBe('choice-1');
+            expect(history[0]!.eventId).toBe('event-always');
+            expect(history[0]!.choiceId).toBe('choice-1');
         });
 
         it('should return to simulation phase', () => {

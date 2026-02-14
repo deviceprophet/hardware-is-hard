@@ -76,8 +76,8 @@ describe('Stats Tracker', () => {
 
         const stats = loadStats();
         expect(stats.runHistory).toHaveLength(1);
-        expect(stats.runHistory[0].budget).toBe(45000);
-        expect(stats.runHistory[0].doom).toBe(35);
-        expect(stats.runHistory[0].compliance).toBe(78);
+        expect(stats.runHistory[0]!.budget).toBe(45000);
+        expect(stats.runHistory[0]!.doom).toBe(35);
+        expect(stats.runHistory[0]!.compliance).toBe(78);
     });
 });

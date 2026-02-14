@@ -120,11 +120,9 @@ describe('GameEngine Properties (Fuzzing)', () => {
                     process.stderr.write(`Commands: ${JSON.stringify(cmds)}\n`);
                 }
 
-                // 5. If in crisis, currentCrisis might be object or null (invoked via trigger)
-                // Note: Removed strict phase/null check as it was causing flaky failures in fuzzing
-                // that could not be reproduced in isolation.
+                // 5. If in crisis, currentCrisis must be set
                 if (state.phase === 'crisis') {
-                    // expect(state.currentCrisis).not.toBeNull();
+                    expect(state.currentCrisis).not.toBeNull();
                     expect(state.isPaused).toBe(true);
                 }
             })

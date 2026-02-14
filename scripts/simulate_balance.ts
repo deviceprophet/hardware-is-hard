@@ -19,7 +19,7 @@ function simulateGame(strategy: 'safe' | 'risky' | 'random'): {
 
     // Pick a random device
     const devices = engine.getState().availableDevices;
-    const device = devices[Math.floor(Math.random() * devices.length)];
+    const device = devices[Math.floor(Math.random() * devices.length)]!;
     engine.dispatch({ type: 'SELECT_DEVICE', deviceId: device.id });
 
     engine.dispatch({ type: 'START_SIMULATION' });
@@ -34,12 +34,12 @@ function simulateGame(strategy: 'safe' | 'risky' | 'random'): {
 
             if (strategy === 'safe') {
                 // Pick lowest doom impact
-                choice = [...choices].sort((a, b) => a.doomImpact - b.doomImpact)[0];
+                choice = [...choices].sort((a, b) => a.doomImpact - b.doomImpact)[0]!;
             } else if (strategy === 'risky') {
                 // Pick lowest cost
-                choice = [...choices].sort((a, b) => a.cost - b.cost)[0];
+                choice = [...choices].sort((a, b) => a.cost - b.cost)[0]!;
             } else {
-                choice = choices[Math.floor(Math.random() * choices.length)];
+                choice = choices[Math.floor(Math.random() * choices.length)]!;
             }
 
             engine.dispatch({ type: 'RESOLVE_CRISIS', choiceId: choice.id });

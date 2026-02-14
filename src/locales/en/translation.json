@@ -21,6 +21,11 @@
         "copyUrl": "Copy URL",
         "urlCopied": "Copied!",
         "textCopied": "Text copied to clipboard! Paste it in your post.",
+        "share": "Share",
+        "shareVictory": "Share Victory",
+        "shareFailure": "Share Failure",
+        "debugCopied": "Debug state copied!",
+        "debugCopy": "Copy debug state for bug reports",
         "normalSpeed": "Normal Speed",
         "fastForward": "Fast Forward",
         "archetypes": {
@@ -39,6 +44,10 @@
         "winRate": "Win Rate",
         "attempts": "Attempts",
         "recentLogs": "Recent Simulation Logs",
+        "date": "Date",
+        "device": "Device",
+        "outcome": "Outcome",
+        "survived": "Survived",
         "description": "You are the CTO. Your goal: Ship the product. Obstacles: Physics, Supply Chain, and your own Marketing team. Survive 5 years without bankrupting the company or triggering a recall."
     },
     "setup": {
@@ -243,6 +252,61 @@
                 "ignored every warning from the engineering team."
             ]
         }
+    },
+    "achievements": {
+        "title": "Achievements",
+        "first_blood": {
+            "name": "First Blood",
+            "desc": "Complete your first game"
+        },
+        "survivor": {
+            "name": "Survivor",
+            "desc": "Win a game"
+        },
+        "budget_hawk": {
+            "name": "Budget Hawk",
+            "desc": "Win with $80K+ remaining"
+        },
+        "doom_dancer": {
+            "name": "Doom Dancer",
+            "desc": "Win with 70%+ doom"
+        },
+        "clean_slate": {
+            "name": "Clean Slate",
+            "desc": "Win with 10% or less doom"
+        },
+        "veteran": {
+            "name": "Veteran",
+            "desc": "Play 10 games"
+        },
+        "undefeated": {
+            "name": "Undefeated",
+            "desc": "Win 5+ games with no losses"
+        },
+        "speed_run": {
+            "name": "Speed Run",
+            "desc": "Win with 3 or fewer crises"
+        },
+        "crisis_veteran": {
+            "name": "Crisis Veteran",
+            "desc": "Face 10+ crises in a single game"
+        },
+        "all_devices": {
+            "name": "Collector",
+            "desc": "Play all 7 device types"
+        }
+    },
+    "keyboardHelp": {
+        "title": "Keyboard Shortcuts",
+        "pressHint": "Press ? for help",
+        "advance": "Advance time",
+        "ship": "Deploy OTA update",
+        "full": "Mil-Spec strategy",
+        "partial": "Standard strategy",
+        "none": "YOLO Deploy strategy",
+        "toggle": "Toggle game speed",
+        "help": "Toggle this help",
+        "close": "Close"
     },
     "shared": {
         "incoming": "Incoming Transmission",

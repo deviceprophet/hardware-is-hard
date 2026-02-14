@@ -6,8 +6,8 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { soundManager } from '../../../../adapters/audio/SoundManager';
-import { changeLanguage } from '../../../../i18n';
+import { soundManager } from '@/adapters/audio/SoundManager';
+import { changeLanguage } from '@/i18n';
 // TUTORIAL_STEPS import removed - not used in this test file
 
 // Mock localStorage

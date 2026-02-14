@@ -5,7 +5,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Languages } from 'lucide-react';
-import { changeLanguage } from '../../../i18n';
+import { changeLanguage } from '@/i18n';
 
 export const LanguageSelector: React.FC = () => {
     const { i18n } = useTranslation();

@@ -1,12 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGameStore } from '../../../adapters/react';
-import { formatBudget } from '../../../utils/format';
-import type { Device } from '../../../engine';
-import { useTranslatedDevices } from '../../../hooks/useTranslatedContent';
+import { useGameStore } from '@/adapters/react';
+import { formatBudget } from '@/utils/format';
+import type { Device } from '@/engine';
+import { useTranslatedDevices } from '@/hooks/useTranslatedContent';
 
 export const SetupView: React.FC = () => {
-    console.log('SetupView: Rendering');
     const { t } = useTranslation();
     const selectDevice = useGameStore(state => state.selectDevice);
     const availableDevices = useGameStore(state => state.availableDevices);

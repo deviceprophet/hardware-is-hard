@@ -2,10 +2,12 @@ import { test, expect } from '@playwright/test';
 
 test.describe('E2E: Tutorial System', () => {
     test.beforeEach(async ({ page }) => {
-        // Clear local storage to ensure fresh start (tutorial enabled by default)
-        await page.addInitScript(() => {
-            localStorage.clear();
+        // Clear local storage ONCE at the start of the test across all navigations
+        await page.goto('./');
+        await page.evaluate(() => localStorage.clear());
 
+        // Disable tutorial
+        await page.addInitScript(() => {
             // Remove Astro toolbar
             const observer = new MutationObserver(() => {
                 const toolbar = document.querySelector('astro-dev-toolbar');

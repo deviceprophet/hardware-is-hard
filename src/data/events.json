@@ -286,7 +286,7 @@
             {
                 "id": "choice_ignore_cra",
                 "text": "Brexit means Brexit, right? Oh wait...",
-                "cost": 0,
+                "cost": 5000,
                 "doomImpact": 20,
                 "addTags": ["cra_noncompliant"],
                 "riskLevel": "high"
@@ -675,7 +675,7 @@
             {
                 "id": "choice_ai_compliance",
                 "text": "Implement AI risk management",
-                "cost": 65000,
+                "cost": 45000,
                 "doomImpact": 0,
                 "addTags": ["ai_compliant"],
                 "riskLevel": "low"
@@ -759,7 +759,7 @@
             {
                 "id": "choice_ignore_ewaste",
                 "text": "Not our problem anymore",
-                "cost": 0,
+                "cost": 3000,
                 "doomImpact": 25,
                 "addTags": ["ewaste_violation"],
                 "riskLevel": "high"
@@ -963,7 +963,7 @@
             {
                 "id": "choice_ai_fight",
                 "text": "Claim it's for 'User Safety' (Fight the regulators)",
-                "cost": 0,
+                "cost": 5000,
                 "doomImpact": 25,
                 "addTags": ["regulatory_debt", "pr_disaster"],
                 "riskLevel": "high"
@@ -1044,7 +1044,7 @@
             {
                 "id": "choice_cra_coverup",
                 "text": "Quietly Patch & Don't Tell (Illegal)",
-                "cost": 0,
+                "cost": 2000,
                 "doomImpact": 40,
                 "addTags": ["legal_battle"],
                 "riskLevel": "high"
@@ -1099,7 +1099,7 @@
                 "id": "choice_coppa_ignore",
                 "text": "Claim 'Legitimate Interest'",
                 "cost": 5000,
-                "doomImpact": 50,
+                "doomImpact": 35,
                 "riskLevel": "high"
             }
         ],
@@ -1238,7 +1238,7 @@
             {
                 "id": "choice_ccpa_ignore",
                 "text": "Ignore requests (they won't sue, right?)",
-                "cost": 0,
+                "cost": 5000,
                 "doomImpact": 30,
                 "addTags": ["legal_battle"],
                 "riskLevel": "high"
@@ -1864,7 +1864,7 @@
         "title": "Regulator Shut Down",
         "description": "You've been on probation for a year. You missed the deadline. The FDA/FCC/CE has revoked your license to sell.",
         "category": "regulatory",
-        "triggerCondition": "'regulatory_probation' in activeTags && month > lastEventMonth + 12",
+        "triggerCondition": "'regulatory_probation' in activeTags && month > 30",
         "baseProb": 0.8,
         "visualEffect": "shake",
         "choices": [
@@ -1887,5 +1887,677 @@
             }
         ],
         "targetModule": "network"
+    },
+    {
+        "id": "event_privacy_certification",
+        "title": "Privacy Certification Award",
+        "description": "An independent privacy certification body has completed their audit of your data handling practices. They want to endorse your product as 'Privacy Certified'.",
+        "category": "financial",
+        "triggerCondition": "'privacy_by_design' in activeTags && month > 24",
+        "baseProb": 0.6,
+        "choices": [
+            {
+                "id": "choice_cert_accept",
+                "text": "Accept certification & use in marketing",
+                "cost": -20000,
+                "doomImpact": -8,
+                "addTags": ["viral_potential"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_cert_decline",
+                "text": "Certification fees are too high",
+                "cost": 0,
+                "doomImpact": 5,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_secure_boot_victory",
+        "title": "Secure Boot Vindication",
+        "description": "Security researchers publish a detailed analysis of your secure boot implementation. They call it 'exemplary' and submit it as a case study.",
+        "category": "operational",
+        "triggerCondition": "'secure_boot' in activeTags && month > 28",
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_boot_market",
+                "text": "Leverage security posture in marketing",
+                "cost": -15000,
+                "doomImpact": -10,
+                "addTags": ["audited"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_ai_compliance_lucky",
+        "title": "EU AI Act Safe Harbor",
+        "description": "EU AI Act enforcement begins. Your compliance documentation is thorough. Regulators let you operate while competitors face fines.",
+        "category": "regulatory",
+        "triggerCondition": "'ai_compliant' in activeTags && month > 26",
+        "baseProb": 0.75,
+        "choices": [
+            {
+                "id": "choice_ai_safe",
+                "text": "Continue operating with clean slate",
+                "cost": -10000,
+                "doomImpact": -12,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_cloud_resilience_payoff",
+        "title": "Cloud Vendor Lock-in Victory",
+        "description": "Your multi-cloud strategy pays off. Major competitor's sole provider gets hit by massive outage. You're the only vendor still online.",
+        "category": "operational",
+        "triggerCondition": "'multi_cloud' in activeTags && month > 30",
+        "baseProb": 0.45,
+        "choices": [
+            {
+                "id": "choice_cloud_market_grab",
+                "text": "Acquire their customers",
+                "cost": -40000,
+                "doomImpact": -15,
+                "addTags": ["viral_potential"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cloud",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_sbom_defense",
+        "title": "SBOM Advantage",
+        "description": "Critical zero-day discovered in a widely-used library. You patch in 48 hours. Competitors struggle because they don't know their dependencies.",
+        "category": "security",
+        "triggerCondition": "'sbom_ready' in activeTags && month > 32",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_sbom_leader",
+                "text": "Market as security leader",
+                "cost": -12000,
+                "doomImpact": -18,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "security",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_backup_triumph",
+        "title": "Ransomware Industry Sweep",
+        "description": "Ransomware sweeps the industry. Your backup strategy lets you restore in hours. Competitors pay millions in ransom.",
+        "category": "cyberattack",
+        "triggerCondition": "'proper_backups' in activeTags && month > 24",
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_backup_win",
+                "text": "Recover completely, zero cost",
+                "cost": -8000,
+                "doomImpact": -20,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "storage",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_energy_crisis_opportunity",
+        "title": "Energy Crisis Opportunity",
+        "description": "European energy crisis drives demand for ultra-efficient IoT. Your low-power design is suddenly very attractive.",
+        "category": "operational",
+        "triggerCondition": "'energy_efficient' in activeTags && month > 24",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_energy_premium",
+                "text": "Raise prices 20% (supply constraints)",
+                "cost": -35000,
+                "doomImpact": -8,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "power",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_quantum_ready",
+        "title": "Post-Quantum Cryptography Win",
+        "description": "First practical quantum computer breaks RSA-2048. Industry panics. Your post-quantum implementation is unaffected.",
+        "category": "security",
+        "triggerCondition": "'post_quantum_crypto' in activeTags && month > 44",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_quantum_license",
+                "text": "License PQC tech to government/defense",
+                "cost": -80000,
+                "doomImpact": -15,
+                "addTags": ["viral_potential"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "encryption",
+        "visualEffect": "pulse-green"
+    },
+    {
+        "id": "event_supplier_lock_in",
+        "title": "Supplier Exclusivity Deal",
+        "description": "Your largest component supplier offers a 3-year exclusive partnership. Preferential pricing in exchange for guaranteed volume.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 12",
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_supplier_lock",
+                "text": "Sign exclusivity contract",
+                "cost": -15000,
+                "doomImpact": -5,
+                "addTags": ["stockpiled"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_supplier_free",
+                "text": "Remain flexible & negotiate annually",
+                "cost": 8000,
+                "doomImpact": 0,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_manufacturing_equity",
+        "title": "Contract Manufacturer Partnership",
+        "description": "Your contract manufacturer offers strategic equity partnership. 15% stake in exchange for priority capacity and operational excellence.",
+        "category": "business",
+        "triggerCondition": "month > 15",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_partner_equity",
+                "text": "Accept partnership (dilute but secure supply)",
+                "cost": -50000,
+                "doomImpact": -8,
+                "removeTags": ["supply_risk"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_partner_decline",
+                "text": "Remain fully independent",
+                "cost": 25000,
+                "doomImpact": 3,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_logistics_reroute",
+        "title": "Container Ship Crisis",
+        "description": "Shipping container crisis. 40% of containers are backlisted. Your Q2 production run is stuck at sea.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 18",
+        "baseProb": 0.4,
+        "blockedByTags": ["stockpiled"],
+        "choices": [
+            {
+                "id": "choice_reroute_india",
+                "text": "Reroute via India (premium shipping)",
+                "cost": 45000,
+                "doomImpact": 3,
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_wait_ships",
+                "text": "Wait for resolution (delay shipment)",
+                "cost": 0,
+                "doomImpact": 25,
+                "addTags": ["revenue_loss"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_supplier_dies",
+        "title": "Supplier Bankruptcy",
+        "description": "Your primary component supplier files for Chapter 11. You have 4 weeks of buffer stock. Your options are limited.",
+        "category": "supply_chain",
+        "triggerCondition": "month > 28",
+        "baseProb": 0.25,
+        "choices": [
+            {
+                "id": "choice_reverse_engineer",
+                "text": "Reverse-engineer compatible part",
+                "cost": 55000,
+                "doomImpact": 12,
+                "addTags": ["tech_debt", "untested_hardware"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_find_alternate",
+                "text": "Find alternate supplier at premium cost",
+                "cost": 40000,
+                "doomImpact": 5,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_pen_test_failure",
+        "title": "Penetration Test Results",
+        "description": "Third-party penetration testing reveals multiple high-severity vulnerabilities in firmware and cloud API.",
+        "category": "security",
+        "triggerCondition": "month > 14",
+        "baseProb": 0.4,
+        "blockedByTags": ["secure_boot"],
+        "choices": [
+            {
+                "id": "choice_fix_vulns",
+                "text": "Emergency fix sprint (3 weeks)",
+                "cost": 45000,
+                "doomImpact": -5,
+                "addTags": ["patched_firmware"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_defer_fixes",
+                "text": "Plan fixes for next quarter",
+                "cost": 5000,
+                "doomImpact": 20,
+                "addTags": ["critical_vuln"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "security"
+    },
+    {
+        "id": "event_firmware_attestation",
+        "title": "Firmware Attestation Standard",
+        "description": "Industry working group recommends cryptographic firmware verification. Competitors ignore it. You can get ahead of the curve.",
+        "category": "security",
+        "triggerCondition": "month > 20",
+        "baseProb": 0.3,
+        "blockedByTags": ["jtag_disabled"],
+        "choices": [
+            {
+                "id": "choice_implement_attestation",
+                "text": "Implement verification layer",
+                "cost": 35000,
+                "doomImpact": -6,
+                "addTags": ["audited"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_skip_attestation",
+                "text": "Skip (too complex for now)",
+                "cost": 0,
+                "doomImpact": 8,
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_sbom_audit_chain",
+        "title": "Supply Chain Software Audit",
+        "description": "Comprehensive audit of third-party libraries reveals: 3 high-severity vulns, 12 medium, 40+ low. Decision time.",
+        "category": "security",
+        "triggerCondition": "month > 25",
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_patch_and_track",
+                "text": "Patch all + implement SBOM tracking",
+                "cost": 30000,
+                "doomImpact": -3,
+                "addTags": ["sbom_ready"],
+                "removeTags": ["critical_vuln"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_ignore_audit",
+                "text": "It's third-party code, not our problem",
+                "cost": 0,
+                "doomImpact": 30,
+                "addTags": ["critical_vuln"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "security"
+    },
+    {
+        "id": "event_red_team_purple",
+        "title": "Red Team Exercise",
+        "description": "Internal red team tests your zero-trust architecture. They breach the perimeter in 4 hours but can't lateral-move. Impressive.",
+        "category": "security",
+        "triggerCondition": "'zero_trust' in activeTags && month > 22",
+        "baseProb": 0.35,
+        "choices": [
+            {
+                "id": "choice_purple_team",
+                "text": "Establish ongoing purple team program",
+                "cost": 40000,
+                "doomImpact": -8,
+                "addTags": ["audited"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_patent_filing",
+        "title": "Patent Filing Opportunity",
+        "description": "Your firmware implements a novel compression algorithm not seen in the industry. Patent attorney recommends filing internationally.",
+        "category": "ipr",
+        "triggerCondition": "month > 8",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_file_patent",
+                "text": "File international patent suite",
+                "cost": 70000,
+                "doomImpact": -3,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_trade_secret",
+                "text": "Keep as trade secret (cheaper)",
+                "cost": 8000,
+                "doomImpact": 0,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_industrial_espionage",
+        "title": "Competitor Intelligence Risk",
+        "description": "Competitor's engineer applies for job. Brings 'reference materials' on USB. Legal flags it as potential IP theft attempt.",
+        "category": "ipr",
+        "triggerCondition": "month > 20",
+        "baseProb": 0.25,
+        "blockedByTags": ["cloned"],
+        "choices": [
+            {
+                "id": "choice_report_law",
+                "text": "Report to law enforcement",
+                "cost": 5000,
+                "doomImpact": 5,
+                "addTags": ["legal_battle"],
+                "riskLevel": "medium"
+            },
+            {
+                "id": "choice_hire_protect",
+                "text": "Hire & strengthen trade secret procedures",
+                "cost": 20000,
+                "doomImpact": -4,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_open_source_strategy",
+        "title": "Open Source Opportunity",
+        "description": "Consider open-sourcing non-critical reference code. Build ecosystem goodwill and attract talented contributors.",
+        "category": "ipr",
+        "triggerCondition": "month > 16",
+        "baseProb": 0.25,
+        "choices": [
+            {
+                "id": "choice_open_source",
+                "text": "Release open-source SDK",
+                "cost": 25000,
+                "doomImpact": -7,
+                "addTags": ["viral_potential"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_proprietary_only",
+                "text": "Keep everything proprietary",
+                "cost": 0,
+                "doomImpact": 2,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_differential_privacy",
+        "title": "Differential Privacy Proposal",
+        "description": "Privacy researcher proposes differential privacy layer for telemetry. Adds noise to prevent re-identification of users.",
+        "category": "privacy",
+        "triggerCondition": "'pii_collection' in activeTags && month > 12",
+        "baseProb": 0.3,
+        "blockedByTags": ["privacy_by_design"],
+        "choices": [
+            {
+                "id": "choice_implement_dp",
+                "text": "Implement differential privacy layer",
+                "cost": 50000,
+                "doomImpact": -6,
+                "addTags": ["privacy_by_design"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_skip_dp",
+                "text": "Too expensive & complex",
+                "cost": 0,
+                "doomImpact": 12,
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_zero_knowledge_proof",
+        "title": "Zero-Knowledge Authentication",
+        "description": "Fintech partner proposes ZKP integration for passwordless authentication. Novel technology but reduces liability significantly.",
+        "category": "privacy",
+        "triggerCondition": "month > 20",
+        "baseProb": 0.25,
+        "choices": [
+            {
+                "id": "choice_implement_zkp",
+                "text": "Implement ZKP authentication",
+                "cost": 60000,
+                "doomImpact": -4,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_skip_zkp",
+                "text": "Stick with conventional auth",
+                "cost": 0,
+                "doomImpact": 3,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_government_tender",
+        "title": "Government Procurement Contract",
+        "description": "National government agency wants 15,000 units/year for 3 years. Lucrative but requires compliance certifications you already have.",
+        "category": "business",
+        "triggerCondition": "('sbom_ready' in activeTags || 'cra_compliant' in activeTags) && month > 22",
+        "baseProb": 0.3,
+        "choices": [
+            {
+                "id": "choice_bid_gov",
+                "text": "Bid for government contract",
+                "cost": -80000,
+                "doomImpact": -10,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_decline_gov",
+                "text": "Too much regulatory overhead",
+                "cost": 0,
+                "doomImpact": 5,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_vc_series_a",
+        "title": "Series A Funding Round",
+        "description": "Venture capital firm wants to invest for 18% equity. Accelerates growth but dilutes control.",
+        "category": "financial",
+        "triggerCondition": "month > 18",
+        "baseProb": 0.25,
+        "blockedByTags": ["market_restricted", "bankruptcy_risk"],
+        "choices": [
+            {
+                "id": "choice_accept_vc",
+                "text": "Accept Series A funding",
+                "cost": -80000,
+                "doomImpact": -5,
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_bootstrap",
+                "text": "Bootstrap (slow but independent)",
+                "cost": 0,
+                "doomImpact": 3,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cloud"
+    },
+    {
+        "id": "event_insurance_premium_cut",
+        "title": "Cyber Insurance Premium Cut",
+        "description": "Your security posture audit results in 45% premium reduction on cyber liability insurance. The CFO is thrilled.",
+        "category": "financial",
+        "triggerCondition": "('audited' in activeTags || 'sbom_ready' in activeTags) && month > 20",
+        "baseProb": 0.5,
+        "choices": [
+            {
+                "id": "choice_insurance_cut",
+                "text": "Accept premium reduction",
+                "cost": -18000,
+                "doomImpact": -3,
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_tech_debt_explosion",
+        "title": "Tech Debt Meltdown",
+        "description": "Years of 'quick fixes' cascade. Three subsystems fail simultaneously under load. The intern's hotfix from 2024 is the root cause.",
+        "category": "operational",
+        "triggerCondition": "'tech_debt' in activeTags && month > 30",
+        "baseProb": 0.5,
+        "visualEffect": "glitch",
+        "choices": [
+            {
+                "id": "choice_debt_rewrite",
+                "text": "Full subsystem rewrite",
+                "cost": 85000,
+                "doomImpact": 8,
+                "removeTags": ["tech_debt"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_debt_spiral",
+                "text": "Patch the patches (again)",
+                "cost": 10000,
+                "doomImpact": 30,
+                "addTags": ["blind_ops"],
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_blind_ops_strike",
+        "title": "Silent Outage Discovery",
+        "description": "6-hour fleet outage goes undetected by your dashboards. Customers flood social media while you're blissfully unaware.",
+        "category": "operational",
+        "triggerCondition": "'blind_ops' in activeTags && month > 15",
+        "baseProb": 0.45,
+        "visualEffect": "shake",
+        "choices": [
+            {
+                "id": "choice_emergency_observe",
+                "text": "Emergency observability contract",
+                "cost": 55000,
+                "doomImpact": -3,
+                "removeTags": ["blind_ops"],
+                "addTags": ["audited"],
+                "riskLevel": "low"
+            },
+            {
+                "id": "choice_manual_triage",
+                "text": "All-hands manual debugging",
+                "cost": 20000,
+                "doomImpact": 18,
+                "riskLevel": "high"
+            }
+        ],
+        "targetModule": "network"
+    },
+    {
+        "id": "event_viral_momentum_surge",
+        "title": "Viral Demand Spike",
+        "description": "Your product goes viral on TikTok. Demand exceeds supply by 10x. You have 2 weeks to decide: scale or miss the window.",
+        "category": "operational",
+        "triggerCondition": "'viral_potential' in activeTags && month > 12",
+        "baseProb": 0.4,
+        "choices": [
+            {
+                "id": "choice_scale_fast",
+                "text": "Rush production scaling (risky)",
+                "cost": 50000,
+                "doomImpact": 8,
+                "addTags": ["supply_risk", "untested_hardware"],
+                "riskLevel": "high"
+            },
+            {
+                "id": "choice_scale_managed",
+                "text": "Managed scaling (premium pricing)",
+                "cost": 20000,
+                "doomImpact": -5,
+                "riskLevel": "medium"
+            }
+        ],
+        "targetModule": "cpu"
+    },
+    {
+        "id": "event_recalled_redemption",
+        "title": "Recall Redemption",
+        "description": "Your recall completed. Offer lifetime warranty and extended support as goodwill to rebuild customer trust.",
+        "category": "operational",
+        "triggerCondition": "'recalled' in activeTags && month > 24",
+        "baseProb": 0.6,
+        "visualEffect": "pulse-green",
+        "choices": [
+            {
+                "id": "choice_warranty_boost",
+                "text": "Offer lifetime warranty program",
+                "cost": 40000,
+                "doomImpact": -20,
+                "removeTags": ["recalled"],
+                "addTags": ["viral_potential"],
+                "riskLevel": "low"
+            }
+        ],
+        "targetModule": "cpu"
     }
 ]

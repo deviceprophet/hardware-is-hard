@@ -24,7 +24,7 @@ describe('Device Selection Logic', () => {
 
         expect(state.phase).toBe('setup');
         expect(state.availableDevices).toHaveLength(3);
-        expect(state.availableDevices[0].id).toBe('omni-juice');
+        expect(state.availableDevices[0]!.id).toBe('omni-juice');
     });
 
     it('should prioritize the preferred device if provided', () => {
@@ -32,24 +32,24 @@ describe('Device Selection Logic', () => {
         engine.goToSetup(preferredId);
         const state = engine.getState();
 
-        expect(state.availableDevices[0].id).toBe(preferredId);
+        expect(state.availableDevices[0]!.id).toBe(preferredId);
         // Ensure other devices are not the same
-        expect(state.availableDevices[1].id).not.toBe(preferredId);
-        expect(state.availableDevices[2].id).not.toBe(preferredId);
+        expect(state.availableDevices[1]!.id).not.toBe(preferredId);
+        expect(state.availableDevices[2]!.id).not.toBe(preferredId);
     });
 
     it('should fallback to Omni-Juice if preferred device is invalid', () => {
         engine.goToSetup('non-existent-device-id');
         const state = engine.getState();
 
-        expect(state.availableDevices[0].id).toBe('omni-juice');
+        expect(state.availableDevices[0]!.id).toBe('omni-juice');
     });
 
     it('should fallback to Omni-Juice if preferred device is already Omni-Juice', () => {
         engine.goToSetup('omni-juice');
         const state = engine.getState();
 
-        expect(state.availableDevices[0].id).toBe('omni-juice');
+        expect(state.availableDevices[0]!.id).toBe('omni-juice');
     });
 
     it('should have unique devices in the list', () => {

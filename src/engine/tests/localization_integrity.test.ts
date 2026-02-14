@@ -142,7 +142,7 @@ describe('Localization Integrity', () => {
                 const enEvent = (enContent as Record<string, Record<string, unknown>>)[eventId];
                 const esEvent = (esContent as Record<string, Record<string, unknown>>)[eventId];
 
-                if (!esEvent) continue; // Already caught by previous test
+                if (!esEvent || !enEvent) continue; // Already caught by previous test
 
                 // Check that title exists if English has it
                 if (enEvent.title && !esEvent.title) {
@@ -207,7 +207,7 @@ describe('Localization Integrity', () => {
                 const enEvent = (enContent as Record<string, Record<string, unknown>>)[eventId];
                 const esEvent = (esContent as Record<string, Record<string, unknown>>)[eventId];
 
-                if (!esEvent) continue;
+                if (!esEvent || !enEvent) continue;
 
                 // Check if title is translated
                 if (enEvent.title === esEvent.title && typeof enEvent.title === 'string') {
