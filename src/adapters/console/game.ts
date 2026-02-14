@@ -8,6 +8,7 @@ import {
     type GameConfig,
     DEFAULT_CONFIG
 } from '../../engine';
+import { OTA_MONETIZATION } from '../../engine/constants';
 import { formatBudget, formatCost, formatGameDate } from '../../utils/format';
 import { SHARE } from '../../config/constants';
 
@@ -251,7 +252,7 @@ export class ConsoleGame {
         const index = parseInt(choice) - 1;
 
         if (index >= 0 && index < this.devices.length) {
-            this.engine.selectDevice(this.devices[index].id);
+            this.engine.selectDevice(this.devices[index]!.id);
             this.engine.startSimulation();
         }
     }
@@ -267,7 +268,7 @@ export class ConsoleGame {
         const stratLabel = t('simulation.engineeringStrategy');
 
         const state = this.engine.getState();
-        const canShip = state.doomLevel < 50;
+        const canShip = state.doomLevel < DEFAULT_CONFIG.maxDoom * OTA_MONETIZATION.DOOM_THRESHOLD;
 
         console.log(`    [ENTER] ${waitLabel} (4 ${t('common.months')})`);
         if (canShip) {
@@ -441,7 +442,7 @@ export class ConsoleGame {
         const index = parseInt(choiceStr) - 1;
 
         if (index >= 0 && index < crisis.choices.length) {
-            this.engine.resolveCrisis(crisis.choices[index].id);
+            this.engine.resolveCrisis(crisis.choices[index]!.id);
         }
     }
 

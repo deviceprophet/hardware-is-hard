@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import path from 'path';
 
 export default defineConfig({
     test: {
@@ -11,6 +12,11 @@ export default defineConfig({
             reporter: ['text', 'json', 'html'],
             include: ['src/engine/**/*.ts', 'src/components/game/ui/**/*.tsx'],
             exclude: ['src/engine/**/*.test.ts', 'src/engine/index.ts']
+        }
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src')
         }
     }
 });

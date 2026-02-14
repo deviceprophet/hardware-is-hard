@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatGameDate } from '../../../utils/format';
+import { formatGameDate } from '@/utils/format';
 
 interface TimelineProgressProps {
     currentMonth: number;

@@ -18,17 +18,6 @@ export type GamePhase =
     | 'victory' // Game over - success
     | 'shared_result'; // Viewing a shared result
 
-// Valid phase transitions
-export const VALID_TRANSITIONS: Record<GamePhase, GamePhase[]> = {
-    splash: ['setup'],
-    setup: ['simulation', 'splash'],
-    simulation: ['crisis', 'autopsy', 'victory'],
-    crisis: ['simulation', 'autopsy'],
-    autopsy: ['splash'],
-    victory: ['splash'],
-    shared_result: ['splash', 'setup']
-};
-
 // ============================================================================
 // Device Configuration
 // ============================================================================
@@ -53,8 +42,20 @@ export interface Device {
 // ============================================================================
 
 export type RiskLevel = 'low' | 'medium' | 'high';
-export type VisualEffect = 'glitch' | 'shake' | 'none';
-export type TargetModule = 'cpu' | 'network' | 'power' | 'storage' | 'sensor';
+export type VisualEffect = 'glitch' | 'shake' | 'pulse-red' | 'pulse-green' | 'confetti' | 'none';
+export type TargetModule =
+    | 'cpu'
+    | 'network'
+    | 'power'
+    | 'storage'
+    | 'sensor'
+    | 'security'
+    | 'cloud'
+    | 'control'
+    | 'encryption'
+    | 'compute'
+    | 'bms'
+    | 'secure-enclave';
 export type EventCategory =
     | 'regulatory' // CRA, GDPR, PSTI, etc.
     | 'cyberattack' // Botnet, ransomware, APT
@@ -62,7 +63,10 @@ export type EventCategory =
     | 'operational' // Cloud issues, OTA failures
     | 'privacy' // Data breaches
     | 'ipr' // Cloning, IP theft
-    | 'reputational'; // PR disasters
+    | 'reputational' // PR disasters
+    | 'business' // Business opportunities
+    | 'financial' // Financial events
+    | 'security'; // Security-specific events
 
 export interface Choice {
     readonly id: string;

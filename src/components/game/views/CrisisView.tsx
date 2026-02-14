@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGameStore } from '../../../adapters/react';
-import { useTranslatedEvent } from '../../../hooks/useTranslatedContent';
-import { formatCost } from '../../../utils/format';
+import { useGameStore } from '@/adapters/react';
+import { useTranslatedEvent } from '@/hooks/useTranslatedContent';
+import { formatCost } from '@/utils/format';
 
 export const CrisisView: React.FC = () => {
     const { currentCrisis, resolveCrisis } = useGameStore();

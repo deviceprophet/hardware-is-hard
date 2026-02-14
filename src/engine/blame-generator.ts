@@ -6,6 +6,7 @@
  */
 
 import type { HistoryEntry, GameEvent } from './types';
+import { BLAME } from './constants';
 
 export type BlameDepartment =
     | 'Engineering'
@@ -67,14 +68,32 @@ const BLAME_TEMPLATES: Record<BlameDepartment, { emoji: string; count: number }[
     ]
 };
 
-/**
- * Analyze game history to determine which "department" to blame
- */
-export function generateBlame(
-    history: HistoryEntry[],
-    events: GameEvent[],
-    seed?: number
-): BlameResult {
+/** Keywords that map events to responsible departments */
+const DEPARTMENT_KEYWORDS: { department: BlameDepartment; ids: string[]; titles: string[] }[] = [
+    {
+        department: 'Engineering',
+        ids: ['ransomware', 'exploit', 'botnet', 'debug', 'vuln'],
+        titles: ['security', 'hack']
+    },
+    {
+        department: 'Marketing',
+        ids: ['marketing', 'pivot', 'feature'],
+        titles: ['deadline', 'launch']
+    },
+    {
+        department: 'Legal',
+        ids: ['cra', 'gdpr', 'compliance', 'psti', 'red_'],
+        titles: ['regulation', 'enforcement']
+    },
+    {
+        department: 'Supply Chain',
+        ids: ['supply', 'shortage', 'eol', 'silicon'],
+        titles: ['chip', 'component']
+    }
+];
+
+/** Score each department based on event history */
+const scoreDepartments = (history: HistoryEntry[], events: GameEvent[]): DepartmentScore[] => {
     const scores: DepartmentScore[] = [
         { department: 'Engineering', score: 0 },
         { department: 'Marketing', score: 0 },
@@ -84,7 +103,8 @@ export function generateBlame(
         { department: 'Management', score: 0 }
     ];
 
-    // Analyze history to score departments
+    const scoreMap = new Map(scores.map(s => [s.department, s]));
+
     for (const entry of history) {
         const event = events.find(e => e.id === entry.eventId);
         if (!event) continue;
@@ -92,99 +112,75 @@ export function generateBlame(
         const eventId = event.id.toLowerCase();
         const title = event.title.toLowerCase();
 
-        // Engineering issues
-        if (
-            eventId.includes('ransomware') ||
-            eventId.includes('exploit') ||
-            eventId.includes('botnet') ||
-            eventId.includes('debug') ||
-            eventId.includes('vuln') ||
-            title.includes('security') ||
-            title.includes('hack')
-        ) {
-            scores[0].score += 2;
+        // Match keyword-based departments
+        for (const { department, ids, titles } of DEPARTMENT_KEYWORDS) {
+            if (ids.some(k => eventId.includes(k)) || titles.some(k => title.includes(k))) {
+                scoreMap.get(department)!.score += BLAME.CATEGORY_MATCH_SCORE;
+            }
         }
 
-        // Legal/Compliance issues
-        if (
-            eventId.includes('cra') ||
-            eventId.includes('gdpr') ||
-            eventId.includes('compliance') ||
-            eventId.includes('psti') ||
-            eventId.includes('red_') ||
-            title.includes('regulation') ||
-            title.includes('enforcement')
-        ) {
-            scores[2].score += 2;
+        // Finance: chose cheap option with high doom
+        if (entry.cost === 0 && entry.doomIncrease > BLAME.FINANCE_DOOM_THRESHOLD) {
+            scoreMap.get('Finance')!.score += BLAME.SECONDARY_SCORE;
         }
 
-        // Supply chain issues
-        if (
-            eventId.includes('supply') ||
-            eventId.includes('shortage') ||
-            eventId.includes('eol') ||
-            eventId.includes('silicon') ||
-            title.includes('chip') ||
-            title.includes('component')
-        ) {
-            scores[3].score += 2;
-        }
-
-        // Marketing issues
-        if (
-            eventId.includes('marketing') ||
-            eventId.includes('pivot') ||
-            eventId.includes('feature') ||
-            title.includes('deadline') ||
-            title.includes('launch')
-        ) {
-            scores[1].score += 2;
-        }
-
-        // Finance issues - chose cheap option
-        if (entry.cost === 0 && entry.doomIncrease > 10) {
-            scores[4].score += 1;
-        }
-
-        // Large doom increase suggests management failure
-        if (entry.doomIncrease >= 20) {
-            scores[5].score += 1;
+        // Management: large doom increases
+        if (entry.doomIncrease >= BLAME.MANAGEMENT_DOOM_THRESHOLD) {
+            scoreMap.get('Management')!.score += BLAME.SECONDARY_SCORE;
         }
     }
 
-    // If no clear winner, default to Engineering (classic blame target)
+    // Default to Engineering if no department scored
     const maxScore = Math.max(...scores.map(s => s.score));
     if (maxScore === 0) {
-        scores[0].score = 1; // Default to Engineering
+        scores[0]!.score = BLAME.DEFAULT_SCORE;
     }
 
-    // Find winners (could be ties)
+    return scores;
+};
+
+/** Pick a winning department from scores, breaking ties with RNG */
+const selectWinner = (scores: DepartmentScore[], seed?: number): BlameDepartment => {
+    const maxScore = Math.max(...scores.map(s => s.score));
     const winners = scores.filter(s => s.score === maxScore);
-
-    // Use seed for deterministic selection, or random
     const random = seed !== undefined ? seededRandom(seed) : Math.random();
+    return winners[Math.floor(random * winners.length)]!.department;
+};
 
-    const winner = winners[Math.floor(random * winners.length)];
-    const templates = BLAME_TEMPLATES[winner.department];
+/** Pick a random blame template for the winning department */
+const selectTemplate = (
+    department: BlameDepartment,
+    seed?: number
+): { emoji: string; count: number } => {
+    const templates = BLAME_TEMPLATES[department];
+    const random = seed !== undefined ? seededRandom(seed + 1) : Math.random();
+    return templates[Math.floor(random * templates.length)]!;
+};
 
-    const templateIndex = Math.floor(
-        (seed !== undefined ? seededRandom(seed + 1) : Math.random()) * templates.length
-    );
-
-    const template = templates[templateIndex];
+/**
+ * Analyze game history to determine which "department" to blame
+ */
+export const generateBlame = (
+    history: HistoryEntry[],
+    events: GameEvent[],
+    seed?: number
+): BlameResult => {
+    const scores = scoreDepartments(history, events);
+    const department = selectWinner(scores, seed);
+    const template = selectTemplate(department, seed);
 
     return {
-        department: winner.department.replace(' ', '_'),
+        department: department.replace(' ', '_'),
         statement: template.count.toString(),
         emoji: template.emoji
     };
-}
+};
 
 /**
  * Simple seeded random for deterministic blame generation
  */
 function seededRandom(seed: number): number {
-    const x = Math.sin(seed) * 10000;
+    const x = Math.sin(seed) * BLAME.SEEDED_RANDOM_MULTIPLIER;
     return x - Math.floor(x);
 }
 

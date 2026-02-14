@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { LogOut, FastForward, Play } from 'lucide-react';
-import { useGameStore } from '../../../adapters/react';
+import { LogOut, FastForward, Play, Share2 } from 'lucide-react';
+import { useGameStore } from '@/adapters/react';
 import { DoomMeter, TimelineProgress } from '../ui';
 import { SystemArchitecture } from '../ui/SystemArchitecture';
 import { LogPanel } from '../ui/LogPanel';
-import { formatBudget } from '../../../utils/format';
-import { OTA_MONETIZATION_CONFIG } from '../../../engine/constants';
-import { useTranslatedDevice } from '../../../hooks/useTranslatedContent';
+import { formatBudget } from '@/utils/format';
+import { OTA_MONETIZATION, DEFAULT_CONFIG } from '@/engine/constants';
+import { useTranslatedDevice } from '@/hooks/useTranslatedContent';
+import { KeyboardHelpOverlay } from '../ui/KeyboardHelpOverlay';
+
+/** Doom level at which shipping is disabled */
+const SHIP_DOOM_LIMIT = DEFAULT_CONFIG.maxDoom * OTA_MONETIZATION.DOOM_THRESHOLD;
 
 export const SimulationView: React.FC = () => {
     const {
@@ -22,6 +26,7 @@ export const SimulationView: React.FC = () => {
         history
     } = useGameStore();
 
+    const [showHelp, setShowHelp] = useState(false);
     const translatedDevice = useTranslatedDevice(selectedDevice?.id || '');
     const deviceName = translatedDevice.name || selectedDevice?.name || 'Unknown Device';
 
@@ -63,7 +68,7 @@ export const SimulationView: React.FC = () => {
                     tick(timelineMonth + 4);
                     break;
                 case 's':
-                    if (doomLevel < 50) shipProduct();
+                    if (doomLevel < SHIP_DOOM_LIMIT) shipProduct();
                     break;
                 case '1':
                     setFundingLevel('full');
@@ -74,12 +79,22 @@ export const SimulationView: React.FC = () => {
                 case '3':
                     setFundingLevel('none');
                     break;
+                case 'f':
+                    toggleGameSpeed();
+                    break;
+                case '?':
+                case 'h':
+                    setShowHelp(prev => !prev);
+                    break;
+                case 'escape':
+                    setShowHelp(false);
+                    break;
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [tick, shipProduct, setFundingLevel, timelineMonth, doomLevel]);
+    }, [tick, shipProduct, setFundingLevel, toggleGameSpeed, timelineMonth, doomLevel]);
 
     // Strategy Descriptions (localized)
     const strategies = {
@@ -120,7 +135,13 @@ export const SimulationView: React.FC = () => {
                 <h1 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
                     {deviceName}
                 </h1>
-                <div className="flex gap-2 mr-12">
+                <div className="flex gap-2 mr-12 items-center">
+                    <button
+                        className="text-[10px] text-slate-400 mr-1 hidden sm:inline cursor-pointer hover:text-slate-200 bg-transparent border-none p-0"
+                        onClick={() => setShowHelp(true)}
+                    >
+                        {t('keyboardHelp.pressHint')}
+                    </button>
                     <button
                         onClick={() => {
                             const url = useGameStore.getState().getShareUrl();
@@ -132,23 +153,7 @@ export const SimulationView: React.FC = () => {
                         title={t('common.shareGame') || 'Share Game'}
                         data-testid="share-btn"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <circle cx="18" cy="5" r="3" />
-                            <circle cx="6" cy="12" r="3" />
-                            <circle cx="18" cy="19" r="3" />
-                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                        </svg>
+                        <Share2 className="w-4 h-4" />
                     </button>
                     <button
                         onClick={() => toggleGameSpeed()}
@@ -262,35 +267,40 @@ export const SimulationView: React.FC = () => {
                         <br />
                         <span className="text-green-400">
                             {t('simulation.yields')}: +$
-                            {formatBudget(OTA_MONETIZATION_CONFIG.REWARD)}
+                            {formatBudget(OTA_MONETIZATION.REWARD)}
                         </span>{' '}
                         <span className="text-amber-400">
                             {' '}
-                            {t('simulation.risk')}: +{OTA_MONETIZATION_CONFIG.DOOM_PENALTY}%{' '}
+                            {t('simulation.risk')}: +{OTA_MONETIZATION.DOOM_PENALTY}%{' '}
                             {t('common.doom')}
                         </span>
                     </p>
                 </div>
                 <button
                     onClick={() => shipProduct()}
-                    disabled={doomLevel >= 50}
+                    disabled={doomLevel >= SHIP_DOOM_LIMIT}
                     data-testid="ship-btn"
                     className="px-4 py-2 font-bold text-xs uppercase rounded transition-all flex flex-col items-center min-w-[120px]"
                     style={{
                         backgroundColor:
-                            doomLevel >= 50 ? 'var(--bg-tertiary)' : 'var(--action-success)',
-                        color: doomLevel >= 50 ? 'var(--text-tertiary)' : 'var(--text-inverse)',
-                        opacity: doomLevel >= 50 ? 0.5 : 1,
-                        cursor: doomLevel >= 50 ? 'not-allowed' : 'pointer'
+                            doomLevel >= SHIP_DOOM_LIMIT
+                                ? 'var(--bg-tertiary)'
+                                : 'var(--action-success)',
+                        color:
+                            doomLevel >= SHIP_DOOM_LIMIT
+                                ? 'var(--text-tertiary)'
+                                : 'var(--text-inverse)',
+                        opacity: doomLevel >= SHIP_DOOM_LIMIT ? 0.5 : 1,
+                        cursor: doomLevel >= SHIP_DOOM_LIMIT ? 'not-allowed' : 'pointer'
                     }}
                     title={
-                        doomLevel >= 50
+                        doomLevel >= SHIP_DOOM_LIMIT
                             ? t('simulation.stabilityWarning')
                             : t('simulation.deployUpdate')
                     }
                 >
                     <span>{t('simulation.deployUpdate')}</span>
-                    {doomLevel >= 50 && (
+                    {doomLevel >= SHIP_DOOM_LIMIT && (
                         <span className="text-[10px] mt-1">{t('simulation.qaFailed')}</span>
                     )}
                 </button>
@@ -355,6 +365,8 @@ export const SimulationView: React.FC = () => {
 
             {/* Event Log */}
             <LogPanel history={history} />
+
+            {showHelp && <KeyboardHelpOverlay onClose={() => setShowHelp(false)} />}
         </main>
     );
 };

@@ -163,7 +163,7 @@ async function extractPageState(page: Page, stateName: string): Promise<PageStat
             const text = el.textContent?.trim();
             if (text) {
                 headings.push({
-                    level: parseInt(el.tagName[1]),
+                    level: parseInt(el.tagName[1]!),
                     text
                 });
             }
@@ -393,9 +393,12 @@ ${states.map(s => `- \`${s.screenshotPath}\` - Screenshot of ${s.name}`).join('\
 
 test.describe('SEO Context Generator', () => {
     test.beforeEach(async ({ page }) => {
-        // Clear local storage and disable tutorial
+        // Clear local storage ONCE at the start of the test across all navigations
+        await page.goto('./');
+        await page.evaluate(() => localStorage.clear());
+
+        // Disable tutorial
         await page.addInitScript(() => {
-            localStorage.clear();
             localStorage.setItem(
                 'hardware_tutorial_completed',
                 JSON.stringify({
@@ -506,7 +509,7 @@ test.describe('SEO Context Generator', () => {
                     shieldDeflections: []
                 }
             };
-            localStorage.setItem('hardware_is_hard_save', JSON.stringify(mockSave));
+            localStorage.setItem('hardware_game_save', JSON.stringify(mockSave));
         });
 
         // Reload and continue to victory
@@ -544,7 +547,7 @@ test.describe('SEO Context Generator', () => {
         // STATE 7: Try Autopsy screen (game over)
         await page.goto('./', { waitUntil: 'networkidle' });
         await page.evaluate(() => {
-            localStorage.removeItem('hardware_is_hard_save');
+            localStorage.removeItem('hardware_game_save');
         });
         await page.reload({ waitUntil: 'networkidle' });
         await expect(page.getByTestId('splash-title')).toBeVisible();

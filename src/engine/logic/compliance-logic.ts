@@ -1,4 +1,5 @@
 import type { Device } from '../types';
+import { COMPLIANCE, SYSTEM_TAGS } from '../constants';
 
 export interface ComplianceResult {
     cost: number;
@@ -8,83 +9,80 @@ export interface ComplianceResult {
 }
 
 /**
- * processRegulatoryCompliance
- * Calculates the maintenance cost, compliance change, and tag updates for a month.
+ * Calculates maintenance cost, compliance change, and tag updates for a time step.
  */
-export function calculateComplianceUpdates(
+export const calculateComplianceUpdates = (
     device: Device,
     monthsPassed: number,
     timelineMonth: number,
     fundingLevel: 'full' | 'partial' | 'none',
     activeTags: string[],
     currentComplianceLevel: number
-): ComplianceResult {
-    // Base Maintenance Cost
-    const baseCost = device.monthlyMaintenanceCost || 2000;
-    const eol = device.eolMonth || 48;
+): ComplianceResult => {
+    const baseCost = device.monthlyMaintenanceCost || COMPLIANCE.DEFAULT_MAINTENANCE_COST;
+    const eol = device.eolMonth || COMPLIANCE.DEFAULT_EOL_MONTH;
     const isEOL = timelineMonth >= eol;
+    const isLegacy = timelineMonth > COMPLIANCE.LEGACY_MONTH_THRESHOLD;
+    const legacyMultiplier = isLegacy ? COMPLIANCE.LEGACY_COST_MULTIPLIER : 1.0;
 
-    // "Legacy Mode" / Tech Debt: Costs increase by 50% after 3 years (Month 36)
-    const isLegacy = timelineMonth > 36;
-    const legacyMultiplier = isLegacy ? 1.5 : 1.0;
-
-    // Strategy Logic
-    let costMultiplier = 1.0;
-    let complianceChange = 0;
+    let costMultiplier: number;
+    let complianceChange: number;
 
     switch (fundingLevel) {
         case 'full':
-            // "DevSecOps" - Expensive but safe
-            costMultiplier = 1.0;
-            complianceChange = isEOL ? -2 : 1; // Can't improve post-EOL, only slow decay
+            costMultiplier = COMPLIANCE.FULL_FUNDING.costMultiplier;
+            complianceChange = isEOL
+                ? COMPLIANCE.FULL_FUNDING.eolChange
+                : COMPLIANCE.FULL_FUNDING.change;
             break;
         case 'partial':
-            // "Feature-first" - Cheaper, slow decay
-            costMultiplier = 0.5;
-            complianceChange = -2;
+            costMultiplier = COMPLIANCE.PARTIAL_FUNDING.costMultiplier;
+            complianceChange = COMPLIANCE.PARTIAL_FUNDING.change;
             break;
         case 'none':
-            // "Skeleton Crew" - Free, rapid decay
-            costMultiplier = 0;
-            complianceChange = -5;
+            costMultiplier = COMPLIANCE.NO_FUNDING.costMultiplier;
+            complianceChange = COMPLIANCE.NO_FUNDING.change;
             break;
     }
 
     const totalCost = baseCost * costMultiplier * legacyMultiplier * monthsPassed;
 
-    // Calculate new compliance level (clamped 0-100) locally
-    // but return the *change* so engine can apply it.
-    // Wait, the logic used current level to decide tags.
-    // So we need to simulate the new level to decide tags.
-
     const potentialNewLevel = Math.max(
         0,
-        Math.min(100, currentComplianceLevel + complianceChange * monthsPassed)
+        Math.min(COMPLIANCE.MAX_LEVEL, currentComplianceLevel + complianceChange * monthsPassed)
     );
 
     const newTagsToAdd: string[] = [];
     const tagsToRemove: string[] = [];
 
-    // Tag Logic
-    // 1. EOL Tag
-    if (isEOL && !activeTags.includes('eol_device')) {
-        newTagsToAdd.push('eol_device');
+    if (isEOL && !activeTags.includes(SYSTEM_TAGS.EOL_DEVICE)) {
+        newTagsToAdd.push(SYSTEM_TAGS.EOL_DEVICE);
     }
 
-    // 2. Regulatory Risk (Threshold: < 50%)
-    if (potentialNewLevel < 50 && !activeTags.includes('regulatory_risk')) {
-        newTagsToAdd.push('regulatory_risk');
+    if (
+        potentialNewLevel < COMPLIANCE.REGULATORY_RISK_THRESHOLD &&
+        !activeTags.includes(SYSTEM_TAGS.REGULATORY_RISK)
+    ) {
+        newTagsToAdd.push(SYSTEM_TAGS.REGULATORY_RISK);
     }
-    if (potentialNewLevel >= 50 && activeTags.includes('regulatory_risk')) {
-        tagsToRemove.push('regulatory_risk');
+    if (
+        potentialNewLevel >= COMPLIANCE.REGULATORY_RISK_THRESHOLD &&
+        activeTags.includes(SYSTEM_TAGS.REGULATORY_RISK)
+    ) {
+        tagsToRemove.push(SYSTEM_TAGS.REGULATORY_RISK);
     }
 
-    // 3. Critical Vulnerability (Threshold: < 20%)
-    if (potentialNewLevel < 20 && !activeTags.includes('critical_vuln')) {
-        newTagsToAdd.push('critical_vuln');
+    if (
+        potentialNewLevel < COMPLIANCE.CRITICAL_VULN_THRESHOLD &&
+        !activeTags.includes(SYSTEM_TAGS.CRITICAL_VULN)
+    ) {
+        newTagsToAdd.push(SYSTEM_TAGS.CRITICAL_VULN);
     }
-    if (potentialNewLevel >= 20 && activeTags.includes('critical_vuln')) {
-        tagsToRemove.push('critical_vuln');
+    if (
+        potentialNewLevel >= COMPLIANCE.CRITICAL_VULN_THRESHOLD &&
+        activeTags.includes(SYSTEM_TAGS.CRITICAL_VULN)
+    ) {
+        tagsToRemove.push(SYSTEM_TAGS.CRITICAL_VULN);
     }
 
     return {
@@ -93,4 +91,4 @@ export function calculateComplianceUpdates(
         newTagsToAdd,
         tagsToRemove
     };
-}
+};

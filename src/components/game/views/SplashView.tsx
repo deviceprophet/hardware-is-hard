@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGameStore } from '../../../adapters/react';
+import { useGameStore } from '@/adapters/react';
 import { Play, RotateCcw } from 'lucide-react';
-import { formatGameDate, formatBudget } from '../../../utils';
-import { useTranslatedDevices } from '../../../hooks/useTranslatedContent';
+import { formatGameDate, formatBudget } from '@/utils';
+import { useTranslatedDevices } from '@/hooks/useTranslatedContent';
+import { AchievementBadges } from '../ui/AchievementBadges';
 
 export const SplashView: React.FC = () => {
     const goToSetup = useGameStore(state => state.goToSetup);
@@ -13,10 +14,10 @@ export const SplashView: React.FC = () => {
     const loadSavedGame = useGameStore(state => state.loadSavedGame);
     const { t } = useTranslation();
 
-    // Load stats on mount
-    const stats = getStats();
-    const saveInfo = getSaveInfo();
-    const hasSavedGame = hasSave();
+    // Memoize stats and save info to avoid localStorage reads on every render
+    const stats = React.useMemo(() => getStats(), [getStats]);
+    const saveInfo = React.useMemo(() => getSaveInfo(), [getSaveInfo]);
+    const hasSavedGame = React.useMemo(() => hasSave(), [hasSave]);
 
     const deviceIds = React.useMemo(
         () => stats.runHistory?.map(run => run.deviceId).filter(Boolean) || [],
@@ -78,22 +79,30 @@ export const SplashView: React.FC = () => {
                                 {formatGameDate(stats.bestSurvivalMonths)}
                             </span>
                             <span className="text-[10px] uppercase opacity-70">
-                                Record Survival
+                                {t('splash.recordSurvival')}
                             </span>
                         </div>
                         <div className="text-center">
                             <span className="block text-2xl text-green-500 font-bold">
                                 {((stats.gamesWon / stats.gamesPlayed) * 100).toFixed(0)}%
                             </span>
-                            <span className="text-[10px] uppercase opacity-70">Win Rate</span>
+                            <span className="text-[10px] uppercase opacity-70">
+                                {t('splash.winRate')}
+                            </span>
                         </div>
                         <div className="text-center">
                             <span className="block text-2xl text-green-500 font-bold">
                                 {stats.gamesPlayed}
                             </span>
-                            <span className="text-[10px] uppercase opacity-70">Attempts</span>
+                            <span className="text-[10px] uppercase opacity-70">
+                                {t('splash.attempts')}
+                            </span>
                         </div>
                     </div>
+
+                    {stats.achievements && stats.achievements.length > 0 && (
+                        <AchievementBadges earned={stats.achievements} />
+                    )}
 
                     {stats.runHistory && stats.runHistory.length > 0 && (
                         <div className="w-full">
@@ -102,10 +111,10 @@ export const SplashView: React.FC = () => {
                             </div>
                             <div className="flex flex-col gap-2 overflow-x-auto">
                                 <div className="grid grid-cols-7 text-[10px] uppercase opacity-50 pb-1 px-2 min-w-[500px]">
-                                    <span>Date</span>
-                                    <span>Device</span>
-                                    <span>Outcome</span>
-                                    <span className="text-right">Survived</span>
+                                    <span>{t('splash.date')}</span>
+                                    <span>{t('splash.device')}</span>
+                                    <span>{t('splash.outcome')}</span>
+                                    <span className="text-right">{t('splash.survived')}</span>
                                     <span className="text-right">{t('common.budget')}</span>
                                     <span className="text-right">{t('common.doom')}</span>
                                     <span className="text-right">{t('common.compliance')}</span>

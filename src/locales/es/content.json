@@ -599,6 +599,220 @@
             }
         }
     },
+    "event_privacy_certification": {
+        "title": "Premio de Certificacion de Privacidad",
+        "description": "Un organismo independiente de certificacion de privacidad ha completado su auditoria de tus practicas de manejo de datos. Quieren avalar tu producto como 'Certificado en Privacidad'.",
+        "choices": {
+            "choice_cert_accept": "Aceptar certificacion y usarla en marketing",
+            "choice_cert_decline": "Las tarifas de certificacion son demasiado altas"
+        }
+    },
+    "event_secure_boot_victory": {
+        "title": "Reivindicacion del Arranque Seguro",
+        "description": "Investigadores de seguridad publican un analisis detallado de tu implementacion de arranque seguro. La llaman 'ejemplar' y la presentan como caso de estudio.",
+        "choices": {
+            "choice_boot_market": "Aprovechar la postura de seguridad en marketing"
+        }
+    },
+    "event_ai_compliance_lucky": {
+        "title": "Puerto Seguro de la Ley de IA de la UE",
+        "description": "Comienza la aplicacion de la Ley de IA de la UE. Tu documentacion de cumplimiento es exhaustiva. Los reguladores te dejan operar mientras los competidores enfrentan multas.",
+        "choices": {
+            "choice_ai_safe": "Continuar operando con historial limpio"
+        }
+    },
+    "event_cloud_resilience_payoff": {
+        "title": "Victoria contra la Dependencia Cloud",
+        "description": "Tu estrategia multi-cloud da frutos. El proveedor unico del mayor competidor sufre una caida masiva. Eres el unico vendedor que sigue en linea.",
+        "choices": {
+            "choice_cloud_market_grab": "Captar a sus clientes"
+        }
+    },
+    "event_sbom_defense": {
+        "title": "Ventaja del SBOM",
+        "description": "Se descubre un zero-day critico en una libreria ampliamente usada. Parcheas en 48 horas. Los competidores luchan porque no conocen sus dependencias.",
+        "choices": {
+            "choice_sbom_leader": "Posicionarse como lider en seguridad"
+        }
+    },
+    "event_backup_triumph": {
+        "title": "Oleada de Ransomware en la Industria",
+        "description": "El ransomware arrasa la industria. Tu estrategia de respaldo te permite restaurar en horas. Los competidores pagan millones en rescate.",
+        "choices": {
+            "choice_backup_win": "Recuperacion completa, costo cero"
+        }
+    },
+    "event_energy_crisis_opportunity": {
+        "title": "Oportunidad en la Crisis Energetica",
+        "description": "La crisis energetica europea impulsa la demanda de IoT ultra-eficiente. Tu diseno de bajo consumo es de repente muy atractivo.",
+        "choices": {
+            "choice_energy_premium": "Subir precios un 20% (restricciones de suministro)"
+        }
+    },
+    "event_quantum_ready": {
+        "title": "Victoria de Criptografia Post-Cuantica",
+        "description": "La primera computadora cuantica practica rompe RSA-2048. La industria entra en panico. Tu implementacion post-cuantica no se ve afectada.",
+        "choices": {
+            "choice_quantum_license": "Licenciar tecnologia PQC a gobierno/defensa"
+        }
+    },
+    "event_supplier_lock_in": {
+        "title": "Acuerdo de Exclusividad con Proveedor",
+        "description": "Tu mayor proveedor de componentes ofrece una asociacion exclusiva de 3 anos. Precios preferenciales a cambio de volumen garantizado.",
+        "choices": {
+            "choice_supplier_lock": "Firmar contrato de exclusividad",
+            "choice_supplier_free": "Mantener flexibilidad y negociar anualmente"
+        }
+    },
+    "event_manufacturing_equity": {
+        "title": "Asociacion con Fabricante por Contrato",
+        "description": "Tu fabricante por contrato ofrece una asociacion estrategica con participacion accionaria. 15% a cambio de capacidad prioritaria y excelencia operativa.",
+        "choices": {
+            "choice_partner_equity": "Aceptar asociacion (diluir pero asegurar suministro)",
+            "choice_partner_decline": "Mantener independencia total"
+        }
+    },
+    "event_logistics_reroute": {
+        "title": "Crisis de Buques de Contenedores",
+        "description": "Crisis de contenedores maritimos. El 40% de los contenedores estan en lista negra. Tu produccion del Q2 esta varada en el mar.",
+        "choices": {
+            "choice_reroute_india": "Redirigir via India (envio premium)",
+            "choice_wait_ships": "Esperar resolucion (retrasar envio)"
+        }
+    },
+    "event_supplier_dies": {
+        "title": "Quiebra del Proveedor",
+        "description": "Tu proveedor principal de componentes se declara en bancarrota. Tienes 4 semanas de stock de reserva. Tus opciones son limitadas.",
+        "choices": {
+            "choice_reverse_engineer": "Ingenieria inversa de pieza compatible",
+            "choice_find_alternate": "Buscar proveedor alternativo a costo premium"
+        }
+    },
+    "event_pen_test_failure": {
+        "title": "Resultados de Prueba de Penetracion",
+        "description": "Las pruebas de penetracion de terceros revelan multiples vulnerabilidades de alta severidad en el firmware y la API cloud.",
+        "choices": {
+            "choice_fix_vulns": "Sprint de correccion de emergencia (3 semanas)",
+            "choice_defer_fixes": "Planificar correcciones para el proximo trimestre"
+        }
+    },
+    "event_firmware_attestation": {
+        "title": "Estandar de Atestacion de Firmware",
+        "description": "Un grupo de trabajo de la industria recomienda verificacion criptografica de firmware. Los competidores lo ignoran. Tu puedes adelantarte.",
+        "choices": {
+            "choice_implement_attestation": "Implementar capa de verificacion",
+            "choice_skip_attestation": "Omitir (demasiado complejo por ahora)"
+        }
+    },
+    "event_sbom_audit_chain": {
+        "title": "Auditoria de Software de Cadena de Suministro",
+        "description": "Una auditoria exhaustiva de librerias de terceros revela: 3 vulnerabilidades de alta severidad, 12 medias, 40+ bajas. Hora de decidir.",
+        "choices": {
+            "choice_patch_and_track": "Parchear todo + implementar rastreo SBOM",
+            "choice_ignore_audit": "Es codigo de terceros, no es nuestro problema"
+        }
+    },
+    "event_red_team_purple": {
+        "title": "Ejercicio de Red Team",
+        "description": "El red team interno prueba tu arquitectura zero-trust. Vulneran el perimetro en 4 horas pero no logran movimiento lateral. Impresionante.",
+        "choices": {
+            "choice_purple_team": "Establecer programa continuo de purple team"
+        }
+    },
+    "event_patent_filing": {
+        "title": "Oportunidad de Registro de Patente",
+        "description": "Tu firmware implementa un algoritmo de compresion novedoso sin precedentes en la industria. El abogado de patentes recomienda registro internacional.",
+        "choices": {
+            "choice_file_patent": "Presentar suite de patentes internacionales",
+            "choice_trade_secret": "Mantener como secreto comercial (mas barato)"
+        }
+    },
+    "event_industrial_espionage": {
+        "title": "Riesgo de Espionaje de Competidor",
+        "description": "Un ingeniero del competidor aplica a un puesto. Trae 'materiales de referencia' en un USB. Legal lo marca como posible intento de robo de propiedad intelectual.",
+        "choices": {
+            "choice_report_law": "Reportar a las autoridades",
+            "choice_hire_protect": "Contratar y reforzar procedimientos de secreto comercial"
+        }
+    },
+    "event_open_source_strategy": {
+        "title": "Oportunidad Open Source",
+        "description": "Considera liberar codigo de referencia no critico como open source. Construye buena voluntad en el ecosistema y atrae contribuidores talentosos.",
+        "choices": {
+            "choice_open_source": "Publicar SDK open source",
+            "choice_proprietary_only": "Mantener todo propietario"
+        }
+    },
+    "event_differential_privacy": {
+        "title": "Propuesta de Privacidad Diferencial",
+        "description": "Un investigador de privacidad propone una capa de privacidad diferencial para la telemetria. Agrega ruido para evitar la re-identificacion de usuarios.",
+        "choices": {
+            "choice_implement_dp": "Implementar capa de privacidad diferencial",
+            "choice_skip_dp": "Demasiado caro y complejo"
+        }
+    },
+    "event_zero_knowledge_proof": {
+        "title": "Autenticacion Zero-Knowledge",
+        "description": "Un socio fintech propone integracion de ZKP para autenticacion sin contrasena. Tecnologia novedosa pero reduce significativamente la responsabilidad.",
+        "choices": {
+            "choice_implement_zkp": "Implementar autenticacion ZKP",
+            "choice_skip_zkp": "Quedarse con autenticacion convencional"
+        }
+    },
+    "event_government_tender": {
+        "title": "Contrato de Compra Gubernamental",
+        "description": "Una agencia gubernamental nacional quiere 15,000 unidades/ano por 3 anos. Lucrativo pero requiere certificaciones de cumplimiento que ya tienes.",
+        "choices": {
+            "choice_bid_gov": "Licitar por el contrato gubernamental",
+            "choice_decline_gov": "Demasiada burocracia regulatoria"
+        }
+    },
+    "event_vc_series_a": {
+        "title": "Ronda de Financiacion Serie A",
+        "description": "Una firma de capital riesgo quiere invertir a cambio de 18% de participacion. Acelera el crecimiento pero diluye el control.",
+        "choices": {
+            "choice_accept_vc": "Aceptar financiacion Serie A",
+            "choice_bootstrap": "Autofinanciarse (lento pero independiente)"
+        }
+    },
+    "event_insurance_premium_cut": {
+        "title": "Reduccion de Prima de Seguro Cibernetico",
+        "description": "Los resultados de tu auditoria de postura de seguridad resultan en una reduccion del 45% en la prima del seguro de responsabilidad cibernetica. El CFO esta encantado.",
+        "choices": {
+            "choice_insurance_cut": "Aceptar reduccion de prima"
+        }
+    },
+    "event_tech_debt_explosion": {
+        "title": "Explosion de Deuda Tecnica",
+        "description": "Anos de 'arreglos rapidos' se acumulan en cascada. Tres subsistemas fallan simultaneamente bajo carga. El hotfix del becario de 2024 es la causa raiz.",
+        "choices": {
+            "choice_debt_rewrite": "Reescritura completa de subsistemas",
+            "choice_debt_spiral": "Parchear los parches (otra vez)"
+        }
+    },
+    "event_blind_ops_strike": {
+        "title": "Descubrimiento de Caida Silenciosa",
+        "description": "Una caida de flota de 6 horas pasa desapercibida para tus dashboards. Los clientes inundan las redes sociales mientras tu vives en la ignorancia.",
+        "choices": {
+            "choice_emergency_observe": "Contrato de emergencia de observabilidad",
+            "choice_manual_triage": "Depuracion manual de todos los equipos"
+        }
+    },
+    "event_viral_momentum_surge": {
+        "title": "Pico de Demanda Viral",
+        "description": "Tu producto se vuelve viral en TikTok. La demanda supera la oferta por 10x. Tienes 2 semanas para decidir: escalar o perder la oportunidad.",
+        "choices": {
+            "choice_scale_fast": "Escalar produccion rapido (arriesgado)",
+            "choice_scale_managed": "Escalado controlado (precio premium)"
+        }
+    },
+    "event_recalled_redemption": {
+        "title": "Redencion del Retiro",
+        "description": "Tu retiro se ha completado. Ofrece garantia de por vida y soporte extendido como gesto de buena voluntad para reconstruir la confianza del cliente.",
+        "choices": {
+            "choice_warranty_boost": "Ofrecer programa de garantia de por vida"
+        }
+    },
     "logs": {
         "title": "Registros del Sistema",
         "unknownEvent": "Evento Desconocido",

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGameStore } from '../../../adapters/react';
-import { formatGameDate, formatBudget } from '../../../utils';
-import { useTranslatedDevice } from '../../../hooks/useTranslatedContent';
+import { useGameStore } from '@/adapters/react';
+import { formatGameDate, formatBudget } from '@/utils';
+import { useTranslatedDevice } from '@/hooks/useTranslatedContent';
 
 export const SharedResultView: React.FC = () => {
     const { t } = useTranslation();

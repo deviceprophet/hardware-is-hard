@@ -35,3 +35,6 @@ test-results.json
 .wrangler/
 .dev.vars
 temp_sounds/
+coverage/
+reports/
+.stryker-tmp/

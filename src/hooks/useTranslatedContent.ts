@@ -24,6 +24,28 @@ const contentByLang: Record<string, Record<string, ContentItem>> = {
     es: esContent as unknown as Record<string, ContentItem>
 };
 
+// Available languages for extensibility (used for future dynamic language detection)
+
+/**
+ * Get language code from i18n, dynamically matching available content.
+ * Falls back to 'en' if no match found.
+ */
+function getCurrentLanguage(i18nLanguage: string): string {
+    // Try exact match first
+    if (contentByLang[i18nLanguage]) {
+        return i18nLanguage;
+    }
+
+    // Try language prefix (e.g., 'es-MX' -> 'es')
+    const prefix = i18nLanguage.split('-')[0]!;
+    if (contentByLang[prefix]) {
+        return prefix;
+    }
+
+    // Default to English
+    return 'en';
+}
+
 interface TranslatedEvent {
     title: string;
     description: string;
@@ -40,11 +62,11 @@ interface TranslatedDevice {
  */
 export function useTranslatedEvent(eventId: string): TranslatedEvent {
     const { i18n } = useTranslation();
-    const lang = i18n.language.startsWith('es') ? 'es' : 'en';
+    const lang = getCurrentLanguage(i18n.language);
 
     return useMemo(() => {
-        const content = contentByLang[lang] || contentByLang.en;
-        const eventContent = content[eventId] || {
+        const content = (contentByLang[lang] || contentByLang.en)!;
+        const eventContent = content[eventId] ?? {
             title: eventId,
             description: '',
             choices: {}
@@ -63,11 +85,11 @@ export function useTranslatedEvent(eventId: string): TranslatedEvent {
  */
 export function useTranslatedDevice(deviceId: string): TranslatedDevice {
     const { i18n } = useTranslation();
-    const lang = i18n.language.startsWith('es') ? 'es' : 'en';
+    const lang = getCurrentLanguage(i18n.language);
 
     return useMemo(() => {
-        const content = contentByLang[lang] || contentByLang.en;
-        const deviceContent = content[deviceId] || { name: deviceId, description: '' };
+        const content = (contentByLang[lang] || contentByLang.en)!;
+        const deviceContent = content[deviceId] ?? { name: deviceId, description: '' };
 
         return {
             name: deviceContent.name || deviceId,
@@ -81,14 +103,14 @@ export function useTranslatedDevice(deviceId: string): TranslatedDevice {
  */
 export function useTranslatedEvents(eventIds: string[]): Map<string, TranslatedEvent> {
     const { i18n } = useTranslation();
-    const lang = i18n.language.startsWith('es') ? 'es' : 'en';
+    const lang = getCurrentLanguage(i18n.language);
 
     return useMemo(() => {
-        const content = contentByLang[lang] || contentByLang.en;
+        const content = (contentByLang[lang] || contentByLang.en)!;
         const result = new Map<string, TranslatedEvent>();
 
         for (const eventId of eventIds) {
-            const eventContent = content[eventId] || {
+            const eventContent = content[eventId] ?? {
                 title: eventId,
                 description: '',
                 choices: {}
@@ -109,14 +131,14 @@ export function useTranslatedEvents(eventIds: string[]): Map<string, TranslatedE
  */
 export function useTranslatedDevices(deviceIds: string[]): Map<string, TranslatedDevice> {
     const { i18n } = useTranslation();
-    const lang = i18n.language.startsWith('es') ? 'es' : 'en';
+    const lang = getCurrentLanguage(i18n.language);
 
     return useMemo(() => {
-        const content = contentByLang[lang] || contentByLang.en;
+        const content = (contentByLang[lang] || contentByLang.en)!;
         const result = new Map<string, TranslatedDevice>();
 
         for (const deviceId of deviceIds) {
-            const deviceContent = content[deviceId] || { name: deviceId, description: '' };
+            const deviceContent = content[deviceId] ?? { name: deviceId, description: '' };
             result.set(deviceId, {
                 name: deviceContent.name || deviceId,
                 description: deviceContent.description || ''

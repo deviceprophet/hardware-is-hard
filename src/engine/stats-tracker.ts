@@ -5,6 +5,10 @@
  * Tracks cumulative stats like games played, win rate, and best runs.
  */
 
+import { checkAchievements } from './achievements';
+import type { GameStateSnapshot } from './types';
+import { STATS } from './constants';
+
 export interface RunResult {
     date: string;
     deviceId: string;
@@ -28,13 +32,6 @@ export interface GameStats {
     runHistory: RunResult[];
 }
 
-// Device usage counter - reserved for future stats implementation
-interface _DeviceUsage {
-    [deviceName: string]: number;
-}
-
-const STORAGE_KEY = 'hardware-is-hard-stats_v1';
-
 /**
  * Load stats from local storage or return defaults
  */
@@ -44,7 +41,7 @@ export function loadStats(): GameStats {
     }
 
     try {
-        const stored = localStorage.getItem(STORAGE_KEY);
+        const stored = localStorage.getItem(STATS.STORAGE_KEY);
         if (!stored) return getDefaultStats();
 
         const parsed = JSON.parse(stored);
@@ -63,7 +60,7 @@ export function saveStats(stats: GameStats): void {
     if (typeof localStorage === 'undefined') return;
 
     try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+        localStorage.setItem(STATS.STORAGE_KEY, JSON.stringify(stats));
     } catch (e) {
         console.warn('Failed to save stats:', e);
     }
@@ -77,7 +74,8 @@ export function recordGameResult(
     monthsSurvived: number,
     deviceId: string,
     deviceName: string,
-    finalStats?: { budget: number; doom: number; compliance: number }
+    finalStats?: { budget: number; doom: number; compliance: number },
+    fullState?: GameStateSnapshot
 ): GameStats {
     const stats = loadStats();
 
@@ -108,13 +106,20 @@ export function recordGameResult(
     if (!stats.runHistory) stats.runHistory = [];
 
     stats.runHistory.unshift(newRun);
-    if (stats.runHistory.length > 10) {
-        stats.runHistory = stats.runHistory.slice(0, 10);
+    if (stats.runHistory.length > STATS.MAX_RUN_HISTORY) {
+        stats.runHistory = stats.runHistory.slice(0, STATS.MAX_RUN_HISTORY);
     }
 
     // Simple heuristic for favorite device
     if (!stats.favoriteDevice) {
         stats.favoriteDevice = deviceName;
+    }
+
+    // Check for new achievements
+    const newAchievements = checkAchievements(fullState || null, stats);
+    if (newAchievements.length > 0) {
+        if (!stats.achievements) stats.achievements = [];
+        stats.achievements.push(...newAchievements);
     }
 
     saveStats(stats);

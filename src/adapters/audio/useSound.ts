@@ -5,6 +5,7 @@
 import { useEffect, useCallback, useState } from 'react';
 import { soundManager } from './SoundManager';
 import { useGameStore } from '../react';
+import { AUDIO } from '../../engine/constants';
 
 export function useSound() {
     const [isMuted, setIsMuted] = useState(soundManager.isMuted());
@@ -40,6 +41,7 @@ export function useSoundEffects() {
     const phase = useGameStore(state => state.phase);
     const doomLevel = useGameStore(state => state.doomLevel);
     const isPaused = useGameStore(state => state.isPaused);
+    const currentCrisis = useGameStore(state => state.currentCrisis);
 
     // Track previous values to detect changes
     useEffect(() => {
@@ -60,10 +62,10 @@ export function useSoundEffects() {
 
     // Play doom drone when doom is high
     useEffect(() => {
-        if (phase === 'simulation' && doomLevel >= 50 && !isPaused) {
+        if (phase === 'simulation' && doomLevel >= AUDIO.DOOM_DRONE_THRESHOLD && !isPaused) {
             const interval = setInterval(() => {
                 soundManager.playDoomDrone(doomLevel);
-            }, 3000); // Low hum every 3 seconds
+            }, AUDIO.DOOM_DRONE_INTERVAL_MS); // Low hum every 3 seconds
             return () => clearInterval(interval);
         }
     }, [phase, doomLevel, isPaused]);
@@ -72,7 +74,7 @@ export function useSoundEffects() {
     useEffect(() => {
         switch (phase) {
             case 'crisis':
-                soundManager.play('crisis');
+                soundManager.playForCategory(currentCrisis?.category || 'operational');
                 break;
             case 'victory':
                 soundManager.play('victory');
@@ -81,5 +83,5 @@ export function useSoundEffects() {
                 soundManager.play('defeat');
                 break;
         }
-    }, [phase]);
+    }, [phase, currentCrisis]);
 }

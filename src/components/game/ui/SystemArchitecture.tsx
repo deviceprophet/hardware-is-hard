@@ -163,7 +163,7 @@ export const SystemArchitecture: React.FC<SystemArchitectureProps> = React.memo(
 
                                 {/* Tooltip (Description only) */}
                                 <div className="absolute z-20 bottom-full left-0 w-full mb-2 hidden group-hover:block animate-fade-in opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                                    <div className="bg-slate-900 text-slate-300 text-xs p-2 rounded border border-slate-600 shadow-xl backdrop-blur-sm">
+                                    <div className="bg-slate-900 text-white text-xs p-2 rounded border border-slate-600 shadow-xl backdrop-blur-sm">
                                         <p className="font-bold text-white mb-1">{node.label}</p>
                                         <p>{node.description}</p>
                                     </div>

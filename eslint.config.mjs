@@ -1,11 +1,19 @@
 import eslintPluginAstro from 'eslint-plugin-astro';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
 import tseslint from 'typescript-eslint';
 
 export default [
     // Global ignore
     {
-        ignores: ['dist/**', '.astro/**', 'node_modules/**', 'coverage/**']
+        ignores: [
+            'dist/**',
+            '.astro/**',
+            'node_modules/**',
+            'coverage/**',
+            '.stryker-tmp/**',
+            'reports/**'
+        ]
     },
 
     // TypeScript & Javascript
@@ -38,6 +46,12 @@ export default [
                 }
             ]
         }
+    },
+
+    // JSX Accessibility
+    {
+        files: ['**/*.{jsx,tsx}'],
+        ...jsxA11y.flatConfigs.recommended
     },
 
     // Astro

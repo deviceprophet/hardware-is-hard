@@ -44,16 +44,3 @@ export function createSeededRandom(seed: number): RandomProvider {
         }
     };
 }
-
-/**
- * Shuffle an array using Fisher-Yates algorithm
- *
- * @param array - Array to shuffle (will be mutated)
- * @param random - Random provider to use
- */
-export function shuffleArray<T>(array: T[], random: RandomProvider): void {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = random.randomInt(i + 1);
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}

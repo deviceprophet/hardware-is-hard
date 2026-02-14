@@ -8,8 +8,8 @@
 import { describe, it, expect } from 'vitest';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import enTranslation from '../../../../locales/en/translation.json';
-import esTranslation from '../../../../locales/es/translation.json';
+import enTranslation from '@/locales/en/translation.json';
+import esTranslation from '@/locales/es/translation.json';
 
 // Initialize a separate i18n instance for testing to avoid side-effects from the main singleton
 const testI18n = i18n.createInstance();

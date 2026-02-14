@@ -6,6 +6,7 @@
  */
 
 import { Howl, Howler } from 'howler';
+import { AUDIO } from '../../engine/constants';
 
 // Sound effect definitions with programmatic generation fallback
 export const SOUND_CONFIGS = {
@@ -53,7 +54,21 @@ export const SOUND_CONFIGS = {
     }
 } as const;
 
-type SoundName = keyof typeof SOUND_CONFIGS;
+export type SoundName = keyof typeof SOUND_CONFIGS;
+
+const CATEGORY_SOUND_MAP: Record<string, SoundName> = {
+    cyberattack: 'crisis',
+    security: 'crisis',
+    privacy: 'crisis',
+    regulatory: 'error',
+    ipr: 'error',
+    supply_chain: 'error',
+    safety_recall: 'crisis',
+    reputational: 'doom',
+    operational: 'click',
+    financial: 'click',
+    business: 'click'
+};
 
 class SoundManager {
     private sounds: Map<SoundName, Howl> = new Map();
@@ -73,7 +88,7 @@ class SoundManager {
         if (this.initialized) return;
 
         // Check for stored mute preference
-        const storedMute = localStorage.getItem('sound_muted');
+        const storedMute = localStorage.getItem(AUDIO.MUTE_STORAGE_KEY);
         // Default to muted (true) if not set, otherwise use stored value
         this.muted = storedMute === null ? true : storedMute === 'true';
 
@@ -162,18 +177,26 @@ class SoundManager {
     }
 
     /**
+     * Play a sound mapped to an event category
+     */
+    playForCategory(category: string): void {
+        const sound = CATEGORY_SOUND_MAP[category] || 'crisis';
+        this.play(sound);
+    }
+
+    /**
      * Play the doom drone - intensity based on doom level (0-100)
      */
     playDoomDrone(doomLevel: number): void {
-        if (this.muted || doomLevel < 50) return;
+        if (this.muted || doomLevel < AUDIO.DOOM_DRONE_THRESHOLD) return;
         if (!this.initialized) this.init();
 
         // Intensity scales with doom (50-100 -> 0-1)
-        const intensity = (doomLevel - 50) / 50;
-        const volume = intensity * 0.15; // Max 15% volume
-        const frequency = 40 + intensity * 30; // 40-70 Hz
+        const intensity = (doomLevel - AUDIO.DOOM_DRONE_THRESHOLD) / AUDIO.DOOM_DRONE_THRESHOLD;
+        const volume = intensity * AUDIO.MAX_DOOM_VOLUME; // Max 15% volume
+        const frequency = AUDIO.DOOM_MIN_FREQ + intensity * AUDIO.DOOM_FREQ_RANGE; // 40-70 Hz
 
-        this.playTone(frequency, 0.5, volume, 'sawtooth');
+        this.playTone(frequency, AUDIO.DOOM_DRONE_DURATION, volume, 'sawtooth');
     }
 
     /**
@@ -181,7 +204,7 @@ class SoundManager {
      */
     toggleMute(): boolean {
         this.muted = !this.muted;
-        localStorage.setItem('sound_muted', String(this.muted));
+        localStorage.setItem(AUDIO.MUTE_STORAGE_KEY, String(this.muted));
 
         if (this.muted) {
             Howler.mute(true);
@@ -204,7 +227,7 @@ class SoundManager {
      */
     setMuted(muted: boolean): void {
         this.muted = muted;
-        localStorage.setItem('sound_muted', String(muted));
+        localStorage.setItem(AUDIO.MUTE_STORAGE_KEY, String(muted));
         Howler.mute(muted);
     }
 }

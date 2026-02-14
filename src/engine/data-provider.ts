@@ -46,14 +46,19 @@ export const GameEventSchema = z.object({
             'operational',
             'privacy',
             'ipr',
-            'reputational'
+            'reputational',
+            'business',
+            'financial',
+            'security'
         ])
         .optional(),
     triggerCondition: z.string().optional(),
     requiredTags: z.array(z.string()).optional(),
     blockedByTags: z.array(z.string()).optional(),
     choices: z.array(ChoiceSchema),
-    visualEffect: z.enum(['glitch', 'shake', 'pulse-red', 'confetti', 'none']).optional(),
+    visualEffect: z
+        .enum(['glitch', 'shake', 'pulse-red', 'pulse-green', 'confetti', 'none'])
+        .optional(),
     targetModule: z
         .enum([
             'cpu',
@@ -64,7 +69,10 @@ export const GameEventSchema = z.object({
             'security',
             'cloud',
             'control',
-            'encryption'
+            'encryption',
+            'compute',
+            'bms',
+            'secure-enclave'
         ])
         .optional(),
     baseProb: z.number().optional(),

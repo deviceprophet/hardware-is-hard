@@ -16,11 +16,17 @@ import type {
     DeathCause,
     GameConfig
 } from './types';
-import { INITIAL_BUDGET, INITIAL_DOOM, INITIAL_MONTH } from './constants';
+import {
+    INITIAL_BUDGET,
+    INITIAL_DOOM,
+    INITIAL_MONTH,
+    INITIAL_COMPLIANCE,
+    NO_LAST_EVENT,
+    PROBLEM_TAGS
+} from './constants';
 
 /**
- * Internal mutable state structure.
- * Only GameEngine should mutate this directly.
+ * Create the initial game state.
  */
 export interface InternalState {
     phase: GamePhase;
@@ -53,9 +59,9 @@ export function createInitialState(): InternalState {
         history: [],
         shieldDeflections: [],
         currentCrisis: null,
-        lastEventMonth: -1,
+        lastEventMonth: NO_LAST_EVENT,
         isPaused: false,
-        complianceLevel: 100,
+        complianceLevel: INITIAL_COMPLIANCE,
         fundingLevel: 'full',
         availableDevices: []
     };
@@ -146,11 +152,9 @@ export function analyzeDeathCause(state: InternalState, config: GameConfig): Dea
 
     // Find most impactful negative tag
     const problemTags = activeTags.filter(tag =>
-        ['bad_flash', 'fake_ai', 'data_loss', 'cheap_wifi', 'tech_debt', 'no_encryption'].includes(
-            tag
-        )
+        PROBLEM_TAGS.includes(tag as (typeof PROBLEM_TAGS)[number])
     );
-    const primaryTag = problemTags.length > 0 ? problemTags[0] : null;
+    const primaryTag = problemTags.length > 0 ? problemTags[0]! : null;
 
     return {
         cause,

@@ -18,7 +18,7 @@ const cssVariablePattern = /--([a-zA-Z0-9-]+):/g;
 const definedVariables = new Set<string>();
 let match;
 while ((match = cssVariablePattern.exec(tokensContent)) !== null) {
-    definedVariables.add(`--${match[1]}`);
+    definedVariables.add(`--${match[1]!}`);
 }
 
 // Helper to get all TSX files recursively
@@ -63,10 +63,10 @@ describe('Theme Integrity', () => {
             const lines = content.split('\n');
 
             for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
+                const line = lines[i]!;
                 let varMatch;
                 while ((varMatch = varUsagePattern.exec(line)) !== null) {
-                    const varName = varMatch[1];
+                    const varName = varMatch[1]!;
                     if (!definedVariables.has(varName)) {
                         undefinedVars.push({
                             file: file.replace(componentsDir, ''),
@@ -101,7 +101,7 @@ describe('Theme Integrity', () => {
 
             let inStyleBlock = false;
             for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
+                const line = lines[i]!;
 
                 // Simple heuristic: check if we're in a style={{ block
                 if (line.includes('style={{') || line.includes('style: {')) {
@@ -115,7 +115,7 @@ describe('Theme Integrity', () => {
                     let colorMatch;
                     while ((colorMatch = hexColorPattern.exec(line)) !== null) {
                         // Allow some specific cases like opacity values or well-known colors
-                        const color = colorMatch[0];
+                        const color = colorMatch[0]!;
                         // Skip if it's inside a comment
                         if (line.trim().startsWith('//') || line.trim().startsWith('*')) continue;
 
@@ -154,7 +154,7 @@ describe('Theme Integrity', () => {
             const lines = content.split('\n');
 
             for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
+                const line = lines[i]!;
                 for (const pattern of patterns) {
                     if (pattern.test(line) && !line.includes('var(--')) {
                         hardcodedTextColors.push({
