@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatBudget } from '@/utils/format';
+import { formatBudget, formatPercentage } from '@/utils/format';
 import { getBudgetColor, getComplianceColor, getDoomColor } from './colorHelpers';
 
 export interface GameStatsGridProps {
@@ -66,7 +66,7 @@ export const GameStatsGrid: React.FC<GameStatsGridProps> = ({
                     className="text-xl font-bold"
                     style={{ color: getComplianceColor(complianceLevel) }}
                 >
-                    {Math.round(complianceLevel)}%
+                    {formatPercentage(complianceLevel, 1)}%
                 </div>
             </div>
             <div
@@ -86,7 +86,7 @@ export const GameStatsGrid: React.FC<GameStatsGridProps> = ({
                     className="text-xl font-bold"
                     style={{ color: getDoomColor(doomLevel, isVictory) }}
                 >
-                    {Math.round(doomLevel)}%
+                    {formatPercentage(doomLevel, 1)}%
                 </div>
             </div>
         </div>

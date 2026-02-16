@@ -80,7 +80,8 @@ export function saveGame(state: GameStateSnapshot): boolean {
                 fundingLevel: state.fundingLevel,
                 isPaused: state.isPaused,
                 selectedDevice: state.selectedDevice,
-                history: state.history
+                history: state.history,
+                shieldDeflections: state.shieldDeflections
             },
             savedAt: new Date().toISOString(),
             version: CURRENT_VERSION

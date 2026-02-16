@@ -54,3 +54,13 @@ export function formatGameDate(totalMonths: number): string {
     const day = i18n.t('common.dayShort');
     return d > 0 ? `${m} ${mo} ${d} ${day}` : `${m} ${mo}`;
 }
+/**
+ * Format percentage value - rounds to a specified number of decimals.
+ * Examples: 5.5166 -> "5.5%", 10.0 -> "10%", 100 -> "100%"
+ */
+export function formatPercentage(value: number, decimals: number = 1): string {
+    // If value is a perfect integer, return it as such
+    if (Number.isInteger(value)) return `${value}`;
+    // Otherwise, round to specified decimals and strip trailing zeros
+    return `${parseFloat(value.toFixed(decimals))}`;
+}

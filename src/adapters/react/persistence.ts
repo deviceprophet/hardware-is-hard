@@ -21,7 +21,7 @@ import {
     type GameResult
 } from '../../utils/compression';
 import { PERSISTENCE } from '../../engine/constants';
-import type { GameStateSnapshot } from '../../engine';
+import type { GameStateSnapshot, Device } from '../../engine';
 
 export interface PersistenceSlice {
     sharedResult: GameResult | null;
@@ -105,7 +105,6 @@ export function createPersistenceSlice(
                 }
 
                 if (!saved.state.phase || saved.state.budget === undefined) {
-                    console.error('[loadSavedGame] Corrupted save detected, clearing...');
                     deleteSavedGame();
                     return false;
                 }
@@ -147,14 +146,15 @@ export function createPersistenceSlice(
             try {
                 const result = extractResultFromUrl();
                 if (result) {
-                    console.log('[loadFromUrl] Found shared result', result);
-
                     set({ sharedResult: result });
 
-                    const currentState = engine.getState();
                     engine.restoreState({
-                        ...currentState,
-                        phase: 'shared_result'
+                        phase: 'shared_result',
+                        budget: result.b,
+                        doomLevel: result.dm,
+                        complianceLevel: result.c,
+                        timelineMonth: result.m,
+                        selectedDevice: { id: result.d } as unknown as Device // Partial device for display
                     });
 
                     if (typeof window !== 'undefined') {

@@ -6,7 +6,7 @@ import { useGameStore } from '@/adapters/react';
 import { DoomMeter, TimelineProgress } from '../ui';
 import { SystemArchitecture } from '../ui/SystemArchitecture';
 import { LogPanel } from '../ui/LogPanel';
-import { formatBudget } from '@/utils/format';
+import { formatBudget, formatPercentage } from '@/utils/format';
 import { OTA_MONETIZATION, DEFAULT_CONFIG } from '@/engine/constants';
 import { useTranslatedDevice } from '@/hooks/useTranslatedContent';
 import { KeyboardHelpOverlay } from '../ui/KeyboardHelpOverlay';
@@ -214,7 +214,7 @@ export const SimulationView: React.FC = () => {
                         {t('common.compliance')}
                     </div>
                     <div className="text-lg font-bold" style={{ color: complianceColor }}>
-                        {complianceLevel.toFixed(0)}%
+                        {formatPercentage(complianceLevel)}%
                     </div>
                 </div>
                 <div

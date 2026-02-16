@@ -34,6 +34,7 @@ import {
     BUDGET_STRESS_TIERS,
     SETUP,
     INITIAL_COMPLIANCE,
+    INITIAL_DOOM,
     NO_LAST_EVENT
 } from './constants';
 
@@ -225,9 +226,12 @@ export class GameEngine {
 
         this.state.selectedDevice = device;
         this.state.budget = device.initialBudget;
+        this.state.doomLevel = INITIAL_DOOM;
         this.state.activeTags = [...device.initialTags];
         this.state.complianceLevel = INITIAL_COMPLIANCE;
         this.state.fundingLevel = 'full';
+        this.state.history = [];
+        this.state.shieldDeflections = [];
         this.notify();
     }
 
@@ -299,7 +303,10 @@ export class GameEngine {
         }
 
         this.state.budget += OTA_MONETIZATION.REWARD;
-        this.state.doomLevel += OTA_MONETIZATION.DOOM_PENALTY;
+        this.state.doomLevel = Math.min(
+            this.config.maxDoom,
+            this.state.doomLevel + OTA_MONETIZATION.DOOM_PENALTY
+        );
         this.advanceTime(OTA_MONETIZATION.TIME_ADVANCE);
     }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPercentage } from '@/utils/format';
 
 interface DoomMeterProps {
     level: number; // 0-100
@@ -47,7 +48,7 @@ export const DoomMeter: React.FC<DoomMeterProps> = React.memo(({ level, showLabe
                 aria-valuenow={clampedLevel}
                 aria-valuemin={0}
                 aria-valuemax={100}
-                aria-label={`Doom level: ${clampedLevel}%`}
+                aria-label={`Doom level: ${formatPercentage(clampedLevel)}%`}
                 className="flex-1 h-3 rounded-full overflow-hidden"
                 style={{ backgroundColor: 'var(--bg-tertiary)' }}
             >
@@ -63,7 +64,7 @@ export const DoomMeter: React.FC<DoomMeterProps> = React.memo(({ level, showLabe
                 />
             </div>
             <span className={`text-sm font-bold tabular-nums ${textColorClass}`}>
-                {clampedLevel}%
+                {formatPercentage(clampedLevel)}%
             </span>
         </div>
     );

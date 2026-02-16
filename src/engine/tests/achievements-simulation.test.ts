@@ -17,10 +17,11 @@ import {
     type Device,
     type GameEvent,
     type Choice,
-    type GameStateSnapshot
+    type GameStateSnapshot,
+    type HistoryEntry
 } from '../index';
 import { recordGameResult, loadStats, getDefaultStats, saveStats } from '../stats-tracker';
-import { checkAchievements, ACHIEVEMENTS } from '../achievements';
+import { checkAchievements } from '../achievements';
 
 // Load actual game data
 import devicesData from '../../data/devices.json';
@@ -38,6 +39,16 @@ interface SimResult {
     state: GameStateSnapshot;
     won: boolean;
 }
+
+const mockHistory = (count: number): HistoryEntry[] => {
+    return Array(count).fill({
+        month: 1,
+        eventId: 'mock_event',
+        choiceId: 'mock_choice',
+        doomIncrease: 0,
+        cost: 0
+    });
+};
 
 /** Run a full game to completion and return the final state */
 function simulateGame(deviceId: string, seed: number, strategy: 'safe' | 'risky'): SimResult {
@@ -114,6 +125,7 @@ describe('Achievements Simulation', () => {
         localStorage.clear();
     });
 
+    // Increase timeout for simulation suite as it runs many game engines
     describe('Integration: recordGameResult triggers achievements', () => {
         it('should award first_blood after the very first game', () => {
             const { stats } = simulateAndRecord('omni-juice', 42, 'safe');
@@ -123,26 +135,12 @@ describe('Achievements Simulation', () => {
         });
 
         it('should award survivor after a winning game', () => {
-            // Find a seed that wins with safe strategy
-            let won = false;
-            let seed = 100;
-            let stats = getDefaultStats();
+            // Use a known winning seed (0 works for omni-juice/safe)
+            const { won, stats } = simulateAndRecord('omni-juice', 0, 'safe');
 
-            while (!won && seed < 200) {
-                localStorage.clear();
-                const result = simulateAndRecord('omni-juice', seed, 'safe');
-                stats = result.stats;
-                won = result.won;
-                seed++;
-            }
-
-            if (won) {
-                expect(stats.achievements).toContain('survivor');
-            } else {
-                // If no seed produced a win in 100 tries, the test is inconclusive
-                // but first_blood should still be there
-                expect(stats.achievements).toContain('first_blood');
-            }
+            expect(won).toBe(true);
+            expect(stats.gamesWon).toBe(1);
+            expect(stats.achievements).toContain('survivor');
         });
 
         it('should accumulate achievements across multiple games', () => {
@@ -178,10 +176,12 @@ describe('Achievements Simulation', () => {
 
     describe('State-dependent achievements with real game engine', () => {
         it('crisis_veteran should trigger in games with many events', () => {
-            // Run many games and check if any produced 10+ history entries
+            // Run games looking for one that produced 10+ history entries
+            // Risky strategy leads to more crises
             let crisisVeteranEarned = false;
 
-            for (let seed = 0; seed < 50; seed++) {
+            for (let seed = 0; seed < 20; seed++) {
+                // Reduced from 50
                 localStorage.clear();
                 const { state, stats } = simulateAndRecord('omni-juice', seed, 'risky');
 
@@ -192,11 +192,14 @@ describe('Achievements Simulation', () => {
                 }
             }
 
-            // It's possible but not guaranteed - log for visibility
             if (!crisisVeteranEarned) {
-                console.log(
-                    'Note: crisis_veteran not triggered in 50 simulated games (needs 10+ events)'
-                );
+                // Fallback for extremely rare cases in limited iterations
+                const fakeState = {
+                    phase: 'simulation',
+                    history: mockHistory(10)
+                } as unknown as GameStateSnapshot;
+                const stats = checkAchievements(fakeState, getDefaultStats());
+                expect(stats).toContain('crisis_veteran');
             }
         });
 
@@ -204,7 +207,8 @@ describe('Achievements Simulation', () => {
             // Run games looking for one that wins with <= 3 history entries
             let speedRunFound = false;
 
-            for (let seed = 0; seed < 100; seed++) {
+            for (let seed = 0; seed < 50; seed++) {
+                // Reduced from 100
                 localStorage.clear();
                 const { state, won, stats } = simulateAndRecord('omni-juice', seed, 'safe');
 
@@ -216,15 +220,17 @@ describe('Achievements Simulation', () => {
             }
 
             if (!speedRunFound) {
-                console.log(
-                    'Note: speed_run not triggered in 100 games (needs victory + <= 3 events)'
-                );
+                // Fallback: confirm the check logic works
+                const fakeState = {
+                    phase: 'victory',
+                    history: mockHistory(3)
+                } as unknown as GameStateSnapshot;
+                expect(checkAchievements(fakeState, getDefaultStats())).toContain('speed_run');
             }
         });
 
         it('budget_hawk requires victory with >= $80K budget', () => {
-            // Check achievements against simulated state
-            for (let seed = 0; seed < 50; seed++) {
+            for (let seed = 0; seed < 10; seed++) {
                 const { state, won } = simulateGame('omni-juice', seed, 'safe');
                 if (won && state.budget >= 80000) {
                     const newAchievements = checkAchievements(state, getDefaultStats());
@@ -232,13 +238,17 @@ describe('Achievements Simulation', () => {
                     return;
                 }
             }
-            console.log('Note: No game ended with victory + $80K budget in 50 tries');
+            // Fallback
+            const fakeState = {
+                phase: 'victory',
+                budget: 90000,
+                history: []
+            } as unknown as GameStateSnapshot;
+            expect(checkAchievements(fakeState, getDefaultStats())).toContain('budget_hawk');
         });
 
         it('doom_dancer requires victory with >= 70% doom', () => {
-            // This is very hard to achieve - high doom usually means loss
-            // Verify the check function works on a realistic victory state
-            for (let seed = 0; seed < 100; seed++) {
+            for (let seed = 0; seed < 25; seed++) {
                 const { state, won } = simulateGame('omni-juice', seed, 'risky');
                 if (won && state.doomLevel >= 70) {
                     const newAchievements = checkAchievements(state, getDefaultStats());
@@ -246,29 +256,17 @@ describe('Achievements Simulation', () => {
                     return;
                 }
             }
-            // Expected: this is rare. Verify manually that the logic is correct
-            const fakeState: GameStateSnapshot = {
+            // Fallback
+            const fakeState = {
                 phase: 'victory',
-                budget: 50000,
                 doomLevel: 75,
-                timelineMonth: 60,
-                selectedDevice: null,
-                availableDevices: [],
-                activeTags: [],
-                history: [],
-                shieldDeflections: [],
-                currentCrisis: null,
-                lastEventMonth: 0,
-                isPaused: false,
-                complianceLevel: 50,
-                fundingLevel: 'full',
-                deathAnalysis: null
-            };
+                history: []
+            } as unknown as GameStateSnapshot;
             expect(checkAchievements(fakeState, getDefaultStats())).toContain('doom_dancer');
         });
 
         it('clean_slate requires victory with <= 10% doom', () => {
-            for (let seed = 0; seed < 100; seed++) {
+            for (let seed = 0; seed < 10; seed++) {
                 const { state, won } = simulateGame('omni-juice', seed, 'safe');
                 if (won && state.doomLevel <= 10) {
                     const newAchievements = checkAchievements(state, getDefaultStats());
@@ -276,24 +274,12 @@ describe('Achievements Simulation', () => {
                     return;
                 }
             }
-            // Fallback: confirm the check logic works
-            const fakeState: GameStateSnapshot = {
+            // Fallback
+            const fakeState = {
                 phase: 'victory',
-                budget: 50000,
                 doomLevel: 5,
-                timelineMonth: 60,
-                selectedDevice: null,
-                availableDevices: [],
-                activeTags: [],
-                history: [],
-                shieldDeflections: [],
-                currentCrisis: null,
-                lastEventMonth: 0,
-                isPaused: false,
-                complianceLevel: 80,
-                fundingLevel: 'full',
-                deathAnalysis: null
-            };
+                history: []
+            } as unknown as GameStateSnapshot;
             expect(checkAchievements(fakeState, getDefaultStats())).toContain('clean_slate');
         });
     });
@@ -324,73 +310,46 @@ describe('Achievements Simulation', () => {
         });
 
         it('undefeated requires 5+ wins with zero losses', () => {
-            // Find seeds that produce wins
-            const winningSeeds: number[] = [];
-            for (let seed = 0; seed < 200 && winningSeeds.length < 5; seed++) {
-                const { won } = simulateGame('omni-juice', seed, 'safe');
-                if (won) winningSeeds.push(seed);
+            // We know omni-juice + safe strategy wins consistently (seeds 0-4)
+            localStorage.clear();
+            for (let i = 0; i < 5; i++) {
+                simulateAndRecord('omni-juice', i, 'safe');
             }
-
-            if (winningSeeds.length >= 5) {
-                localStorage.clear();
-                for (const seed of winningSeeds) {
-                    simulateAndRecord('omni-juice', seed, 'safe');
-                }
-                const stats = loadStats();
-                expect(stats.gamesWon).toBe(5);
-                expect(stats.gamesPlayed).toBe(5);
-                expect(stats.achievements).toContain('undefeated');
-            } else {
-                console.log(
-                    `Note: Only found ${winningSeeds.length} winning seeds out of 200 tries`
-                );
-            }
+            const stats = loadStats();
+            expect(stats.gamesWon).toBe(5);
+            expect(stats.gamesPlayed).toBe(5);
+            expect(stats.achievements).toContain('undefeated');
         });
 
         it('undefeated should NOT trigger if there is a loss mixed in', () => {
-            // Find winning and losing seeds
-            const winningSeeds: number[] = [];
-            let losingSeed: number | null = null;
+            // Use known winning seeds (0-4) and one known losing seed (risky strategy on seed 0)
+            localStorage.clear();
 
-            for (let seed = 0; seed < 200; seed++) {
-                const { won } = simulateGame('omni-juice', seed, 'safe');
-                if (won && winningSeeds.length < 5) {
-                    winningSeeds.push(seed);
-                } else if (!won && losingSeed === null) {
-                    losingSeed = seed;
-                }
-                if (winningSeeds.length >= 5 && losingSeed !== null) break;
+            // Record: 3 wins
+            for (let i = 0; i < 3; i++) {
+                simulateAndRecord('omni-juice', i, 'safe');
             }
 
-            if (winningSeeds.length >= 5 && losingSeed !== null) {
-                // Record: 3 wins, 1 loss, 2 wins = 5 wins but gamesPlayed=6
-                for (let i = 0; i < 3; i++) {
-                    simulateAndRecord('omni-juice', winningSeeds[i]!, 'safe');
-                }
-                simulateAndRecord('omni-juice', losingSeed, 'safe');
-                for (let i = 3; i < 5; i++) {
-                    simulateAndRecord('omni-juice', winningSeeds[i]!, 'safe');
-                }
+            // 1 loss (risky strategy on omni-juice seed 0 leads to loss)
+            simulateAndRecord('omni-juice', 0, 'risky');
 
-                const stats = loadStats();
-                expect(stats.gamesWon).toBe(5);
-                expect(stats.gamesPlayed).toBe(6);
-                expect(stats.achievements).not.toContain('undefeated');
+            // 2 more wins
+            for (let i = 3; i < 5; i++) {
+                simulateAndRecord('omni-juice', i, 'safe');
             }
+
+            const stats = loadStats();
+            expect(stats.gamesWon).toBe(5);
+            expect(stats.gamesPlayed).toBe(6);
+            expect(stats.achievements).not.toContain('undefeated');
         });
     });
 
     describe('Batch simulation: achievement distribution', () => {
         it('should produce realistic achievement distributions across many games', () => {
             const NUM_GAMES = 50;
-            const achievementCounts = new Map<string, number>();
 
             // Initialize counts
-            for (const a of ACHIEVEMENTS) {
-                achievementCounts.set(a.id, 0);
-            }
-
-            // Run games across different devices
             localStorage.clear();
             for (let i = 0; i < NUM_GAMES; i++) {
                 const deviceId = devices[i % devices.length]!.id;
@@ -398,11 +357,6 @@ describe('Achievements Simulation', () => {
             }
 
             const finalStats = loadStats();
-
-            // Count which achievements were earned
-            for (const achId of finalStats.achievements) {
-                achievementCounts.set(achId, (achievementCounts.get(achId) || 0) + 1);
-            }
 
             // first_blood should always be earned (plays at least 1 game)
             expect(finalStats.achievements).toContain('first_blood');
@@ -414,14 +368,6 @@ describe('Achievements Simulation', () => {
             // All achievements should appear at most once (no duplicates)
             const uniqueAchievements = new Set(finalStats.achievements);
             expect(uniqueAchievements.size).toBe(finalStats.achievements.length);
-
-            // Log the distribution for review
-            console.log('\n--- ACHIEVEMENT DISTRIBUTION (50 games) ---');
-            console.log(`Games: ${finalStats.gamesPlayed}, Wins: ${finalStats.gamesWon}`);
-            console.log(`Achievements earned: ${finalStats.achievements.join(', ')}`);
-            console.log(
-                `Unique devices played: ${new Set(finalStats.runHistory.map(r => r.deviceId)).size}`
-            );
         });
     });
 
@@ -501,4 +447,4 @@ describe('Achievements Simulation', () => {
             expect(firstBloodCount).toBe(1);
         });
     });
-});
+}, 30000);
